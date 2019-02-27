@@ -6,11 +6,11 @@ Made using GameMaker: Studio, NX Launcher+ is a Nintendo Switch UI-based game an
 
 ## Features:
 - **Nintendo Switch-based UI**
-<div align="left">
-    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_screenshot01.png" alt="" /></p>
+<div align="center">
+    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_screenshot_light.png" alt="" /></p>
 </div>
-<div align="right">
-    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_screenshot02.png" alt="" /></p>
+<div align="center">
+    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_screenshot_dark.png" alt="" /></p>
 </div>
 Easy to use, comfortable for the eyes... And we support Dark theme too!
 
@@ -27,7 +27,7 @@ Just like the Switch ones!
 Tired of using the old keyboard? Try using a controller! (DirectInput and XInput controllers supported)
 
 - **Discord's Rich Presence support**
-<div align="center">
+<div align="left">
     <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_rpc.png" alt="" /></p>
 </div>
 I'm still working on this, but i've made a basic support.
