@@ -1,18 +1,4 @@
-/*
+///discord_free_dll()
+//Free RAM memory by ending RPC's DLL process
+external_free("discord-rpc-main.dll");
 
-Call this script to free the dll files. (Optional)
-
-
-Arguments : 
-- Noone
-
-Returns:
-- Void
-
------------------------------------------
-
-Discord Rich Presence for Game Maker made by Aouab
-
-*/
-
-external_free("discord-rpc-main.dll")
