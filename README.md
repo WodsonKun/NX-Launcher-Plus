@@ -45,3 +45,6 @@ I'm still working on this, but i've made a basic support.
 
 **Logo and Icon**:
 *Luis Felipe (Mario² / Lunar Studyo)*
+
+**Cursor**:
+*Manuel Goulão*
