@@ -38,7 +38,7 @@ I'm still working on this, but i've made a basic support.
 *Wodson de Andrade (WodsonKun)*
 
 **Ninty Launcher's source**:
-*Mario Silva (Nin★Gamer)
+*Mario Silva (Nin★Gamer)*
 
 **Extensions:**
 *Aouab (DiscordRPC), Samuel Venable (ExecuteShell, FMNS)*
