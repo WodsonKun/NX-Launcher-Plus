@@ -491,11 +491,12 @@ temp_h = window_get_height();
           <argument>
             <kind>1</kind>
             <string>///Retomar launcher
+io_clear();
 is_playing = 0;
 display_set_ui_visibility(1);
 
 //Dar foco ao launcher
-window_has_focus();
+window_command_hook(window_command_set_active);
 
 //SFX
 audio_play_sfx(sfx_nx_system_init);
@@ -531,6 +532,7 @@ event_user(0);
           <argument>
             <kind>1</kind>
             <string>///Iniciar jogo
+io_clear();
 
 //Executar .BAT (E aguardar execução ser finalizada...)
 execute_shell('"'+game_save_id+'gameboot.bat"',1,1);
@@ -1071,6 +1073,40 @@ if(os_is_paused())
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="12">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Descarregar assets (RAM)
+//Lista
+var i;
+for(i=0; i&lt;games_total; i+=1){
+    
+    //Deletar thumbnail
+    if(sprite_exists(games_thumb[i]))
+        sprite_delete(games_thumb[i]);
+};
+
+//Limpar
+cleanmem();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -1149,7 +1185,7 @@ discord_free_dll();
             <kind>1</kind>
             <string>///Carregar configurações e iniciar o launcher
 //Anti-aliasing
-display_reset(8, true);
+display_reset(2, true);
 
 //Menor que 1080p
 if(display_get_width() &lt; 1920-8){
@@ -1343,8 +1379,8 @@ if(gamepad_is_connected(0) == 1) || (gamepad_is_connected(4) == 1)
         {
             draw_set_colour(c_white)
         }
-        draw_text(922, 664, "Move")
-        draw_text(1140, 664, "Start");
+        draw_text(922, 665, "Move");
+        draw_text(1140, 665, "Start");
     }
 };
 else
@@ -1366,8 +1402,8 @@ else
         {
             draw_set_colour(c_white)
         }
-        draw_text(922, 664, "Move")
-        draw_text(1140, 664, "Start");
+        draw_text(922, 665, "Move");
+        draw_text(1140, 665, "Start");
     }
 };
 
