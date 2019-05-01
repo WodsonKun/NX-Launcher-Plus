@@ -1650,7 +1650,7 @@ if(point_in_rectangle(mouse_x,mouse_y,653-parental_offset,504,653-parental_offse
 {
     if (theme == 0)
 {
-    draw_sprite_ext(spr_ui_highlight,0,647-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_sprite_ext(spr_ui_highlight,0,651-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
     draw_text_colour(697+parental_offset,595,"Add game",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
@@ -1659,7 +1659,7 @@ if(point_in_rectangle(mouse_x,mouse_y,653-parental_offset,504,653-parental_offse
 }
 else
 {
-    draw_sprite_ext(spr_ui_highlight,0,647-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_sprite_ext(spr_ui_highlight,0,651-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
     draw_text_colour(697+parental_offset,595,"Add game",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
