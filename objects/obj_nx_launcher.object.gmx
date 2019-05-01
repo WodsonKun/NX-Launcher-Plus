@@ -1073,40 +1073,6 @@ if(os_is_paused())
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="12">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Descarregar assets (RAM)
-//Lista
-var i;
-for(i=0; i&lt;games_total; i+=1){
-    
-    //Deletar thumbnail
-    if(sprite_exists(games_thumb[i]))
-        sprite_delete(games_thumb[i]);
-};
-
-//Limpar
-cleanmem();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="10">
       <action>
         <libid>1</libid>
@@ -1263,6 +1229,8 @@ event_user(0);
 
 //Tocar SFX de inicialização
 audio_play_sfx(sfx_nx_system_init);
+
+io_clear();
 </string>
           </argument>
         </arguments>
