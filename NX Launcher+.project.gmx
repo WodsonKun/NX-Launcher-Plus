@@ -106,27 +106,8 @@
       </ConfigOptions>
       <filename>undefined.png</filename>
     </datafile>
-    <datafile>
-      <name>memctrl.dll</name>
-      <exists>-1</exists>
-      <size>1024</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>memctrl.dll</filename>
-    </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\window_command_hook</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sounds name="Home Menu GFX">
       <sound>sound\sfx_nx_home_messages</sound>
@@ -195,11 +176,6 @@
       <script>scripts\discord_update_presence.gml</script>
       <script>scripts\discord_free_app.gml</script>
       <script>scripts\discord_free_dll.gml</script>
-    </scripts>
-    <scripts name="CLRMEM (Clean Memory)">
-      <script>scripts\cleanmem_init.gml</script>
-      <script>scripts\cleanmem_get_mem.gml</script>
-      <script>scripts\cleanmem.gml</script>
     </scripts>
     <script>scripts\audio_play_sfx.gml</script>
     <script>scripts\execute_shell.gml</script>

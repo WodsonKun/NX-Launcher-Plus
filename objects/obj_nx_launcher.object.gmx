@@ -496,7 +496,7 @@ is_playing = 0;
 display_set_ui_visibility(1);
 
 //Dar foco ao launcher
-window_command_hook(window_command_set_active);
+window_has_focus();
 
 //SFX
 audio_play_sfx(sfx_nx_system_init);
