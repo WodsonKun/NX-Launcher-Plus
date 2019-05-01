@@ -185,6 +185,7 @@
     <font>fonts\fnt_ns_system_gamelist</font>
     <font>fonts\fnt_ns_system_clock</font>
     <font>fonts\fnt_ns_system_small</font>
+    <font>fonts\fnt_ns_system_highlight</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_nx_launcher</object>

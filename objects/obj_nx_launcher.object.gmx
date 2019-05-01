@@ -1089,7 +1089,7 @@ if(os_is_paused())
           <argument>
             <kind>1</kind>
             <string>///Discord RPC padrão
-discord_update_presence("🔎 | Choosing between " + string(games_total) + " games","🏠 | HOME Menu","icn_nx_launcher","");
+discord_update_presence("🔎 | Choosing between " + string(games_total) + " games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 </string>
           </argument>
         </arguments>
@@ -1576,6 +1576,140 @@ if!(window_has_focus())
     draw_rectangle(0,0,1280,720,0);
     draw_set_alpha(1);
     draw_set_colour(c_white);
+};
+
+//Highlight + texto
+//Messages
+if(point_in_rectangle(mouse_x,mouse_y,328,504,328+86,504+86))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight,0,324+parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(375-parental_offset,595,"Messages",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight,0,324+parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(375-parental_offset,595,"Messages",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+    }
+};
+//eShop
+if(point_in_rectangle(mouse_x,mouse_y,436,504,436+86,504+86))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight,0,430+parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(480-parental_offset,595,"eShop",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight,0,430+parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(480-parental_offset,595,"eShop",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+    }
+};
+//Album
+if(point_in_rectangle(mouse_x,mouse_y,544,504,544+86,504+86))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight,0,540+parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(590+parental_offset,595,"Themes",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight,0,540+parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(590+parental_offset,595,"Themes",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+    }
+};
+//Controllers / Add game
+if(point_in_rectangle(mouse_x,mouse_y,653-parental_offset,504,653-parental_offset+86,504+86))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight,0,647-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(697+parental_offset,595,"Add game",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight,0,647-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(697+parental_offset,595,"Add game",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+    }
+};
+//Settings
+if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,761-parental_offset+86,504+86))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight,0,755-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(805+parental_offset,595,"Settings",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight,0,755-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(805+parental_offset,595,"Settings",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+    }
+};
+//Power
+if(point_in_rectangle(mouse_x,mouse_y,869,504,869+86,504+86))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight,0,863-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(913+parental_offset,595,"Power",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight,0,863-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_set_halign(fa_center);
+    draw_text_colour(913+parental_offset,595,"Power",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_set_halign(fa_left);
+    draw_set_font(fnt_ns_system_highlight);
+    }
 };
 
 //Cursor
