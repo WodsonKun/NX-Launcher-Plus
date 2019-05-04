@@ -489,12 +489,12 @@
     <option_use_new_audio>True</option_use_new_audio>
     <option_variableerrors>False</option_variableerrors>
     <option_version>100</option_version>
-    <option_version_build>2</option_version_build>
+    <option_version_build>1</option_version_build>
     <option_version_company>WodsonKun</option_version_company>
     <option_version_copyright>(c) 2019 WodsonKun</option_version_copyright>
     <option_version_description>NX Launcher+</option_version_description>
     <option_version_major>1</option_version_major>
-    <option_version_minor>0</option_version_minor>
+    <option_version_minor>6</option_version_minor>
     <option_version_product>NX-LAUNCHER-PLUS</option_version_product>
     <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
@@ -568,7 +568,7 @@
     <option_winUAP_texture_page>1024</option_winUAP_texture_page>
     <option_winUAP_wide_logo>Configs\Default\WindowsUAP\logos\WideLogo.scale-100.png</option_winUAP_wide_logo>
     <option_windowcolor>clBlack</option_windowcolor>
-    <option_windows_alternate_sync_method>False</option_windows_alternate_sync_method>
+    <option_windows_alternate_sync_method>True</option_windows_alternate_sync_method>
     <option_windows_build_version>0</option_windows_build_version>
     <option_windows_company_info>WodsonKun</option_windows_company_info>
     <option_windows_copyright_info>(c) 2019 WodsonKun</option_windows_copyright_info>
@@ -577,7 +577,7 @@
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
-    <option_windows_mainor_version>0</option_windows_mainor_version>
+    <option_windows_mainor_version>6</option_windows_mainor_version>
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>NX-LAUNCHER-PLUS</option_windows_product_info>
@@ -591,7 +591,7 @@
     <option_windows_steam_app_id>0</option_windows_steam_app_id>
     <option_windows_texture_page>2048</option_windows_texture_page>
     <option_windows_use_splash>0</option_windows_use_splash>
-    <option_windows_vertex_buffer_method2>2</option_windows_vertex_buffer_method2>
+    <option_windows_vertex_buffer_method2>0</option_windows_vertex_buffer_method2>
     <option_winphone_480_splash_image>Configs\Default\WinPhone\SplashScreenImage480.jpg</option_winphone_480_splash_image>
     <option_winphone_720_splash_image>Configs\Default\WinPhone\SplashScreenImage720.jpg</option_winphone_720_splash_image>
     <option_winphone_768_splash_image>Configs\Default\WinPhone\SplashScreenImage.jpg</option_winphone_768_splash_image>

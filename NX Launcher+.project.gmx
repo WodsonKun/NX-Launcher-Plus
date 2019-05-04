@@ -120,8 +120,15 @@
       <sound>sound\sfx_nx_system_init</sound>
       <sound>sound\sfx_nx_notification_general</sound>
       <sound>sound\sfx_nx_system_gameselect</sound>
+      <sound>sound\sfx_nx_system_gameborder</sound>
       <sound>sound\sfx_nx_system_gamestart</sound>
+      <sound>sound\sfx_nx_system_error</sound>
       <sound>sound\sfx_nx_system_shutdown</sound>
+      <sound>sound\sfx_nx_system_deletethumb</sound>
+      <sound>sound\sfx_nx_system_standby</sound>
+      <sound>sound\sfx_nx_system_tick</sound>
+      <sound>sound\sfx_nx_system_home</sound>
+      <sound>sound\sfx_nx_system_loading</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">

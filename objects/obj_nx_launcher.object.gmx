@@ -58,6 +58,9 @@ dialog_filterright = 1280;
 col_numb = 0;
 col_mod = 0;
 
+//Tempo
+global.sec = 0;
+
 //Criador de perfil
 ini_open(game_save_id + 'config.ini');
 ini_write_string("NX_PROFILE", "profilename", "User");
@@ -291,12 +294,11 @@ if(file != ""){
     if(thumb != ""){
         games_thumb[games_total] = sprite_add(thumb,0,0,1,0,0);
         file_copy(thumb,game_save_id+"collection\game_"+string(games_total)+".png");
+        audio_play_sfx(sfx_nx_notification_general);
     };
-    else
+    else{
         games_thumb[games_total] = sprite_add(game_save_id+"undefined.png",0,0,0,0,0);
-    
-    //SFX
-    audio_play_sfx(sfx_nx_notification_general);
+        audio_play_sfx(sfx_nx_system_error);}
         
     //Adicionar jogo
     games_title[games_total] = string_copy(filename_name(file),0,48);
@@ -329,9 +331,9 @@ if(file != ""){
     alarm[6] = 1;
 };
 //Voltar fullscreen... (Se tiver sido definido antes)    
-else{
-
-    audio_play_sfx(sfx_nx_notification_general);
+else
+{
+    audio_play_sfx(sfx_nx_system_error);
     window_set_fullscreen(fullscreen);
 };
 </string>
@@ -499,7 +501,7 @@ display_set_ui_visibility(1);
 window_has_focus();
 
 //SFX
-audio_play_sfx(sfx_nx_system_init);
+audio_play_sfx(sfx_nx_system_home);
 
 //Recuperar posição/tamanho
 alarm[4] = 2;
@@ -579,7 +581,7 @@ window_set_position(-4000,-4000);
 window_set_size(16,16);
 
 //Discord RPC
-discord_update_presence("","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","");
+discord_update_presence("","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
 
 //Criar .BAT direcionado ao local do jogo (evita falhas)
 var test = file_text_open_write(game_save_id+"gameboot.bat")
@@ -640,7 +642,7 @@ if(dialog == 1){
     
     //SFX de tecla
     if(keyboard_check_pressed(vk_anykey))
-        audio_play_sfx(sfx_nx_system_init);
+        audio_play_sfx(sfx_nx_system_tick);
     
     //Trocar caracteres inválidos
     if(keyboard_check(vk_anykey)){
@@ -655,7 +657,7 @@ if(dialog == 1){
         stg_6 = string_replace(stg_5,"&lt;","");
         stg_7 = string_replace(stg_6,"&gt;","");
         stg_8 = string_replace(stg_7,'"',"");
-        stg_9 = string_replace(stg_8,'#',"");
+        stg_9 = string_replace(stg_8,"","");
         stg_f = string_replace(stg_9,"'","");
         keyboard_string = stg_f;
         dialog_return = stg_f;
@@ -762,26 +764,24 @@ for(gp_count = 0; gp_count &lt; 5; gp_count += 1){
 //Opções de Interface
 if(mouse_check_button_released(mb_left))
 ||(mouse_check_button_released(mb_right)){
-        
+    //Messages
+    if(point_in_rectangle(mouse_x,mouse_y,328,504,328+86,504+86))
+    {
+        audio_play_sfx(sfx_nx_home_messages);
+        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
+    }
     //eShop
     if(point_in_rectangle(mouse_x,mouse_y,436,504,436+86,504+86))
-    &amp;&amp;(mouse_check_button(mb_left))
     {
-        audio_play_sfx(sfx_nx_home_eshop)
+        audio_play_sfx(sfx_nx_home_eshop);
+        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
     }
         
     //Album / Tema
     if(point_in_rectangle(mouse_x,mouse_y,544,504,544+86,504+86))
     {
+        audio_play_sfx(sfx_nx_home_album);
         theme =! theme;
-        if(theme == 0)
-        {
-            audio_play_sfx(sfx_nx_notification_general);
-        }
-        else
-        {
-            audio_play_sfx(sfx_nx_notification_general);
-        }
     };
            
     //Adicionar jogos / Controllers
@@ -795,13 +795,19 @@ if(mouse_check_button_released(mb_left))
 };
 
     //Configurações
-    if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,(761+86)-parental_offset,504+86)){}
+    if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,(761+86)-parental_offset,504+86))
+    &amp;&amp;(mouse_check_button(mb_left))
+    {
+        audio_play_sfx(sfx_nx_home_settings);
+        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
+    }
     
     //Encerrar
     if(point_in_rectangle(mouse_x,mouse_y,869,504,869+86,504+86))
     &amp;&amp;(mouse_check_button(mb_left))
     {
-    game_end();
+        audio_play_sfx(sfx_nx_system_shutdown);
+        game_end();
     };
     
     //Alterar thumbnail do jogo
@@ -908,7 +914,7 @@ if(alarm[0] == -1)
             audio_play_sfx(sfx_nx_system_gameselect);
         };
         else
-            audio_play_sfx(sfx_nx_system_gameselect);
+            audio_play_sfx(sfx_nx_system_gameborder);
     };
     else if(keyboard_check_pressed(vk_left)){
     
@@ -920,7 +926,7 @@ if(alarm[0] == -1)
             audio_play_sfx(sfx_nx_system_gameselect);
         };
         else
-            audio_play_sfx(sfx_nx_system_gameselect);
+            audio_play_sfx(sfx_nx_system_gameborder);
     };
     else if(keyboard_check_pressed(vk_up)){
     
@@ -928,7 +934,7 @@ if(alarm[0] == -1)
         
         //Fim
         select_index = games_total-1;
-        audio_play_sfx(sfx_nx_system_gameselect);
+        audio_play_sfx(sfx_nx_system_gameborder);
     };
     else if(keyboard_check_pressed(vk_down)){
     
@@ -936,7 +942,7 @@ if(alarm[0] == -1)
         
         //Começo
         select_index = 0;
-        audio_play_sfx(sfx_nx_system_gameselect);
+        audio_play_sfx(sfx_nx_system_gameborder);
     };
     else if(keyboard_check_pressed(vk_enter)){
         
@@ -956,7 +962,7 @@ if(alarm[0] == -1)
                 if(select_index != move_origin){
                 
                     //SFX
-                    audio_play_sfx(sfx_nx_system_gameselect);
+                    audio_play_sfx(sfx_nx_system_tick);
                     games_title[select_index] = "Moving...";
                     
                     //Copiar
@@ -971,13 +977,13 @@ if(alarm[0] == -1)
                     file_rename_fmns(game_save_id+"collection\game_"+string(move_origin)+".ini",game_save_id+"collection\game_TMP.ini");
                     file_rename_fmns(game_save_id+"collection\game_"+string(move_origin)+".png",game_save_id+"collection\game_TMP.png");
                     
-                    //Mover arquivo destino apra de origem...
+                    //Mover arquivo destino para de origem...
                     alarm[11] = 10;
                 };
                 else{
                 
                     //SFX
-                    audio_play_sfx(sfx_nx_system_gameselect);
+                    audio_play_sfx(sfx_nx_system_tick);
                     
                     //Finalizar
                     move = 0;
@@ -1044,7 +1050,7 @@ if(keyboard_check_released(vk_delete))
         games_path[select_index] = "";
             
         //Decrementar
-        audio_play_sfx(sfx_nx_notification_general);
+        audio_play_sfx(sfx_nx_system_error);
         games_total--;            
         select_index--;
             
@@ -1059,7 +1065,7 @@ if(keyboard_check_released(vk_delete))
     //Mover tudo
     else
     {
-        audio_play_sound(sfx_nx_notification_general,0,1);
+        audio_play_sound(sfx_nx_system_loading,0,1);
         move_rest = select_index;
         alarm[10] = 10;
     };
@@ -1067,7 +1073,7 @@ if(keyboard_check_released(vk_delete))
 
 //Standby
 if(os_is_paused())
-    audio_play_sfx(sfx_nx_system_shutdown);
+    audio_play_sfx(sfx_nx_system_standby);
 </string>
           </argument>
         </arguments>
@@ -1091,7 +1097,7 @@ if(os_is_paused())
           <argument>
             <kind>1</kind>
             <string>///Discord RPC padrão
-discord_update_presence("🔎 | Choosing between " + string(games_total) + " games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+discord_update_presence("📕 | Choosing between " + string(games_total) + " games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 </string>
           </argument>
         </arguments>
@@ -1115,9 +1121,6 @@ discord_update_presence("🔎 | Choosing between " + string(games_total) + " gam
           <argument>
             <kind>1</kind>
             <string>///Salvar confirgurações e encerrar o RPC
-//Tocar SFX de encerramento
-audio_play_sfx(sfx_nx_system_shutdown);
-
 //Salvar configurações
 ini_open(game_save_id+"config.ini");
 ini_write_real("NX_SETTINGS","theme",theme);
@@ -1150,9 +1153,6 @@ discord_free_dll();
           <argument>
             <kind>1</kind>
             <string>///Carregar configurações e iniciar o launcher
-//Anti-aliasing
-display_reset(2, true);
-
 //Menor que 1080p
 if(display_get_width() &lt; 1920-8){
     
@@ -1392,11 +1392,11 @@ if(games_total == 0)
     //Highlight
     if (theme == 0)
     {
-        draw_sprite_ext(spr_ui_highlight,0,647-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
+        draw_sprite_ext(spr_ui_highlight,0,651-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
     }
     else
     {
-        draw_sprite_ext(spr_ui_highlight,0,650-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
+        draw_sprite_ext(spr_ui_highlight,0,651-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
     }
 };
 
@@ -1583,6 +1583,8 @@ if!(window_has_focus())
 };
 
 //Highlight + texto
+if (games_total &gt; 0)
+{
 //Messages
 if(point_in_rectangle(mouse_x,mouse_y,328,504,328+86,504+86))
 {
@@ -1715,6 +1717,7 @@ else
     draw_set_font(fnt_ns_system_highlight);
     }
 };
+}
 
 //Cursor
 if (theme == 0)
