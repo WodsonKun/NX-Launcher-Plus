@@ -138,6 +138,9 @@ else{
     //SFX
     audio_play_sfx(sfx_nx_notification_general);
     
+    //Limpar
+    cleanmem();
+    
     //Finalizar
     move = 0;
     move_origin = -1;
@@ -191,6 +194,9 @@ else{
     ini_write_string("NX_TITLE","total",string(games_total));
     ini_close();
 
+    //Limpar
+    cleanmem();
+    
     //Atualizar RPC
     event_user(0);
     
@@ -221,7 +227,7 @@ else{
             <string>///Alterar miniatura do Jogo
 
 //Buscar caminho...
-var mod_file = get_open_filename("Game Executable (.EXE)|*.exe","");
+var mod_file = get_open_filename("Game / Application (.exe, .swf, .url)|*.exe;*.swf;*.url","");
 if(mod_file != ""){
 
     //SFX
@@ -248,6 +254,9 @@ if(mod_file != ""){
     ini_write_string("NX_TITLE","path",string(mod_file));
     ini_close();
             
+    //Limpar
+    cleanmem();
+    
     //Atualizar RPC
     event_user(0);
     
@@ -257,7 +266,7 @@ if(mod_file != ""){
 //Voltar fullscreen... (Se tiver sido definido antes)    
 else{
 
-    audio_play_sfx(sfx_nx_notification_general);
+    audio_play_sfx(sfx_nx_system_error);
     window_set_fullscreen(fullscreen);
 };
 </string>
@@ -283,7 +292,7 @@ else{
           <argument>
             <kind>1</kind>
             <string>//Buscar caminho...
-var file = get_open_filename("Game Executable (.EXE)|*.exe","");
+var file = get_open_filename("Game / Application (.exe, .swf, .url)|*.exe;*.swf;*.url","");
 if(file != ""){
 
     //SFX
@@ -317,6 +326,9 @@ if(file != ""){
     games_total++;
     select_index = games_total-1;
   
+    //Limpar
+    cleanmem();
+    
     //Atualizar RPC
     event_user(0);
     
@@ -324,7 +336,7 @@ if(file != ""){
     window_set_fullscreen(fullscreen);
     
     //Alterar nome
-    dialog_description = "Set Game Title:"
+    dialog_description = "Set the application's name:"
     keyboard_string = string_copy(filename_name(file),0,48);
     dialog_return = string_copy(filename_name(file),0,48);
     dialog = 1;
@@ -497,6 +509,9 @@ io_clear();
 is_playing = 0;
 display_set_ui_visibility(1);
 
+//Limpar
+cleanmem();
+
 //Dar foco ao launcher
 window_has_focus();
 
@@ -535,6 +550,9 @@ event_user(0);
             <kind>1</kind>
             <string>///Iniciar jogo
 io_clear();
+
+//Limpar
+cleanmem();
 
 //Executar .BAT (E aguardar execução ser finalizada...)
 execute_shell('"'+game_save_id+'gameboot.bat"',1,1);
@@ -581,7 +599,7 @@ window_set_position(-4000,-4000);
 window_set_size(16,16);
 
 //Discord RPC
-discord_update_presence("","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
+discord_update_presence("💻 | Currently in-app","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
 
 //Criar .BAT direcionado ao local do jogo (evita falhas)
 var test = file_text_open_write(game_save_id+"gameboot.bat")
@@ -650,7 +668,7 @@ if(dialog == 1){
         var stg_b,stg_1,stg_2,stg_3,stg_4,stg_5,stg_6,stg_7,stg_8,stg_9,stg_f;
         stg_b = string_copy(keyboard_string,0,48);
         stg_1 = string_replace(stg_b,"\","");
-        stg_2 = string_replace(stg_1,"/","");
+        stg_2 = string_replace(stg_1,"","");
         stg_3 = string_replace(stg_2,"","");
         stg_4 = string_replace(stg_3,"*","");
         stg_5 = string_replace(stg_4,"","");
@@ -1065,7 +1083,7 @@ if(keyboard_check_released(vk_delete))
     //Mover tudo
     else
     {
-        audio_play_sound(sfx_nx_system_loading,0,1);
+        audio_play_sound(sfx_nx_system_loading,0,0);
         move_rest = select_index;
         alarm[10] = 10;
     };
@@ -1097,7 +1115,18 @@ if(os_is_paused())
           <argument>
             <kind>1</kind>
             <string>///Discord RPC padrão
-discord_update_presence("📕 | Choosing between " + string(games_total) + " games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+if (games_total == 0)
+{
+    discord_update_presence("📕 | You don't have any app!","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+}
+else if (games_total == 1)
+{
+    discord_update_presence("📕 | You just have one application","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+}
+else if (games_total &gt; 1)
+{
+    discord_update_presence("📕 | Choosing between " + string(games_total) + " applications","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+}
 </string>
           </argument>
         </arguments>
@@ -1126,6 +1155,9 @@ ini_open(game_save_id+"config.ini");
 ini_write_real("NX_SETTINGS","theme",theme);
 ini_write_real("NX_SETTINGS","fullscreen",fullscreen);
 ini_close();
+
+//Limpar
+cleanmem_init(1);
 
 //Encerrar DLLs do RPC
 discord_free_app();
@@ -1229,6 +1261,9 @@ event_user(0);
 
 //Tocar SFX de inicialização
 audio_play_sfx(sfx_nx_system_init);
+
+//Limpar
+cleanmem_init(0);
 
 io_clear();
 </string>
@@ -1637,7 +1672,7 @@ if(point_in_rectangle(mouse_x,mouse_y,544,504,544+86,504+86))
     draw_sprite_ext(spr_ui_highlight,0,540+parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
-    draw_text_colour(590+parental_offset,595,"Themes",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_text_colour(590+parental_offset,595,"Change themes",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
     draw_set_halign(fa_left);
     draw_set_font(fnt_ns_system_highlight);
 }
@@ -1646,7 +1681,7 @@ else
     draw_sprite_ext(spr_ui_highlight,0,540+parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
-    draw_text_colour(590+parental_offset,595,"Themes",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_text_colour(590+parental_offset,595,"Change themes",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
     draw_set_halign(fa_left);
     draw_set_font(fnt_ns_system_highlight);
     }
@@ -1659,7 +1694,7 @@ if(point_in_rectangle(mouse_x,mouse_y,653-parental_offset,504,653-parental_offse
     draw_sprite_ext(spr_ui_highlight,0,651-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
-    draw_text_colour(697+parental_offset,595,"Add game",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_text_colour(697+parental_offset,595,"Add thumbnail",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
     draw_set_halign(fa_left);
     draw_set_font(fnt_ns_system_highlight);
 }
@@ -1668,7 +1703,7 @@ else
     draw_sprite_ext(spr_ui_highlight,0,651-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
-    draw_text_colour(697+parental_offset,595,"Add game",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_text_colour(697+parental_offset,595,"Add thumbnail",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
     draw_set_halign(fa_left);
     draw_set_font(fnt_ns_system_highlight);
     }
@@ -1703,7 +1738,7 @@ if(point_in_rectangle(mouse_x,mouse_y,869,504,869+86,504+86))
     draw_sprite_ext(spr_ui_highlight,0,863-parental_offset,498,1,1,0,c_switchaqua_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
-    draw_text_colour(913+parental_offset,595,"Power",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+    draw_text_colour(913+parental_offset,595,"Exit",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
     draw_set_halign(fa_left);
     draw_set_font(fnt_ns_system_highlight);
 }
@@ -1712,7 +1747,7 @@ else
     draw_sprite_ext(spr_ui_highlight,0,863-parental_offset,498,1,1,0,c_switchblue_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_set_halign(fa_center);
-    draw_text_colour(913+parental_offset,595,"Power",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    draw_text_colour(913+parental_offset,595,"Exit",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
     draw_set_halign(fa_left);
     draw_set_font(fnt_ns_system_highlight);
     }
