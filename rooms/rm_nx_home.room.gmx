@@ -10,7 +10,23 @@
   <persistent>0</persistent>
   <colour>15790320</colour>
   <showcolour>-1</showcolour>
-  <code></code>
+  <code>//Variáveis
+LightBG = make_colour_rgb(241,241,241);
+DarkBG = make_colour_rgb(39,39,39);
+
+//Cor de fundo (para evitar problemas com sprites)
+if background_index[0] = -1
+    {
+    background_showcolour = true;
+    if (obj_nx_launcher.theme == 0)
+    {
+        background_colour = LightBG;
+    }
+    else
+    {
+        background_colour = DarkBG;
+    }
+}</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
@@ -31,7 +47,7 @@
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>

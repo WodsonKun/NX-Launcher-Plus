@@ -58,14 +58,11 @@ dialog_filterright = 1280;
 col_numb = 0;
 col_mod = 0;
 
-//Tempo
-global.sec = 0;
-
 //Criador de perfil
 ini_open(game_save_id + 'config.ini');
-ini_write_string("NX_PROFILE", "profilename", "User");
 ini_write_string("NX_PROFILE", "profileicon", game_save_id + "profile.png");
 ini_close();
+
 //Mover "profile.png" para pasta de saves
 file_copy_fmns(working_directory + "profile.png", game_save_id + "profile.png");
 file_delete_fmns(working_directory + "profile.png");
@@ -675,7 +672,7 @@ if(dialog == 1){
         stg_6 = string_replace(stg_5,"&lt;","");
         stg_7 = string_replace(stg_6,"&gt;","");
         stg_8 = string_replace(stg_7,'"',"");
-        stg_9 = string_replace(stg_8,"","");
+        stg_9 = string_replace(stg_8,'#',"");
         stg_f = string_replace(stg_9,"'","");
         keyboard_string = stg_f;
         dialog_return = stg_f;
@@ -847,7 +844,7 @@ if(mouse_check_button_released(mb_left))
         
             //Alterar nome
             audio_play_sfx(sfx_nx_notification_general);
-            dialog_description = "Set Game Title:"
+            dialog_description = "Change the application's name:"
             keyboard_string = games_title[select_index];
             dialog_return = games_title[select_index];
             dialog = 1;
@@ -1127,6 +1124,7 @@ else if (games_total &gt; 1)
 {
     discord_update_presence("📕 | Choosing between " + string(games_total) + " applications","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 }
+
 </string>
           </argument>
         </arguments>
@@ -1618,6 +1616,8 @@ if!(window_has_focus())
 };
 
 //Highlight + texto
+if not os_is_paused()
+{
 if (games_total &gt; 0)
 {
 //Messages
@@ -1752,6 +1752,10 @@ else
     draw_set_font(fnt_ns_system_highlight);
     }
 };
+}
+}
+else if os_is_paused()
+{
 }
 
 //Cursor
