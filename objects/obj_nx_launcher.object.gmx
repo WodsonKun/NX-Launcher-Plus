@@ -1606,20 +1606,8 @@ if(alarm[10] != -1){
     draw_set_colour(c_white);
 };
 
-//Filtro
-if!(window_has_focus())
-&amp;&amp;!(window_get_fullscreen()){
-
-    draw_set_colour(c_black);
-    draw_set_alpha(0.7);
-    draw_rectangle(0,0,1280,720,0);
-    draw_set_alpha(1);
-    draw_set_colour(c_white);
-};
-
 //Highlight + texto
-if (not os_is_paused())
-{
+if (window_has_focus()){
 if (games_total &gt; 0)
 {
 //Messages
@@ -1756,9 +1744,20 @@ else
 };
 }
 }
-else
-{
+else if!(window_has_focus()){
 }
+
+//Filtro
+if!(window_has_focus())
+&amp;&amp;!(window_get_fullscreen()){
+
+    draw_set_colour(c_black);
+    draw_set_alpha(0.7);
+    draw_rectangle(0,0,1280,720,0);
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+};
+
 //Cursor
 if (theme == 0)
 {
