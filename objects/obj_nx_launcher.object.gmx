@@ -1088,7 +1088,9 @@ if(keyboard_check_released(vk_delete))
 
 //Standby
 if(os_is_paused())
+{
     audio_play_sfx(sfx_nx_system_standby);
+}
 </string>
           </argument>
         </arguments>
@@ -1616,7 +1618,7 @@ if!(window_has_focus())
 };
 
 //Highlight + texto
-if not os_is_paused()
+if (not os_is_paused())
 {
 if (games_total &gt; 0)
 {
@@ -1754,10 +1756,9 @@ else
 };
 }
 }
-else if os_is_paused()
+else
 {
 }
-
 //Cursor
 if (theme == 0)
 {
