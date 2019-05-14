@@ -32,12 +32,14 @@ offset = 98;
 offset_v = 32;
 info_popup = 0;
 boot_res = "/max ";
+boot_wait = "/WAIT ";
 
 //Mover
 move = 0;
 move_origin = -1;
 move_temp_title = "";
 move_temp_path = "";
+move_temp_shortcut = 1;
 move_temp_thumbnail = noone;
 
 //Controle dos Pais
@@ -57,6 +59,9 @@ dialog_filterright = 1280;
 //Cor do Seletor
 col_numb = 0;
 col_mod = 0;
+
+//Shortcut text
+text_addgame = "[Use it as shortcut]: This option is useful for softwares like tools, editors and another applications.#NOTE: If you start a shortcut through NX Launcher, the launcher will not be suspended as it does with games.";
 
 //Criador de perfil
 ini_open(game_save_id + 'config.ini');
@@ -100,6 +105,7 @@ if(file_exists(game_save_id+"collection\game_"+string(select_index)+".ini")){
     //Mover...
     games_title[move_origin] = games_title[select_index];
     games_path[move_origin] = games_path[select_index];
+    games_shortcut[move_origin] = games_shortcut[select_index];
     games_thumb[move_origin] = sprite_duplicate(games_thumb[select_index]);
     
     //Deletar sprite de destino
@@ -118,6 +124,7 @@ else{
     //Carregar novos...
     games_title[select_index] = move_temp_title;
     games_path[select_index] = move_temp_path;
+    games_shortcut[select_index] = move_temp_shortcut;
     games_thumb[select_index] = sprite_duplicate(move_temp_thumbnail);
     
     //Corrigir nome
@@ -171,6 +178,7 @@ if(move_rest &lt; games_total-1){
     //Mover...
     games_title[move_rest] = games_title[move_rest+1];
     games_path[move_rest] = games_path[move_rest+1];
+    games_shortcut[move_rest] = games_shortcut[move_rest+1];
     games_thumb[move_rest] = sprite_duplicate(games_thumb[move_rest+1]);
     file_rename_fmns(game_save_id+"collection\game_"+string(move_rest+1)+".png",game_save_id+"collection\game_"+string(move_rest)+".png");
     file_rename_fmns(game_save_id+"collection\game_"+string(move_rest+1)+".ini",game_save_id+"collection\game_"+string(move_rest)+".ini");
@@ -240,6 +248,13 @@ if(mod_file != ""){
         file_copy_fmns(mod_thumb,game_save_id+"collection\game_"+string(select_index)+".png");
     };
     
+    //É um ATALHO?
+    var mod_scut = show_question(text_addgame);
+    if(mod_scut == 1){
+        games_shortcut[select_index] = 1;}
+    else{
+    games_shortcut[select_index] = 0;}
+    
     //SFX
     audio_play_sfx(sfx_nx_notification_general);
         
@@ -249,6 +264,7 @@ if(mod_file != ""){
     //Salvar no diretório
     ini_open(game_save_id+"collection\game_"+string(select_index)+".ini");
     ini_write_string("NX_TITLE","path",string(mod_file));
+    ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total]));
     ini_close();
             
     //Limpar
@@ -306,6 +322,13 @@ if(file != ""){
         games_thumb[games_total] = sprite_add(game_save_id+"undefined.png",0,0,0,0,0);
         audio_play_sfx(sfx_nx_system_error);}
         
+        //É um ATALHO?
+        var scut = show_question(text_addgame);
+        if(scut == 1)
+            games_shortcut[games_total] = 1;
+        else{
+            games_shortcut[games_total] = 0;}
+        
     //Adicionar jogo
     games_title[games_total] = string_copy(filename_name(file),0,48);
     games_path[games_total] = file;
@@ -313,6 +336,7 @@ if(file != ""){
     //Salvar no diretório
     ini_open(game_save_id+"collection\game_"+string(games_total)+".ini");
     ini_write_string("NX_TITLE","title",string_copy(filename_name(file),0,48));
+    real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total])));
     ini_write_string("NX_TITLE","path",string(file));
     ini_close();
             
@@ -596,7 +620,7 @@ window_set_position(-4000,-4000);
 window_set_size(16,16);
 
 //Discord RPC
-discord_update_presence("💻 | Currently in-app","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
+discord_update_presence("💻 | Currently in-game","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
 
 //Criar .BAT direcionado ao local do jogo (evita falhas)
 var test = file_text_open_write(game_save_id+"gameboot.bat")
@@ -604,7 +628,7 @@ file_text_write_string(test,filename_drive(games_path[select_index]));
 file_text_writeln(test);
 file_text_write_string(test,"cd "+filename_path(games_path[select_index])+"");
 file_text_writeln(test);
-file_text_write_string(test,'start "NX_Game_Boot" '+boot_res+'/wait '+'"'+filename_name(games_path[select_index])+'"');
+file_text_write_string(test,'start "NX_Game_Boot" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'"');
 file_text_writeln(test);
 file_text_close(test);
 
@@ -798,7 +822,7 @@ if(mouse_check_button_released(mb_left))
         audio_play_sfx(sfx_nx_home_album);
         theme =! theme;
     };
-           
+    
     //Adicionar jogos / Controllers
     if(point_in_rectangle(mouse_x,mouse_y,653-parental_offset,504,(653+86)-parental_offset,504+86))
     &amp;&amp;(alarm[7] == -1){
@@ -806,25 +830,21 @@ if(mouse_check_button_released(mb_left))
         audio_play_sfx(sfx_nx_home_controllers);
         window_set_fullscreen(0);
         alarm[7] = 2;
-    };
-};
+        }
 
     //Configurações
     if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,(761+86)-parental_offset,504+86))
-    &amp;&amp;(mouse_check_button(mb_left))
     {
-        audio_play_sfx(sfx_nx_home_settings);
+        audio_play_sfx(sfx_nx_home_settings)
         show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
     }
     
     //Encerrar
     if(point_in_rectangle(mouse_x,mouse_y,869,504,869+86,504+86))
-    &amp;&amp;(mouse_check_button(mb_left))
     {
-        audio_play_sfx(sfx_nx_system_shutdown);
-        game_end();
+    game_end();
     };
-    
+};
     //Alterar thumbnail do jogo
     if(keyboard_check_released(vk_control))
     &amp;&amp;(games_total &gt; 0)
@@ -852,7 +872,7 @@ if(mouse_check_button_released(mb_left))
         };
     };
     
-    
+
 //Cor do seletor de jogos
 if(col_mod == 0){
 
@@ -983,6 +1003,7 @@ if(alarm[0] == -1)
                     //Copiar
                     move_temp_title = games_title[move_origin];
                     move_temp_path = games_path[move_origin];                  
+                    move_temp_shortcut = games_shortcut[move_origin];
                     move_temp_thumbnail = sprite_duplicate(games_thumb[move_origin]);
                     
                     //Deletar de origem
@@ -1016,6 +1037,12 @@ if(alarm[0] == -1)
                         boot_res = "/max ";
                     else
                         boot_res = "";
+                        
+                    //Iniciar e suspender
+                    if(games_shortcut[select_index] == 0)
+                        boot_wait = "/WAIT ";
+                    else
+                        boot_wait = "";
                 
                     window_set_fullscreen(0);
                     audio_play_sfx(sfx_nx_system_gamestart);
@@ -1116,15 +1143,15 @@ if(os_is_paused())
             <string>///Discord RPC padrão
 if (games_total == 0)
 {
-    discord_update_presence("📕 | You don't have any app!","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+    discord_update_presence("📕 | You don't have any game or application!","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 }
 else if (games_total == 1)
 {
-    discord_update_presence("📕 | You just have one application","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+    discord_update_presence("📕 | You just have one game/application","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 }
 else if (games_total &gt; 1)
 {
-    discord_update_presence("📕 | Choosing between " + string(games_total) + " applications","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
+    discord_update_presence("📕 | Choosing between " + string(games_total) + " applications and games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 }
 
 </string>
@@ -1239,6 +1266,7 @@ for(i=0; i&lt;games_total; i+=1){
     ini_open(game_save_id+"collection\game_"+string(i)+".ini");
     games_title[i] = ini_read_string("NX_TITLE","title","???");
     games_path[i] = ini_read_string("NX_TITLE","path","");
+    games_shortcut[i] = real(ini_read_string("NX_TITLE","shortcut","0"));
     if(file_exists(game_save_id+"collection\game_"+string(i)+".png"))
         games_thumb[i] = sprite_add(game_save_id+"collection\game_"+string(i)+".png",0,0,0,0,0);
     else
@@ -1249,7 +1277,6 @@ for(i=0; i&lt;games_total; i+=1){
 //Criar perfil
 ini_open(game_save_id + 'config.ini');
 _ProfileImage = ini_read_string("NX_PROFILE", "profileicon", game_save_id + "profile.png");
-_ProfileName = ini_read_string("NX_PROFILE", "profilename", "User");
 _ProfileIcon = sprite_add(_ProfileImage,0,false,false,0,0);
 ini_close();
 
@@ -1265,6 +1292,7 @@ audio_play_sfx(sfx_nx_system_init);
 //Limpar
 cleanmem_init(0);
 
+//Limpar inputs
 io_clear();
 </string>
           </argument>
@@ -1564,6 +1592,14 @@ if(select_index &lt; games_total+1)
             draw_text_colour(offset+(276*select_index)+256/2,123-offset_v-move_offset,_msg,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
         }
         draw_set_halign(fa_left);
+        
+        if(move == 0)
+        {
+            if(games_shortcut[select_index] == 1)
+            {
+                draw_sprite_ext(spr_ui_shortcuticon,theme,(offset+(276*select_index)+(256/2)-116),402+parental_offset-offset_v,1,1,0,c_white,1);
+            }
+        }  
     };
 };
 

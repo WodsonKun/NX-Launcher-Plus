@@ -166,6 +166,7 @@
       <sprite>sprites\spr_ui_line</sprite>
       <sprite>sprites\spr_ui_controller_type</sprite>
       <sprite>sprites\spr_ui_controller_map</sprite>
+      <sprite>sprites\spr_ui_shortcuticon</sprite>
     </sprites>
     <sprites name="Ninty Assets">
       <sprite>sprites\spr_launcher_selector</sprite>
