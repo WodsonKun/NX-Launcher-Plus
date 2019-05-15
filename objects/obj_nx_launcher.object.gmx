@@ -264,7 +264,7 @@ if(mod_file != ""){
     //Salvar no diretório
     ini_open(game_save_id+"collection\game_"+string(select_index)+".ini");
     ini_write_string("NX_TITLE","path",string(mod_file));
-    ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total]));
+    real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[select_index])));
     ini_close();
             
     //Limpar
