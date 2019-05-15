@@ -963,7 +963,7 @@ if(alarm[0] == -1)
         else
             audio_play_sfx(sfx_nx_system_gameborder);
     };
-    else if(keyboard_check_pressed(vk_up)){
+    else if(keyboard_check_pressed(vk_down)){
     
         offset_v = 0;
         
@@ -971,7 +971,7 @@ if(alarm[0] == -1)
         select_index = games_total-1;
         audio_play_sfx(sfx_nx_system_gameborder);
     };
-    else if(keyboard_check_pressed(vk_down)){
+    else if(keyboard_check_pressed(vk_up)){
     
         offset_v = 0;
         
