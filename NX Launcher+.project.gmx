@@ -209,7 +209,6 @@
     </scripts>
     <script>scripts\audio_play_sfx.gml</script>
     <script>scripts\execute_shell.gml</script>
-    <script>scripts\draw_text_shadow.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_ns_system_gamelist</font>
