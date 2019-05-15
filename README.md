@@ -14,7 +14,7 @@ Made using GameMaker: Studio, NX Launcher+ is a Nintendo Switch UI-based game an
 </div>
 Easy to use, comfortable for the eyes... And we support Dark theme too!
 
-- **Customizable profile**
+- **Customizable profile icon**
 <div align="center">
     <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_profile.png" alt="" /></p>
 </div>
@@ -30,7 +30,7 @@ Tired of using the old keyboard? Try using a controller! (DirectInput and XInput
 <div align="left">
     <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/nx_rpc.png" alt="" /></p>
 </div>
-I'm still working on this, but i've made a basic support.
+Tell to the others what you're playing right now!
 
 ## Credits:
 
@@ -41,7 +41,7 @@ I'm still working on this, but i've made a basic support.
 *Mario Silva (Nin★Gamer)*
 
 **Extensions:**
-*Aouab (DiscordRPC), Samuel Venable (ExecuteShell, FMNS)*
+*Aouab (DiscordRPC), Samuel Venable (ExecuteShell, FMNS), Halo Shg (Clean Memory), *
 
 **Logo and Icon**:
 *Luis Felipe (Mario² / Lunar Studyo)*
