@@ -813,7 +813,13 @@ if(mouse_check_button_released(mb_left))
     if(point_in_rectangle(mouse_x,mouse_y,436,504,436+86,504+86))
     {
         audio_play_sfx(sfx_nx_home_eshop);
-        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
+        window_set_position(-4000,-4000);
+        window_set_size(16,16);
+        discord_update_presence("📥 | Downloading tons of applications!","🛒 | Ninty FreeShop","icn_nx_launcher","icn_nx_launcher_shop");
+        execute_shell("ninty_freeshop\ninty_freeshop.exe",1,0);
+        alarm[4] = 2;
+        delay = 5;
+        game_restart();
     }
         
     //Album / Tema
@@ -1153,7 +1159,6 @@ else if (games_total &gt; 1)
 {
     discord_update_presence("📕 | Choosing between " + string(games_total) + " applications and games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
 }
-
 </string>
           </argument>
         </arguments>
