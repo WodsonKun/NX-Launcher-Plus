@@ -41,7 +41,7 @@ Tell to the others what you're playing right now!
 *Mario Silva (Nin★Gamer)*
 
 **Extensions:**
-*Aouab (DiscordRPC), Samuel Venable (ExecuteShell, FMNS), Halo Shg (Clean Memory), *
+*Aouab (DiscordRPC), Samuel Venable (ExecuteShell, FMNS), Halo Shg (Clean Memory)*
 
 **Logo and Icon**:
 *Luis Felipe (Mario² / Lunar Studyo)*
