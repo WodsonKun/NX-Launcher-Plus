@@ -891,7 +891,7 @@ if(mouse_check_button_released(mb_left))
     if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,(761+86)-parental_offset,504+86))
     {
         audio_play_sfx(sfx_nx_home_settings);
-        room_goto(rm_nx_settings);
+        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
     }
     
     //Encerrar
@@ -1235,6 +1235,7 @@ else if (games_total &gt; 1)
 ini_open(game_save_id+"config.ini");
 ini_write_real("NX_SETTINGS","theme",theme);
 ini_write_real("NX_SETTINGS","fullscreen",fullscreen);
+ini_read_real("NX_SETTINGS","position",select_index);
 ini_close();
 
 //Limpar
@@ -1415,6 +1416,7 @@ else
 {
     draw_sprite_stretched_ext(spr_ui_default_profileicon,0,64,30,64,64,c_white,1);
 }
+draw_sprite_ext(spr_ui_profile_border,theme,64,30,1,1,0,c_white,1);
 
 //Data e hora
 var time_hour = string_replace_all(string_format(current_hour,2,0)," ","0");
