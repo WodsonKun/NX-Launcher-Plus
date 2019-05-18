@@ -1707,8 +1707,8 @@ else
     draw_sprite_ext(spr_ui_highlight_mini,0,64,30,1,1,0,c_switchblue_merge,parental_fadeicons);
     draw_set_font(fnt_ns_system_highlight);
     draw_text_colour(136,38,"Change your profile image",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
-    }
-};
+}
+}
 
 //Messages
 if(point_in_rectangle(mouse_x,mouse_y,328,504,328+86,504+86))
