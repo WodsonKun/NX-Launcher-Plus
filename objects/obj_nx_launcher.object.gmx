@@ -1235,7 +1235,7 @@ else if (games_total &gt; 1)
 ini_open(game_save_id+"config.ini");
 ini_write_real("NX_SETTINGS","theme",theme);
 ini_write_real("NX_SETTINGS","fullscreen",fullscreen);
-ini_read_real("NX_SETTINGS","position",select_index);
+ini_write_real("NX_SETTINGS","position",select_index);
 ini_close();
 
 //Limpar
