@@ -317,6 +317,7 @@
       <sprite>sprites\spr_ui_network_disconnected</sprite>
       <sprite>sprites\spr_ui_confirm_input</sprite>
       <sprite>sprites\spr_ui_highlight</sprite>
+      <sprite>sprites\spr_ui_highlight_mini</sprite>
       <sprite>sprites\spr_csr_normal</sprite>
       <sprite>sprites\spr_ui_line</sprite>
       <sprite>sprites\spr_ui_controller_type</sprite>

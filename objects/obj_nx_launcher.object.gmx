@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Variáveis do NX Launcher+
+            <string>
+///Variáveis do NX Launcher+
 is_playing = 0;
 nav_time = 60;
 offset = 98;
@@ -282,6 +283,42 @@ else{
     audio_play_sfx(sfx_nx_system_error);
     window_set_fullscreen(fullscreen);
 };
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Mudar foto de perfil
+var profile_icon = get_open_filename("Profile Image (64x64)|*.png;","");
+if(profile_icon != "")
+{
+    sprite_delete(_ProfileIcon);
+    _ProfileIcon = sprite_add(profile_icon,0,0,1,0,0);
+    file_delete_fmns(game_save_id+"profile.png");
+    file_copy_fmns(profile_icon,game_save_id+"profile.png");
+};
+
+//Salvar no arquivo de configurações (evita erros)
+ini_open(game_save_id + 'config.ini');
+ini_write_string("NX_PROFILE", "profileicon", game_save_id + "profile.png");
+ini_close();
 </string>
           </argument>
         </arguments>
@@ -803,6 +840,14 @@ for(gp_count = 0; gp_count &lt; 5; gp_count += 1){
 //Opções de Interface
 if(mouse_check_button_released(mb_left))
 ||(mouse_check_button_released(mb_right)){
+    //Profile photo
+    if(point_in_rectangle(mouse_x,mouse_y,64,30,(64+64),(30+64)))
+    &amp;&amp;(alarm[8] == -1)
+    {
+        window_set_fullscreen(0);
+        alarm[8] = 2;
+    }
+    
     //Messages
     if(point_in_rectangle(mouse_x,mouse_y,328,504,328+86,504+86))
     {
@@ -1297,6 +1342,9 @@ audio_play_sfx(sfx_nx_system_init);
 //Limpar
 cleanmem_init(0);
 
+//Limpar MESMO
+cleanmem();
+
 //Limpar inputs
 io_clear();
 </string>
@@ -1356,15 +1404,6 @@ else
 
 //Perfil
 draw_sprite_ext(_ProfileIcon,0,64,30,1,1,0,c_white,1);
-draw_set_font(fnt_ns_system_gamelist);
-if(theme == 0)
-{
-    draw_set_colour(make_colour_rgb(82,209,202));
-}
-else
-{
-    draw_set_colour(make_colour_rgb(70,152,200));
-}
 
 //Data e hora
 var time_hour = string_replace_all(string_format(current_hour,2,0)," ","0");
@@ -1648,9 +1687,26 @@ if(alarm[10] != -1){
 };
 
 //Highlight + texto
-if (window_has_focus()){
+if (window_has_focus())||(dialog == 0){
 if (games_total &gt; 0)
 {
+//Profile
+if(point_in_rectangle(mouse_x,mouse_y,64,30,(64+64),(30+64)))
+{
+    if (theme == 0)
+{
+    draw_sprite_ext(spr_ui_highlight_mini,0,64,30,1,1,0,c_switchaqua_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_text_colour(136,38,"Change your profile image",c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,c_switchaqua_nmerge,1);
+}
+else
+{
+    draw_sprite_ext(spr_ui_highlight_mini,0,64,30,1,1,0,c_switchblue_merge,parental_fadeicons);
+    draw_set_font(fnt_ns_system_highlight);
+    draw_text_colour(136,38,"Change your profile image",c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,c_switchblue_nmerge,1);
+    }
+};
+
 //Messages
 if(point_in_rectangle(mouse_x,mouse_y,328,504,328+86,504+86))
 {
