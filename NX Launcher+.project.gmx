@@ -177,23 +177,6 @@
       <filename>discord-rpc.dll</filename>
     </datafile>
     <datafile>
-      <name>profile.png</name>
-      <exists>-1</exists>
-      <size>19373</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>profile.png</filename>
-    </datafile>
-    <datafile>
       <name>discord-rpc-main.dll</name>
       <exists>-1</exists>
       <size>1599498</size>
@@ -243,23 +226,6 @@
         </Config>
       </ConfigOptions>
       <filename>filemng.dll</filename>
-    </datafile>
-    <datafile>
-      <name>undefined.png</name>
-      <exists>-1</exists>
-      <size>2686</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>undefined.png</filename>
     </datafile>
     <datafile>
       <name>memctrl.dll</name>
@@ -323,6 +289,8 @@
       <sprite>sprites\spr_ui_controller_type</sprite>
       <sprite>sprites\spr_ui_controller_map</sprite>
       <sprite>sprites\spr_ui_shortcuticon</sprite>
+      <sprite>sprites\spr_ui_default_profileicon</sprite>
+      <sprite>sprites\spr_ui_undefined_thumbnail</sprite>
     </sprites>
     <sprites name="Ninty Assets">
       <sprite>sprites\spr_launcher_selector</sprite>
