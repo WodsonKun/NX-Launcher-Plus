@@ -377,6 +377,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_nx_home</room>
+    <room>rooms\rm_nx_settings</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

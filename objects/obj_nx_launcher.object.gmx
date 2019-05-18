@@ -846,6 +846,7 @@ if(mouse_check_button_released(mb_left))
     {
         window_set_fullscreen(0);
         alarm[8] = 2;
+        window_set_fullscreen(fullscreen);
     }
     
     //Messages
@@ -886,8 +887,8 @@ if(mouse_check_button_released(mb_left))
     //Configurações
     if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,(761+86)-parental_offset,504+86))
     {
-        audio_play_sfx(sfx_nx_home_settings)
-        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
+        audio_play_sfx(sfx_nx_home_settings);
+        room_goto(rm_nx_settings);
     }
     
     //Encerrar
