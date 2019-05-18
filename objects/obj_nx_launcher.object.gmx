@@ -848,6 +848,7 @@ if(mouse_check_button_released(mb_left))
     &amp;&amp;(alarm[8] == -1)
     {
         audio_play_sfx(sfx_nx_home_profile);
+        window_set_fullscreen(0);
         alarm[8] = 2;
     }
     
