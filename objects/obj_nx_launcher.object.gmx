@@ -865,7 +865,7 @@ if(mouse_check_button_released(mb_left))
         window_set_position(-4000,-4000);
         window_set_size(16,16);
         discord_update_presence("📥 | Downloading tons of applications!","🛒 | Ninty FreeShop","icn_nx_launcher","icn_nx_launcher_shop");
-        execute_shell("freeshop\freeshop.exe",1,0);
+        execute_shell("ninty_freeshop\ninty_freeshop.exe",1,0);
         alarm[3] = 2;
         alarm[4] = 2;
         delay = 5;

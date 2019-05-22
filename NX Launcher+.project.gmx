@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="19" name="datafiles">
-    <datafiles number="19" name="freeshop">
+  <datafiles number="28" name="datafiles">
+    <datafiles number="28" name="ninty_freeshop">
       <datafile>
         <name>7za.dll</name>
         <exists>-1</exists>
@@ -59,7 +59,7 @@
       <datafile>
         <name>data.win</name>
         <exists>-1</exists>
-        <size>1723717</size>
+        <size>1733765</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -108,9 +108,9 @@
         <filename>FolderBrowserDialog.dll</filename>
       </datafile>
       <datafile>
-        <name>freeshop.exe</name>
+        <name>ninty_freeshop.exe</name>
         <exists>-1</exists>
-        <size>4912128</size>
+        <size>4914176</size>
         <exportAction>2</exportAction>
         <exportDir></exportDir>
         <overwrite>0</overwrite>
@@ -122,7 +122,7 @@
             <CopyToMask>9223372036854775807</CopyToMask>
           </Config>
         </ConfigOptions>
-        <filename>freeshop.exe</filename>
+        <filename>ninty_freeshop.exe</filename>
       </datafile>
       <datafile>
         <name>nsfs.dll</name>
