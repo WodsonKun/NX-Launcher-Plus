@@ -3,8 +3,8 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="32" name="datafiles">
-    <datafiles number="32" name="ninty_freeshop">
+  <datafiles number="28" name="datafiles">
+    <datafiles number="28" name="ninty_freeshop">
       <datafile>
         <name>7za.dll</name>
         <exists>-1</exists>
@@ -57,6 +57,23 @@
         <filename>7zxa.dll</filename>
       </datafile>
       <datafile>
+        <name>data.win</name>
+        <exists>-1</exists>
+        <size>1733765</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>data.win</filename>
+      </datafile>
+      <datafile>
         <name>ExecuteShell.dll</name>
         <exists>-1</exists>
         <size>97792</size>
@@ -91,6 +108,23 @@
         <filename>FolderBrowserDialog.dll</filename>
       </datafile>
       <datafile>
+        <name>ninty_freeshop.exe</name>
+        <exists>-1</exists>
+        <size>4914176</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>ninty_freeshop.exe</filename>
+      </datafile>
+      <datafile>
         <name>nsfs.dll</name>
         <exists>-1</exists>
         <size>83456</size>
@@ -123,40 +157,6 @@
           </Config>
         </ConfigOptions>
         <filename>unzip.bat</filename>
-      </datafile>
-      <datafile>
-        <name>data.win</name>
-        <exists>-1</exists>
-        <size>1733765</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>data.win</filename>
-      </datafile>
-      <datafile>
-        <name>ninty_freeshop.exe</name>
-        <exists>-1</exists>
-        <size>4913664</size>
-        <exportAction>2</exportAction>
-        <exportDir></exportDir>
-        <overwrite>0</overwrite>
-        <freeData>-1</freeData>
-        <removeEnd>0</removeEnd>
-        <store>0</store>
-        <ConfigOptions>
-          <Config name="Default">
-            <CopyToMask>9223372036854775807</CopyToMask>
-          </Config>
-        </ConfigOptions>
-        <filename>ninty_freeshop.exe</filename>
       </datafile>
     </datafiles>
     <datafile>
