@@ -6,7 +6,7 @@
   <vsnap>8</vsnap>
   <hsnap>8</hsnap>
   <isometric>0</isometric>
-  <speed>30</speed>
+  <speed>59</speed>
   <persistent>0</persistent>
   <colour>15790320</colour>
   <showcolour>-1</showcolour>
@@ -15,9 +15,8 @@ LightBG = make_colour_rgb(241,241,241);
 DarkBG = make_colour_rgb(39,39,39);
 
 //Cor de fundo (para evitar problemas com sprites)
-if background_index[0] = -1
-    {
-    background_showcolour = true;
+if background_index[0] == -1
+{
     if (obj_nx_launcher.theme == 0)
     {
         background_colour = LightBG;
@@ -26,10 +25,11 @@ if background_index[0] = -1
     {
         background_colour = DarkBG;
     }
+    background_showcolour = true;
 }</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
-  <clearDisplayBuffer>-1</clearDisplayBuffer>
+  <clearDisplayBuffer>0</clearDisplayBuffer>
   <makerSettings>
     <isSet>0</isSet>
     <w>0</w>
@@ -47,7 +47,7 @@ if background_index[0] = -1
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="-1" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="bg_nx_system_light" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
