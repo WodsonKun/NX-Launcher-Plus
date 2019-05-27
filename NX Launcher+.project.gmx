@@ -195,6 +195,7 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_nx_launcher</object>
+    <object>objects\obj_nx_settings</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_nx_home</room>

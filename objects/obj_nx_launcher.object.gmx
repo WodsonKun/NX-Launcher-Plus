@@ -1283,7 +1283,9 @@ if(keyboard_check_released(vk_f12))
     nx_screenshot = get_save_filename_ext("Screenshot|*.png", "", working_directory, "Save a screenshot");
     if nx_screenshot != ""
     {
+        window_set_fullscreen(0);
         screen_save(nx_screenshot);
+        alarm[4] = 2;
         cleanmem();
     }
 };
@@ -1650,11 +1652,11 @@ if (is_playing == 1)
 //Plano de fundo
 if (theme == 0)
 {
-    draw_background_tiled(bg_nx_system_light, -4000, -4000);
+    draw_background_tiled(bg_nx_system_light, -16, -16);
 }
 else
 {
-    draw_background_tiled(bg_nx_system_dark, -4000, -4000);
+    draw_background_tiled(bg_nx_system_dark, -16, -16);
 }
 
 //Perfil
@@ -1675,13 +1677,13 @@ if (theme == 0)
 {
     draw_set_font(fnt_ns_system_clock)
     draw_set_colour(c_black);
-    draw_text(1048, 38, time_hour + ":" + time_minute);
+    draw_text(1048, 37, time_hour + ":" + time_minute);
 }
 else
 {
     draw_set_font(fnt_ns_system_clock)
     draw_set_colour(c_white);
-    draw_text(1048, 38, time_hour + ":" + time_minute);
+    draw_text(1048, 37, time_hour + ":" + time_minute);
 }
 
 //Conexão
