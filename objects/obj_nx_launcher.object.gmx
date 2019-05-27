@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-///Variáveis do NX Launcher+
+            <string>///Variáveis do NX Launcher+
 is_playing = 0;
 nav_time = 60;
 offset = 98;
@@ -73,6 +72,12 @@ for(_gp = 0; _gp &lt; 5; _gp += 1){
     gp_stick[_gp,2] = 0;
     gp_stick[_gp,3] = 0;    
 };
+
+//Database
+global.server = "https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/database"
+download_thumbdb = 1
+download_profilepicdb = 1
+download_wallpaperdb = 0
 </string>
           </argument>
         </arguments>
@@ -1340,6 +1345,61 @@ if(os_is_paused())
 {
     audio_play_sfx(sfx_nx_system_standby);
     cleanmem();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Download de arquivos da database
+//Baixar database de thumbnails
+if (download_thumbdb == 1)
+{
+    http_get_file((string(global.server) + "/thumbnails.zip"), (game_save_id + "thumbnails.zip"));
+    thumbdb_files = zip_unzip(game_save_id + "thumbnails.zip", working_directory + "\thumbnails");
+    if (thumbdb_files &gt; 0)
+    {
+        file_delete((game_save_id + "thumbnails.zip"));
+    }
+}
+
+//Baixar database de fotos de perfil
+if (download_profilepicdb == 1)
+{
+    http_get_file((string(global.server) + "/profile_pics.zip"), (game_save_id + "profile_pics.zip"));
+    profilepicdb_files = zip_unzip(game_save_id + "profile_pics.zip", working_directory + "\profile_pics");
+    if (profilepicdb_files &gt; 0)
+    {
+        file_delete((game_save_id + "profile_pics.zip"));
+    }
+}
+
+//Baixar database de wallpapers
+if (download_wallpaperdb == 1)
+{
+    http_get_file((string(global.server) + "/wallpapers.zip"), (game_save_id + "wallpapers.zip"));
+    wallpaperdb_files = zip_unzip(game_save_id + "wallpapers.zip", working_directory + "\wallpapers");
+    if (wallpaperdb_files &gt; 0)
+    {
+        file_delete((game_save_id + "wallpapers.zip"));
+    }
 }
 </string>
           </argument>
