@@ -1373,24 +1373,6 @@ ini_close();
 
 //Limpar
 cleanmem();
-
-//Criar lista de jogos
-var i;
-for(i=0; i&lt;games_total; i+=1){
-
-    ini_open(game_save_id+"collection\game_"+string(i)+".ini");
-    games_title[i] = ini_read_string("NX_TITLE","title","???");
-    games_path[i] = ini_read_string("NX_TITLE","path","");
-    games_shortcut[i] = real(ini_read_string("NX_TITLE","shortcut","0"));
-    if(file_exists(game_save_id+"collection\game_"+string(i)+".png"))
-        games_thumb[i] = sprite_add(game_save_id+"collection\game_"+string(i)+".png",0,0,0,0,0);
-    else
-        games_thumb[i] = spr_default_undefined_thumbnail
-    ini_close();
-};
-
-//Limpar
-cleanmem();
 </string>
           </argument>
         </arguments>
@@ -1422,19 +1404,6 @@ if(sprite_exists(_ProfileIcon))
 {
     sprite_delete(_ProfileIcon)
 }
-
-//Limpar
-cleanmem();
-
-//Lista
-var i;
-for(i=0; i&lt;games_total; i+=1){
-    //Deletar thumbnail
-    if(sprite_exists(games_thumb[i]))
-    {
-        sprite_delete(games_thumb[i]);
-    }
-};
 
 //Limpar
 cleanmem();
@@ -1842,14 +1811,17 @@ else{
     ||((move == 1)&amp;&amp;(i == move_origin))
         draw_sprite(spr_gamelist_thumbnail,theme,offset+(256+20)*i,194-vv);
     //Thumbnail dos jogos
-    else{
-    
+    else
+    {
         if(sprite_exists(games_thumb[i]))
         &amp;&amp;(games_total &gt; 0)
+        {
             draw_sprite_stretched(games_thumb[i],0,offset+(256+20)*i,194-vv,256,256);
-        else{
+        }
+        else
+        {
             draw_sprite_stretched(spr_default_undefined_thumbnail,0,offset+(256+20)*i,194-vv,256,256);
-            }
+        }
     };
 };
     
