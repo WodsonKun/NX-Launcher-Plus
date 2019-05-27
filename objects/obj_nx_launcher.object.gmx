@@ -75,9 +75,15 @@ for(_gp = 0; _gp &lt; 5; _gp += 1){
 
 //Database
 global.server = "https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/assets/database"
+database_thumbnail = http_get_file((string(global.server) + "/thumbnails.zip"), (game_save_id + "thumbnails.zip"));
+database_profilepic = http_get_file((string(global.server) + "/profile_pics.zip"), (game_save_id + "profile_pics.zip"));
+database_wallpaper = http_get_file((string(global.server) + "/wallpapers.zip"), (game_save_id + "wallpapers.zip"));
 download_thumbdb = 1
 download_profilepicdb = 1
 download_wallpaperdb = 0
+
+//Diretórios
+global.username = environment_get_variable("USERNAME");
 </string>
           </argument>
         </arguments>
@@ -232,14 +238,14 @@ else{
             <kind>1</kind>
             <string>///Alterar miniatura do Jogo
 //Buscar caminho...
-var mod_file = get_open_filename("Game / Application (.exe, .swf, .url)|*.exe;*.swf;*.url","");
+var mod_file = get_open_filename_ext("Game / Application (.exe, .swf, .url)|*.exe;*.swf;*.url","","", "Select a application");
 if(mod_file != ""){
 
     //SFX
     audio_play_sfx(sfx_nx_notification_general);
     
     //Buscar miniatura...
-    var mod_thumb = get_open_filename("Thumbnail Image (256x256)|*.png;*.jpg;*.jpeg","");
+    var mod_thumb = get_open_filename_ext("Thumbnail Image (256x256)|*.png;*.jpg;*.jpeg","", game_save_id + "thumbnails", "Select a thumbnail image");
     if(mod_thumb != ""){
         
         sprite_delete(games_thumb[select_index])
@@ -306,7 +312,7 @@ else
           <argument>
             <kind>1</kind>
             <string>///Mudar foto de perfil
-var profile_icon = get_open_filename("Profile Picture (64x64 / 128x128 / 256x256)|*.png;*.jpg;*.jpeg","");
+var profile_icon = get_open_filename_ext("Profile Picture (64x64 / 128x128 / 256x256)|*.png;*.jpg;*.jpeg", "", game_save_id + "profile_pics", "Choose a profile picture");
 if(profile_icon != "")
 {
     sprite_delete(_ProfileIcon);
@@ -358,14 +364,14 @@ else
             <kind>1</kind>
             <string>///Adicionar thumbnails ao launcher
 //Buscar caminho...
-var file = get_open_filename("Game / Application (.exe, .swf, .url)|*.exe;*.swf;*.url","");
+var file = get_open_filename_ext("Game / Application (.exe, .swf, .url)|*.exe;*.swf;*.url","","", "Select a application");
 if(file != "")
 {
     //SFX
     audio_play_sfx(sfx_nx_notification_general);
     
     //Buscar miniatura...
-    var thumb = get_open_filename("Thumbnail Image (256x256)|*.png;*.jpg;*.jpeg","");
+    var thumb = get_open_filename_ext("Thumbnail Image (256x256)|*.png;*.jpg;*.jpeg","", game_save_id + "thumbnails", "Select a thumbnail image");
     if(thumb != "")
     {
         games_thumb[games_total] = sprite_add(thumb,0,0,1,0,0);
@@ -1372,34 +1378,73 @@ if(os_is_paused())
 //Baixar database de thumbnails
 if (download_thumbdb == 1)
 {
-    http_get_file((string(global.server) + "/thumbnails.zip"), (game_save_id + "thumbnails.zip"));
-    thumbdb_files = zip_unzip(game_save_id + "thumbnails.zip", working_directory + "\thumbnails");
-    if (thumbdb_files &gt; 0)
+    var status, path, thumbdb_files;
+    if (ds_map_find_value(async_load, "id") == database_thumbnail)
     {
-        file_delete((game_save_id + "thumbnails.zip"));
+        status = ds_map_find_value(async_load, "status")
+        if (status == 0)
+        {
+            path = ds_map_find_value(async_load, "result")
+            thumbdb_files = zip_unzip(path, game_save_id + "\thumbnails")
+            if (thumbdb_files &gt; 0)
+            {
+                file_delete((game_save_id + "thumbnails.zip"));
+            }
+        }
     }
+}
+else
+{
+    directory_destroy(game_save_id + "thumbnails");
+    file_delete((game_save_id + "thumbnails.zip"));
 }
 
 //Baixar database de fotos de perfil
-if (download_profilepicdb == 1)
+if (download_thumbdb == 1)
 {
-    http_get_file((string(global.server) + "/profile_pics.zip"), (game_save_id + "profile_pics.zip"));
-    profilepicdb_files = zip_unzip(game_save_id + "profile_pics.zip", working_directory + "\profile_pics");
-    if (profilepicdb_files &gt; 0)
+    var status, path, profilepicdb_files;
+    if (ds_map_find_value(async_load, "id") == database_profilepic)
     {
-        file_delete((game_save_id + "profile_pics.zip"));
+        status = ds_map_find_value(async_load, "status")
+        if (status == 0)
+        {
+            path = ds_map_find_value(async_load, "result")
+            profilepicdb_files = zip_unzip(path, game_save_id + "\profile_pics")
+            if (profilepicdb_files &gt; 0)
+            {
+                file_delete((game_save_id + "profile_pics.zip"));
+            }
+        }
     }
+}
+else
+{
+    directory_destroy(game_save_id + "profile_pics");
+    file_delete((game_save_id + "\profile_pics.zip"));
 }
 
 //Baixar database de wallpapers
-if (download_wallpaperdb == 1)
+if (download_thumbdb == 1)
 {
-    http_get_file((string(global.server) + "/wallpapers.zip"), (game_save_id + "wallpapers.zip"));
-    wallpaperdb_files = zip_unzip(game_save_id + "wallpapers.zip", working_directory + "\wallpapers");
-    if (wallpaperdb_files &gt; 0)
+    var status, path, wallpaperdb_files;
+    if (ds_map_find_value(async_load, "id") == database_wallpaper)
     {
-        file_delete((game_save_id + "wallpapers.zip"));
+        status = ds_map_find_value(async_load, "status")
+        if (status == 0)
+        {
+            path = ds_map_find_value(async_load, "result")
+            wallpaperdb_files = zip_unzip(path, game_save_id + "\wallpapers")
+            if (wallpaperdb_files &gt; 0)
+            {
+                file_delete((game_save_id + "wallpapers.zip"));
+            }
+        }
     }
+}
+else
+{
+    directory_destroy(game_save_id + "wallpapers");
+    file_delete((game_save_id + "wallpapers.zip"));
 }
 </string>
           </argument>

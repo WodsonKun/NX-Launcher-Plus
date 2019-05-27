@@ -26,7 +26,96 @@
           <argument>
             <kind>1</kind>
             <string>///Variáveis
-category = "";
+category = "wallpaper";
+col_numb = 0;
+menupos = 145;
+menuoffset = 80;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Wallpaper
+var wpp = get_open_filename("Wallpaper (1280x720)|*.png;*.jpg;*.jpeg","");
+
+//Definir sem animação previamente
+wallpaper_animframes = 0;
+wp_x = 0;
+wp_y = 0;
+    
+//Deletar wallpaper do launcher
+if(sprite_exists(wallpaper))
+    sprite_delete(wallpaper);
+
+//Deletar arquivo antigo
+file_delete_fmns(game_save_id+"wallpaper.png");
+file_delete_fmns(game_save_id+"wallpaper.ini");
+    
+//Configurações
+file_copy_fmns(string_copy(wpp,1,string_length(wpp)-4)+".ini",game_save_id+"wallpaper.ini");
+
+//Carregar configuração do Wallpaper
+ini_open(game_save_id+"wallpaper.ini");
+theme = real(ini_read_string("NX_WALLPAPER","theme","1"));
+wallpaper_opaquebuttons = real(ini_read_string("NX_WALLPAPER","opaquebuttons","0"));
+wallpaper_tiled = real(ini_read_string("NX_WALLPAPER","tiled","1"));
+wallpaper_stretched = real(ini_read_string("NX_WALLPAPER","stretched","0"));
+wallpaper_smooth = real(ini_read_string("NX_WALLPAPER","smooth","1"));
+wallpaper_huecolor = real(ini_read_string("NX_WALLPAPER","huecolor","0"));
+wallpaper_huecursor = real(ini_read_string("NX_WALLPAPER","cursor_hue","0"));
+wallpaper_sat1cursor = real(ini_read_string("NX_WALLPAPER","cursor_saturationA","255"));
+wallpaper_sat2cursor = real(ini_read_string("NX_WALLPAPER","cursor_saturationB","255"));
+wallpaper_lum1cursor = real(ini_read_string("NX_WALLPAPER","cursor_luminosityA","255"));
+wallpaper_lum2cursor = real(ini_read_string("NX_WALLPAPER","cursor_luminosityB","64"));
+wallpaper_h_offset = real(ini_read_string("NX_WALLPAPER","horizontal_offset","0"));
+wallpaper_v_offset = real(ini_read_string("NX_WALLPAPER","vertical_offset","0"));
+wallpaper_h_scrolling = real(ini_read_string("NX_WALLPAPER","horizontal_scrolling","0"));
+wallpaper_v_scrolling = real(ini_read_string("NX_WALLPAPER","vertical_scrolling","0"));
+wallpaper_animframes = real(ini_read_string("NX_WALLPAPER","animframes","1"));
+wallpaper_animspeed = real(ini_read_string("NX_WALLPAPER","animspeed","0"));
+ini_close();
+
+if(wpp != "")
+{
+    //Trocar wallpaper
+    wallpaper = sprite_add(wpp,wallpaper_animframes,0,wallpaper_smooth,0,0);
+    file_copy_fmns(wpp,game_save_id+"wallpaper.png");
+        
+    //SFX
+    audio_play_sfx(sfx_nx_notification_general);
+};
+//SFX
+else
+{
+    audio_play_sfx(sfx_nx_system_error);
+}
+    
+//Limpar
+cleanmem();
+    
+//Limpar inputs
+io_clear();
+delay = 5;
+    
+//Voltar fullscreen... (Se tiver sido definido antes)    
+window_set_fullscreen(fullscreen);
 </string>
           </argument>
         </arguments>
@@ -50,26 +139,118 @@ category = "";
           <argument>
             <kind>1</kind>
             <string>///Controlar as configurações
-switch category
+if(mouse_check_button_released(mb_left))||(mouse_check_button_released(mb_right))
 {
-    //Wallpapers
-    case wallpapers:
-    if(mouse_check_button_released(mb_left))||(mouse_check_button_released(mb_right))
+    //Wallpaper
+    if(point_in_rectangle(mouse_x, mouse_y, 0, 145, 320, 209))
     {
+        category = "wallpaper"
+        if (category == "wallpaper")
+        {
+            
+        }
     }
     
     //Database
-    case database:
-    if(mouse_check_button_released(mb_left))||(mouse_check_button_released(mb_right))
+    if(point_in_rectangle(mouse_x, mouse_y, 0, 225, 320, 289))
     {
+        category = "database"
     }
-
-    //About
-    case about:
-    if(mouse_check_button_released(mb_left))||(mouse_check_button_released(mb_right))
+    
+    //Sobre
+    if(point_in_rectangle(mouse_x, mouse_y, 0, 545, 320, 609))
     {
+        category = "about"
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Salvar confirgurações e encerrar o RPC
+//Salvar configurações
+ini_open(game_save_id+"config.ini");
+ini_write_real("NX_SETTINGS","theme",theme);
+ini_write_real("NX_SETTINGS","fullscreen",fullscreen);
+ini_write_real("NX_SETTINGS","position",select_index);
+ini_close();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Carregar configurações e iniciar o launcher
+//Menor que 1080p
+if(display_get_width() &lt; 1920-8){
+    
+    //Menor que 720p (Adequado para 4:3)
+    if(display_get_width() &lt; 1280-8){
+        
+        //Ainda menor... (WTf? alguém tem display menor ue isso?)
+        if(display_get_width() &lt; 800-8)
+            window_set_size(320,180);
+        else
+            window_set_size(640,360);
+    };
+    else
+        window_set_size(800,450);
+};
+else   
+    window_set_size(1280,720);
+    
+//Tamanho padrão da interface relativa ao display
+display_set_gui_size(1280,720);
+
+//Centralizar janela
+alarm[3] = 2;
+
+//Configurações do Launcher
+ini_open(game_save_id+"config.ini");
+theme = ini_read_real("NX_SETTINGS","theme",0);
+fullscreen = ini_read_real("NX_SETTINGS","fullscreen",0);
+select_index = ini_read_real("NX_SETTINGS","position",0);
+ini_close();
+
+//Definir fullscreen
+alarm[4] = 6;
+
+//Centralizar janela
+alarm[3] = 2;
 </string>
           </argument>
         </arguments>
@@ -93,6 +274,185 @@ switch category
           <argument>
             <kind>1</kind>
             <string>///Desenhar as configurações
+//Variáveis de cor do Switch
+c_switchaqua = (make_colour_rgb(82,209,202));
+c_switchaqua_alt = (make_colour_rgb(0,153,153));
+c_switchaqua_name = (make_colour_rgb(0,204,204));
+c_switchblue = (make_colour_rgb(70,152,200));
+c_switchblue_alt = (make_colour_rgb(0,76,153));
+c_switchblue_name = (make_colour_rgb(102,178,255));
+
+//Variáveis de mistura de cor
+//Seletor e highlight
+var c_switchaqua_merge = merge_colour(c_switchaqua, c_switchaqua_alt,col_numb);
+var c_switchblue_merge = merge_colour(c_switchblue, c_switchblue_alt,col_numb);
+//Nome do jogo selecionado
+var c_switchaqua_nmerge = merge_colour(c_switchaqua, c_switchaqua_name,col_numb);
+var c_switchblue_nmerge = merge_colour(c_switchblue, c_switchblue_name,col_numb);
+//Estados de thumbnail
+var c_switcherror = merge_colour(c_red, c_maroon, col_numb);
+var c_switchmove = merge_colour(c_yellow, c_orange, col_numb);
+
+//Plano de fundo
+if (theme == 0)
+{
+    draw_background_tiled(bg_nx_system_light, -16, -16);
+}
+else
+{
+    draw_background_tiled(bg_nx_system_dark, -16, -16);
+}
+
+//Settings header
+draw_sprite(spr_settings_icon, theme, 24, 0);
+draw_set_font(fnt_ns_system_highlight);
+if (theme == 0)
+{
+    draw_text_colour(104, 28, "Settings",c_black,c_black,c_black,c_black, 1);
+}
+else
+{
+    draw_text_colour(104, 28, "Settings",c_white,c_white,c_white,c_white, 1);
+}
+draw_sprite_ext(spr_generalui_line,theme,29,80,1,1,0,c_white,1);
+
+//Váriavel
+if(gamepad_is_connected(0) == 1) || (gamepad_is_connected(4) == 1)
+{
+    //Controle
+    draw_sprite_ext(spr_controller_type,theme+2,51,664,1,1,0,c_white,1);
+    
+    //Botões de controle
+    draw_sprite_ext(spr_controller_input,theme+2,1080,662,1,1,0,c_white,1);
+    draw_set_font(fnt_ns_system_small)
+    if (theme == 0)
+    {
+        draw_set_colour(c_black)
+    }
+    else
+    {
+        draw_set_colour(c_white)
+    }
+    draw_text(1140, 665, "Choose");
+}
+else
+{
+    //Controle
+    draw_sprite_ext(spr_controller_type,theme,51,664,1,1,0,c_white,1);
+    
+    //informações básicas
+    draw_sprite_ext(spr_controller_input,theme,1080,662,1,1,0,c_white,1);
+    draw_set_font(fnt_ns_system_small)
+    if (theme == 0)
+    {
+        draw_set_colour(c_black)
+    }
+    else
+    {
+        draw_set_colour(c_white)
+    }
+    draw_text(1140, 665, "Choose");
+}
+draw_sprite_ext(spr_generalui_line,theme,29,646,1,1,0,c_white,1);
+
+//Categories
+draw_set_font(fnt_ns_system_settings_small);
+if (category == "wallpaper")
+{
+    if (theme == 0)
+    {
+        draw_sprite_ext(spr_settings_menuselector, 0, 0, (menupos + (menuoffset * 0)), 1, 1, 0, c_switchaqua_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0)), "Wallpaper",c_black,c_black,c_black,c_black,1);
+        
+    }
+    else
+    {
+        draw_sprite_ext(spr_settings_menuselector, 0, 0, (menupos + (menuoffset * 0)), 1, 1, 0, c_switchblue_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0)), "Wallpaper",c_white,c_white,c_white,c_white,1);
+    }
+}
+else
+{
+    if (theme == 0)
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0)), "Wallpaper",c_black,c_black,c_black,c_black,1);
+    }
+    else
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0)), "Wallpaper",c_white,c_white,c_white,c_white,1);
+    }
+}
+
+
+if (category == "database")
+{
+    if (theme == 0)
+    {
+        draw_sprite_ext(spr_settings_menuselector, 0, 0, (menupos + (menuoffset * 1)), 1, 1, 0, c_switchaqua_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 1)), "Database",c_black,c_black,c_black,c_black,1);
+    }
+    else
+    {
+        draw_sprite_ext(spr_settings_menuselector, 0, 0, (menupos + (menuoffset * 1)), 1, 1, 0, c_switchblue_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 1)), "Database",c_white,c_white,c_white,c_white,1);
+    }
+}
+else
+{
+    if (theme == 0)
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 1)), "Database",c_black,c_black,c_black,c_black,1);
+    }
+    else
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 1)), "Database",c_white,c_white,c_white,c_white,1);
+    }
+}
+
+
+if (category == "about")
+{
+    if (theme == 0)
+    {
+        draw_sprite_ext(spr_settings_menuselector, 0, 0, (menupos + (menuoffset * 5)), 1, 1, 0, c_switchaqua_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 5)), "About",c_black,c_black,c_black,c_black,1);
+    }
+    else
+    {
+        draw_sprite_ext(spr_settings_menuselector, 0, 0, (menupos + (menuoffset * 5)), 1, 1, 0, c_switchblue_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 5)), "About",c_white,c_white,c_white,c_white,1);
+    }
+}
+else
+{
+    if (theme == 0)
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 5)), "About",c_black,c_black,c_black,c_black,1);
+    }
+    else
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 5)), "About",c_white,c_white,c_white,c_white,1);
+    }
+}
+
+//Desenhar "Sobre"
+if (category == "about")
+{
+    draw_set_halign(fa_left)
+    draw_set_font(fnt_ns_system_settings_small)
+    draw_text(440, 100, "Test Descriptoin for About")
+}
+
+//Cursor
+if (theme == 0)
+{
+    draw_sprite_ext(spr_cursor_default,0,mouse_x,mouse_y,1,1,0,c_switchaqua_name,1);
+}
+else
+{
+    draw_sprite_ext(spr_cursor_default,0,mouse_x,mouse_y,1,1,0,c_switchblue_name,1);
+}
+window_set_cursor(cr_none);
 </string>
           </argument>
         </arguments>

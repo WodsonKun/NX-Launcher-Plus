@@ -142,6 +142,10 @@
       </sprites>
       <sprite>sprites\spr_homemenu_network</sprite>
     </sprites>
+    <sprites name="Settings UI">
+      <sprite>sprites\spr_settings_icon</sprite>
+      <sprite>sprites\spr_settings_menuselector</sprite>
+    </sprites>
     <sprites name="General UI">
       <sprite>sprites\spr_generalui_highlight</sprite>
       <sprite>sprites\spr_generalui_line</sprite>
@@ -191,6 +195,7 @@
     <font>fonts\fnt_ns_system_gamelist</font>
     <font>fonts\fnt_ns_system_clock</font>
     <font>fonts\fnt_ns_system_small</font>
+    <font>fonts\fnt_ns_system_settings_small</font>
     <font>fonts\fnt_ns_system_highlight</font>
   </fonts>
   <objects name="objects">
@@ -198,8 +203,8 @@
     <object>objects\obj_nx_settings</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_nx_home</room>
     <room>rooms\rm_nx_settings</room>
+    <room>rooms\rm_nx_home</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
