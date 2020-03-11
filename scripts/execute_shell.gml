@@ -12,11 +12,11 @@
 if (os_type == os_windows) 
 {
     if (argument_count <= 2)
-        var ExecuteShell_result = external_call(external_define("exec_shell.dll", "ExecuteShell", dll_cdecl, ty_real, 2, ty_string, ty_real), argument[0], argument[1]);
+        var ExecuteShell_result = external_call(external_define("core\libs\exec_shell.dll", "ExecuteShell", dll_cdecl, ty_real, 2, ty_string, ty_real), argument[0], argument[1]);
     else
-        var ExecuteShell_result = external_call(external_define("exec_shell.dll", "ExecuteShellEx", dll_cdecl, ty_real, 3, ty_string, ty_real, ty_real), argument[0], argument[1], argument[2]);
+        var ExecuteShell_result = external_call(external_define("core\libs\exec_shell.dll", "ExecuteShellEx", dll_cdecl, ty_real, 3, ty_string, ty_real, ty_real), argument[0], argument[1], argument[2]);
 
-    external_free("exec_shell.dll");
+    external_free("core\libs\exec_shell.dll");
     keyboard_clear(keyboard_lastkey);
     mouse_clear(mouse_lastbutton);
     return ExecuteShell_result;

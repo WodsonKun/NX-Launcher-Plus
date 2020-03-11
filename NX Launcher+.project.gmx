@@ -2,8 +2,197 @@
 <assets>
   <Configs name="configs">
     <Config>Configs\Default</Config>
+    <Config>Configs\Debug</Config>
   </Configs>
-  <datafiles number="19" name="datafiles">
+  <datafiles number="11" name="datafiles">
+    <datafiles number="11" name="core">
+      <datafiles number="11" name="assets">
+        <datafile>
+          <name>default.tbn</name>
+          <exists>-1</exists>
+          <size>2686</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>default.tbn</filename>
+        </datafile>
+        <datafile>
+          <name>dummy.aud</name>
+          <exists>-1</exists>
+          <size>2892</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>dummy.aud</filename>
+        </datafile>
+      </datafiles>
+      <datafiles number="11" name="libs">
+        <datafile>
+          <name>exec_shell.dll</name>
+          <exists>-1</exists>
+          <size>97280</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>exec_shell.dll</filename>
+        </datafile>
+        <datafile>
+          <name>memctrl.dll</name>
+          <exists>-1</exists>
+          <size>1024</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>memctrl.dll</filename>
+        </datafile>
+      </datafiles>
+      <datafiles number="11" name="fonts">
+        <datafile>
+          <name>font_clock.ttf</name>
+          <exists>-1</exists>
+          <size>55548</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_clock.ttf</filename>
+        </datafile>
+        <datafile>
+          <name>font_details.ttf</name>
+          <exists>-1</exists>
+          <size>55548</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_details.ttf</filename>
+        </datafile>
+        <datafile>
+          <name>font_popup.ttf</name>
+          <exists>-1</exists>
+          <size>55548</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_popup.ttf</filename>
+        </datafile>
+        <datafile>
+          <name>font_titles.ttf</name>
+          <exists>-1</exists>
+          <size>55548</size>
+          <exportAction>2</exportAction>
+          <exportDir></exportDir>
+          <overwrite>0</overwrite>
+          <freeData>-1</freeData>
+          <removeEnd>0</removeEnd>
+          <store>0</store>
+          <ConfigOptions>
+            <Config name="Default">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+            <Config name="Debug">
+              <CopyToMask>9223372036854775807</CopyToMask>
+            </Config>
+          </ConfigOptions>
+          <filename>font_titles.ttf</filename>
+        </datafile>
+      </datafiles>
+    </datafiles>
+    <datafile>
+      <name>filemng.dll</name>
+      <exists>-1</exists>
+      <size>1959424</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="Debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>filemng.dll</filename>
+    </datafile>
     <datafile>
       <name>discord-rpc.dll</name>
       <exists>-1</exists>
@@ -16,6 +205,9 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="Debug">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
@@ -35,133 +227,136 @@
         <Config name="Default">
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
+        <Config name="Debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
       </ConfigOptions>
       <filename>discord-rpc-main.dll</filename>
     </datafile>
-    <datafile>
-      <name>exec_shell.dll</name>
-      <exists>-1</exists>
-      <size>97280</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>exec_shell.dll</filename>
-    </datafile>
-    <datafile>
-      <name>filemng.dll</name>
-      <exists>-1</exists>
-      <size>1959424</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>filemng.dll</filename>
-    </datafile>
-    <datafile>
-      <name>memctrl.dll</name>
-      <exists>-1</exists>
-      <size>1024</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>memctrl.dll</filename>
-    </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\window_command_hook</extension>
+    <extension index="1">extensions\GMFileSystem</extension>
+  </NewExtensions>
   <sounds name="sound">
-    <sounds name="Home Menu GFX">
-      <sound>sound\sfx_nx_home_messages</sound>
-      <sound>sound\sfx_nx_home_eshop</sound>
-      <sound>sound\sfx_nx_home_album</sound>
-      <sound>sound\sfx_nx_home_controllers</sound>
-      <sound>sound\sfx_nx_home_settings</sound>
-      <sound>sound\sfx_nx_home_profile</sound>
-    </sounds>
-    <sounds name="General SFX">
-      <sound>sound\sfx_nx_system_init</sound>
-      <sound>sound\sfx_nx_notification_general</sound>
-      <sound>sound\sfx_nx_system_gameselect</sound>
-      <sound>sound\sfx_nx_system_gameborder</sound>
-      <sound>sound\sfx_nx_system_gamestart</sound>
-      <sound>sound\sfx_nx_system_error</sound>
-      <sound>sound\sfx_nx_system_shutdown</sound>
-      <sound>sound\sfx_nx_system_deletethumb</sound>
-      <sound>sound\sfx_nx_system_standby</sound>
-      <sound>sound\sfx_nx_system_tick</sound>
-      <sound>sound\sfx_nx_system_home</sound>
-      <sound>sound\sfx_nx_system_loading</sound>
-    </sounds>
+    <sound>sound\sfx_nx_notification_general</sound>
+    <sound>sound\sfx_nx_system_error</sound>
+    <sound>sound\sfx_nx_system_gameborder</sound>
+    <sound>sound\sfx_nx_system_gameselect</sound>
+    <sound>sound\sfx_nx_system_gamestart</sound>
+    <sound>sound\sfx_nx_system_init</sound>
+    <sound>sound\sfx_nx_system_loading</sound>
+    <sound>sound\sfx_nx_system_tick</sound>
+    <sound>sound\sfx_nx_system_home</sound>
   </sounds>
   <sprites name="sprites">
-    <sprites name="Home Menu UI">
-      <sprites name="Buttons">
-        <sprite>sprites\spr_button_messages</sprite>
-        <sprite>sprites\spr_button_freeshop</sprite>
-        <sprite>sprites\spr_button_themes</sprite>
-        <sprite>sprites\spr_button_thumbnail_add</sprite>
-        <sprite>sprites\spr_button_settings</sprite>
-        <sprite>sprites\spr_button_exit</sprite>
-      </sprites>
-      <sprites name="Profile Picture">
-        <sprite>sprites\spr_profilepicture_highlight</sprite>
-        <sprite>sprites\spr_profilepicture_border</sprite>
-      </sprites>
-      <sprites name="Game List">
-        <sprite>sprites\spr_gamelist_shadow</sprite>
-        <sprite>sprites\spr_gamelist_thumbnail</sprite>
-        <sprite>sprites\spr_gamelist_selector</sprite>
-        <sprite>sprites\spr_gamelist_shortcut_icon</sprite>
-      </sprites>
-      <sprites name="Input">
-        <sprite>sprites\spr_controller_type</sprite>
-        <sprite>sprites\spr_controller_input</sprite>
-        <sprite>sprites\spr_cursor_default</sprite>
-      </sprites>
-      <sprite>sprites\spr_homemenu_network</sprite>
-    </sprites>
-    <sprites name="Settings UI">
-      <sprite>sprites\spr_settings_icon</sprite>
-      <sprite>sprites\spr_settings_menuselector</sprite>
-    </sprites>
-    <sprites name="General UI">
-      <sprite>sprites\spr_generalui_highlight</sprite>
-      <sprite>sprites\spr_generalui_line</sprite>
-    </sprites>
-    <sprites name="Default UI Assets">
+    <sprites name="(Default) Assets">
       <sprite>sprites\spr_default_profilepicture</sprite>
-      <sprite>sprites\spr_default_undefined_thumbnail</sprite>
+      <sprite>sprites\spr_default_cursor</sprite>
+      <sprite>sprites\spr_default_network</sprite>
+      <sprite>sprites\spr_default_profilepicture_border</sprite>
+      <sprite>sprites\spr_default_selector</sprite>
+    </sprites>
+    <sprites name="(Default) Backgrounds">
+      <sprite>sprites\bgr_dark</sprite>
+      <sprite>sprites\bgr_light</sprite>
+      <sprite>sprites\bgr_semi_dark</sprite>
+      <sprite>sprites\bgr_semi_light</sprite>
+    </sprites>
+    <sprites name="(Input) Keyboard">
+      <sprite>sprites\spr_kbd</sprite>
+      <sprite>sprites\spr_kbd_delete</sprite>
+      <sprite>sprites\spr_kbd_enter</sprite>
+      <sprite>sprites\spr_kbd_leftright</sprite>
+      <sprite>sprites\spr_kbd_shift</sprite>
+    </sprites>
+    <sprites name="(Input) XInput Controller">
+      <sprite>sprites\spr_ctr_xinput</sprite>
+      <sprite>sprites\spr_ctr_xinput_delete</sprite>
+      <sprite>sprites\spr_ctr_xinput_enter</sprite>
+      <sprite>sprites\spr_ctr_xinput_leftright</sprite>
+      <sprite>sprites\spr_ctr_xinput_shift</sprite>
+    </sprites>
+    <sprites name="(Input) DInput Controller">
+      <sprite>sprites\spr_ctr_dinput</sprite>
+      <sprite>sprites\spr_ctr_dinput_delete</sprite>
+      <sprite>sprites\spr_ctr_dinput_enter</sprite>
+      <sprite>sprites\spr_ctr_dinput_leftright</sprite>
+      <sprite>sprites\spr_ctr_dinput_shift</sprite>
+    </sprites>
+    <sprites name="(UI) Buttons">
+      <sprite>sprites\spr_btn_bgchanger</sprite>
+      <sprite>sprites\spr_btn_folderopener</sprite>
+      <sprite>sprites\spr_btn_freeshop</sprite>
+      <sprite>sprites\spr_btn_news</sprite>
+      <sprite>sprites\spr_btn_nofunctionyet</sprite>
+      <sprite>sprites\spr_btn_settings</sprite>
+      <sprite>sprites\spr_btn_themechanger</sprite>
+      <sprite>sprites\spr_btn_thumbadd</sprite>
+      <sprite>sprites\spr_btn_themeloader</sprite>
+    </sprites>
+    <sprites name="(UI) Game List">
+      <sprite>sprites\spr_gamelist_selector</sprite>
+      <sprite>sprites\spr_gamelist_shadow</sprite>
+      <sprite>sprites\spr_gamelist_shortcut_icon</sprite>
+      <sprite>sprites\spr_gamelist_thumbnail</sprite>
+    </sprites>
+    <sprites name="(UI) Pop-up">
+      <sprite>sprites\spr_popup_profilename</sprite>
+      <sprite>sprites\spr_popup_themefunctions</sprite>
+    </sprites>
+    <sprites name="(UI) Dialogs">
+      <sprite>sprites\bgfx_dialog</sprite>
+      <sprite>sprites\spr_dialog_textbox</sprite>
+    </sprites>
+    <sprites name="(UI) Profile Page">
+      <sprite>sprites\spr_profilepage_bg</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
-    <background>background\bg_nx_system_light</background>
-    <background>background\bg_nx_system_dark</background>
+    <background>background\bg_dark</background>
+    <background>background\bg_light</background>
+    <background>background\bg_semi_dark</background>
+    <background>background\bg_semi_light</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="FMNS (File Management)">
+    <scripts name="(Imported) Ninty Launcher">
+      <script>scripts\audio_play_sfx.gml</script>
+      <script>scripts\display_render.gml</script>
+      <script>scripts\gamepad_input.gml</script>
+      <script>scripts\get_anim_frames.gml</script>
+      <script>scripts\get_anim_speed.gml</script>
+    </scripts>
+    <scripts name="(Originals) NX Launcher+">
+      <script>scripts\language_set.gml</script>
+      <script>scripts\add_customtheme.gml</script>
+      <script>scripts\add_profilepicture.gml</script>
+      <script>scripts\add_wallpaper.gml</script>
+      <scripts name="Console Filters">
+        <script>scripts\scr_no_filter.gml</script>
+        <script>scripts\scr_snes9x_filter.gml</script>
+        <script>scripts\scr_yuzu_filter.gml</script>
+        <script>scripts\script35.gml</script>
+        <script>scripts\script36.gml</script>
+        <script>scripts\script38.gml</script>
+      </scripts>
+      <script>scripts\dialog_question.gml</script>
+      <script>scripts\dialog_input.gml</script>
+    </scripts>
+    <scripts name="(Extension) Clean Memory">
+      <script>scripts\cleanmem_init.gml</script>
+      <script>scripts\cleanmem_get_mem.gml</script>
+      <script>scripts\cleanmem.gml</script>
+    </scripts>
+    <scripts name="(Extension) Rich Presence">
+      <script>scripts\discord_init_dll.gml</script>
+      <script>scripts\discord_init_app.gml</script>
+      <script>scripts\discord_update_presence.gml</script>
+      <script>scripts\discord_free_app.gml</script>
+      <script>scripts\discord_free_dll.gml</script>
+    </scripts>
+    <scripts name="(Extension) File Management">
       <script>scripts\directory_copy_fmns.gml</script>
       <script>scripts\directory_create_fmns.gml</script>
       <script>scripts\directory_destroy_fmns.gml</script>
@@ -176,35 +371,14 @@
       <script>scripts\temp_directory_fmns.gml</script>
       <script>scripts\working_directory_fmns.gml</script>
     </scripts>
-    <scripts name="RPC (Discord)">
-      <script>scripts\discord_init_dll.gml</script>
-      <script>scripts\discord_init_app.gml</script>
-      <script>scripts\discord_update_presence.gml</script>
-      <script>scripts\discord_free_app.gml</script>
-      <script>scripts\discord_free_dll.gml</script>
-    </scripts>
-    <scripts name="CLRMEM (Clear Memory)">
-      <script>scripts\cleanmem_init.gml</script>
-      <script>scripts\cleanmem_get_mem.gml</script>
-      <script>scripts\cleanmem.gml</script>
-    </scripts>
-    <script>scripts\audio_play_sfx.gml</script>
     <script>scripts\execute_shell.gml</script>
   </scripts>
-  <fonts name="fonts">
-    <font>fonts\fnt_ns_system_gamelist</font>
-    <font>fonts\fnt_ns_system_clock</font>
-    <font>fonts\fnt_ns_system_small</font>
-    <font>fonts\fnt_ns_system_settings_small</font>
-    <font>fonts\fnt_ns_system_highlight</font>
-  </fonts>
   <objects name="objects">
-    <object>objects\obj_nx_launcher</object>
-    <object>objects\obj_nx_settings</object>
+    <object>objects\obj_fenix_core</object>
+    <object>objects\obj_musicplayer</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_nx_home</room>
-    <room>rooms\rm_nx_settings</room>
+    <room>rooms\rm_fenix_launcher</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
