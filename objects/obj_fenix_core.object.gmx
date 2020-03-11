@@ -264,7 +264,7 @@ if(file != "")
     var name = filename_name(file);
     if (name == "")
     {
-        games_rom[games_total] = "";
+        games_rom[games_total] = '';
         ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
         ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
         ini_close();
@@ -949,11 +949,11 @@ if(alarm[0] == -1)
                         boot_wait = "";
                         
                     //ROM
-                    if(games_rom[select_index] != "")
+                    if (games_rom[select_index] != "")
                     {
                         boot_attach = string(games_rom[select_index]);
                     }
-                    else
+                    else if (games_rom[select_index] == "")
                     {
                         boot_attach = "";
                     }
@@ -1980,7 +1980,7 @@ for(i = 0; i &lt; games_total; i += 1)
     }
     else
     {
-        games_thumb[i] = sprite_add(global.launcher_coredir + "assets\default.tbn",0,0,0,0,0);
+        games_thumb[i] = sprite_add("core\assets\default.tbn",0,0,0,0,0);
     }
     ini_close();
 };
