@@ -203,8 +203,8 @@
     <object>objects\obj_nx_settings</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_nx_settings</room>
     <room>rooms\rm_nx_home</room>
+    <room>rooms\rm_nx_settings</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

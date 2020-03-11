@@ -1048,7 +1048,8 @@ if(mouse_check_button_released(mb_left))
     if(point_in_rectangle(mouse_x,mouse_y,761-parental_offset,504,(761+86)-parental_offset,504+86))
     {
         audio_play_sfx(sfx_nx_home_settings);
-        show_message("This feature is not implemented yet... Please, wait for an update that includes it.");
+        show_message("This is a beta resource, use it with caution!");
+        room_goto(rm_nx_settings);
     }
     
     //Encerrar
