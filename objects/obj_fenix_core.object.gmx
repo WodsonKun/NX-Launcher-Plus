@@ -260,50 +260,17 @@ if(file != "")
         games_shortcut[games_total] = 0;
     }
     
-    ///ROM Filter
-    var name = filename_name(file);
-    if (name == "")
+    //It's a ROM?
+    var rom_scut = show_question(question_romshortcut)
+    if (rom_scut == 1)
     {
-        games_rom[games_total] = '';
-        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
-        ini_close();
+        games_rom[games_total] = get_open_filename_ext("", "", global.userdir, "Select a ROM file");
     }
-    //SNES (Snes9x)
-    if (name == "snes9x.exe") || (name == "snes9x-x64.exe")
+    else
     {
-        //É um atalho para ROMs?
-        var rom_scut = show_question(question_romshortcut);
-        if (rom_scut == 1)
-        {
-            games_rom[games_total] = get_open_filename_ext(file_snes9x_rom_filter, "", global.userdir, file_snes9x_rom_name);
-        }
-        else
-        {
-            games_rom[games_total] = "";
-        }
-        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
-        ini_close();
+        games_rom[games_total] = "";
     }
-    //Nintendo Switch (Yuzu)
-    else if (name == "yuzu.exe") || (name == "yuzu-cmd.exe")
-    {
-        //É um atalho para ROMs?
-        var rom_scut = show_question(question_romshortcut);
-        if (rom_scut == 1)
-        {
-            games_rom[games_total] = get_open_filename_ext(file_yuzu_rom_filter, "", global.userdir, file_yuzu_rom_name);
-        }
-        else
-        {
-            games_rom[games_total] = "";
-        }
-        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
-        ini_close();
-    }
-        
+    
     //Adicionar jogo
     games_title[games_total] = string_copy(filename_name(file),0,48);
     games_path[games_total] = file;
@@ -312,6 +279,7 @@ if(file != "")
     ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
     ini_write_string("NX_TITLE","title",string_copy(filename_name(file),0,48));
     real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total])));
+    ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
     ini_write_string("NX_TITLE","path",string(file));
     ini_close();
             
@@ -1990,6 +1958,156 @@ anim_games[i] = 0;
 
 //Clean
 cleanmem();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Add thumbnails into NX Launcher+
+//Buscar caminho...
+var file = get_open_filename_ext(file_main_filter, "", global.userdir, file_main_title);
+if(file != "")
+{
+    //SFX
+    audio_play_sfx(sfx_nx_notification_general);
+    
+    //Buscar miniatura...
+    var thumb = get_open_filename_ext(file_thumbnail_filter, "", global.userdir, file_thumbnail_title);
+    if(thumb != "")
+    {
+        games_thumb[games_total] = sprite_add(thumb,0,0,1,0,0);
+        file_copy(thumb,game_save_id+"title_collection\game_"+string(games_total)+".png");
+        audio_play_sfx(sfx_nx_notification_general);
+    };
+    else
+    {
+        games_thumb[games_total] = global.launcher_coredir + "assets\default.tbn"
+        audio_play_sfx(sfx_nx_system_error);
+    }
+    
+    //É um ATALHO?
+    var scut = show_question(question_shortcut);
+    if(scut == 1)
+    {
+        games_shortcut[games_total] = 1;
+    }
+    else
+    {
+        games_shortcut[games_total] = 0;
+    }
+    
+    ///ROM Filter
+    var name = filename_name(file);
+    if (name == "")
+    {
+        games_rom[games_total] = '';
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    //SNES (Snes9x)
+    if (name == "snes9x.exe") || (name == "snes9x-x64.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_snes9x_rom_filter, "", global.userdir, file_snes9x_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    //Nintendo Switch (Yuzu)
+    else if (name == "yuzu.exe") || (name == "yuzu-cmd.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_yuzu_rom_filter, "", global.userdir, file_yuzu_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //NES (Mesen)
+    //Nintendo GameCube / Wii (Dolphin)
+    //Citra (Nintendo 3DS)
+    //RyuujiNX (Nintendo Switch)
+    //KEGA Fusion (SEGA Genesis / CD / Master System / Game Gear)
+    //PCSX-R (PlayStation)
+    //PPSSPP (PlayStation Portable)
+    //PCSX2 (PlayStation 2)
+    //RPCS3 (PlayStation 3)
+    
+    //Adicionar jogo
+    games_title[games_total] = string_copy(filename_name(file),0,48);
+    games_path[games_total] = file;
+                    
+    //Salvar no diretório
+    ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+    ini_write_string("NX_TITLE","title",string_copy(filename_name(file),0,48));
+    real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total])));
+    ini_write_string("NX_TITLE","path",string(file));
+    ini_close();
+            
+    //Incrementar total
+    ini_open(game_save_id+"title_collection\_total.ini");
+    ini_write_string("NX_TITLE","total",string(games_total+1));
+    ini_close();
+    games_total++;
+    select_index = games_total-1;
+  
+    //Limpar
+    cleanmem();
+    
+    //Atualizar RPC
+    event_user(0);
+    
+    //Voltar fullscreen... (Se tiver sido definido antes)    
+    window_set_fullscreen(fullscreen);
+    
+    //Alterar nome
+    dialog_description = "Set the title's name:"
+    keyboard_string = string_copy(filename_name(file),0,48);
+    dialog_return = string_copy(filename_name(file),0,48);
+    dialog = 1;
+    alarm[6] = 1;
+};
+//Voltar fullscreen... (Se tiver sido definido antes)    
+else
+{
+    audio_play_sfx(sfx_nx_system_error);
+    cleanmem();
+    window_set_fullscreen(fullscreen);
+};
 </string>
           </argument>
         </arguments>
