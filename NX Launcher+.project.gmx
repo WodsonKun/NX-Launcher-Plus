@@ -333,14 +333,6 @@
       <script>scripts\add_customtheme.gml</script>
       <script>scripts\add_profilepicture.gml</script>
       <script>scripts\add_wallpaper.gml</script>
-      <scripts name="Console Filters">
-        <script>scripts\scr_no_filter.gml</script>
-        <script>scripts\scr_snes9x_filter.gml</script>
-        <script>scripts\scr_yuzu_filter.gml</script>
-        <script>scripts\script35.gml</script>
-        <script>scripts\script36.gml</script>
-        <script>scripts\script38.gml</script>
-      </scripts>
       <script>scripts\dialog_question.gml</script>
       <script>scripts\dialog_input.gml</script>
     </scripts>

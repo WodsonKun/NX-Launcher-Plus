@@ -2,6 +2,54 @@
 ///Define and load language strings based on computer's defined language
 switch (os_get_language())
 {
+    //Português (Brasil)
+    case "pt":
+        
+    //[HOME Menu Strings]
+    home_main = "Menu HOME"
+    home_news = "Notícias"
+    home_freeshop = "FreeShop"
+    home_thumbadd = "Adicionar thumbnails"
+        
+    //[HOME Menu Pop-Up Strings]
+    home_change_background = "Mudar plano de fundo"
+    home_change_lighttheme = "Mudar para tema claro"
+    home_change_darktheme = "Mudar para tema escuro"
+    home_change_music = "Trocar a música do launcher"
+    
+    //[Command Strings]
+    command_start = "Iniciar"
+    command_edit = "Modo Edição"
+    command_delete = "Deletar"
+    command_move = "Mover para Esq. / Dir."
+    command_normal = "Modo Normal"
+    command_place = "Colocar"
+        
+    //[Question Strings]
+    question_shortcut = "Do you want turn this game/application into a shortcut?#This option is useful for common applications or that already have their own launcher#Obs.: If you turn this game a shortcut, it will not run in Game Mode."
+    question_romshortcut = "Do you want turn this title into a ROM shortcut?#It will run the ROM directly from the launcher."
+        
+    //[File Strings]
+    file_main_filter = "Windows Game / Application (.exe)|*.exe"
+    file_main_title = "Select a game, app or ROM"
+    file_emulator_filter = "Emulator (.exe)|*.exe"
+    file_emulator_title = "Select your emulator's path"
+    file_thumbnail_filter = "Thumbnail Images (256x256)|*.png"
+    file_thumbnail_title = "Select a thumbnail image"
+    file_wallpaper_filter = "Wallpapers (1280x720)|*.png"
+    file_wallpaper_title = "Choose a wallpaper"
+    file_screenshot_filter = "Fenix's Screenshot (.png)|*.png"
+    file_screenshot_title = "Save your screenshot"
+    
+    //[Emulator Filter Strings]
+    file_snes9x_rom_filter = "SNES ROMs (.smc, .sfc)|*.smc;*.sfc"
+    file_snes9x_rom_name = "Select an Super Nintendo Entertainment System ROM"
+    file_yuzu_rom_filter = "Nintendo Switch ROMs (.xci, .nro, .nso)|*.xci;*.nro;*.nso"
+    file_yuzu_rom_name = "Select an Nintendo Switch ROM"
+    
+    //Terminate case
+    break;
+    
     //Default: English
     default:
         
