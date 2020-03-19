@@ -260,16 +260,91 @@ if(file != "")
         games_shortcut[games_total] = 0;
     }
     
-    //It's a ROM?
-    var rom_scut = show_question(question_romshortcut)
-    if (rom_scut == 1)
+    ///ROM Filter
+    var name = filename_name(file);
+    if (name == "")
     {
-        games_rom[games_total] = get_open_filename_ext("", "", global.userdir, "Select a ROM file");
+        games_rom[games_total] = '';
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
     }
-    else
+    //Super Nintendo Entertainment System
+    if (name == "snes9x.exe") || (name == "snes9x-x64.exe") || (name == "zsnes.exe")
     {
-        games_rom[games_total] = "";
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_snes_rom_filter, "", global.userdir, file_snes_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
     }
+    //Nintendo Switch
+    else if (name == "yuzu.exe") || (name == "yuzu-cmd.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_switch_rom_filter, "", global.userdir, file_switch_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //NES (Mesen)
+    //Nintendo GameCube / Wii (Dolphin)
+    //Citra (Nintendo 3DS)
+    //KEGA Fusion (SEGA Genesis / CD / Master System / Game Gear)
+    //PCSX-R (PlayStation)
+    //PlayStation Portable (PPSSPP and JCPSP)
+    else if (name == "PPSSPP.exe") || (name == "PPSSPPWindows64.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_psp_rom_filter, "", global.userdir, file_psp_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id + "title_collection\game_" + string(games_total)+".ini");
+        ini_write_string("NX_TITLE", "rom", string(games_rom[games_total]));
+        ini_close();
+    }
+    else if (name == "jcpsp.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_psp_rom_filter, "", global.userdir, file_psp_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id + "title_collection\game_" + string(games_total)+".ini");
+        ini_write_string("NX_TITLE", "rom", "-u " + string(games_rom[games_total]) + " -r");
+        ini_close();
+    }
+    
+    //PCSX2 (PlayStation 2)
+    //RPCS3 (PlayStation 3)
     
     //Adicionar jogo
     games_title[games_total] = string_copy(filename_name(file),0,48);
@@ -279,7 +354,6 @@ if(file != "")
     ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
     ini_write_string("NX_TITLE","title",string_copy(filename_name(file),0,48));
     real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total])));
-    ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
     ini_write_string("NX_TITLE","path",string(file));
     ini_close();
             
@@ -1970,7 +2044,7 @@ cleanmem();
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="17">
+    <event eventtype="7" enumb="16">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -2020,58 +2094,16 @@ if(file != "")
         games_shortcut[games_total] = 0;
     }
     
-    ///ROM Filter
-    var name = filename_name(file);
-    if (name == "")
+    //It's a ROM?
+    var rom_scut = show_question(question_romshortcut)
+    if (rom_scut == 1)
     {
-        games_rom[games_total] = '';
-        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
-        ini_close();
+        games_rom[games_total] = get_open_filename_ext("", "", global.userdir, "Select a ROM file");
     }
-    //SNES (Snes9x)
-    if (name == "snes9x.exe") || (name == "snes9x-x64.exe")
+    else
     {
-        //É um atalho para ROMs?
-        var rom_scut = show_question(question_romshortcut);
-        if (rom_scut == 1)
-        {
-            games_rom[games_total] = get_open_filename_ext(file_snes9x_rom_filter, "", global.userdir, file_snes9x_rom_name);
-        }
-        else
-        {
-            games_rom[games_total] = "";
-        }
-        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
-        ini_close();
+        games_rom[games_total] = "";
     }
-    //Nintendo Switch (Yuzu)
-    else if (name == "yuzu.exe") || (name == "yuzu-cmd.exe")
-    {
-        //É um atalho para ROMs?
-        var rom_scut = show_question(question_romshortcut);
-        if (rom_scut == 1)
-        {
-            games_rom[games_total] = get_open_filename_ext(file_yuzu_rom_filter, "", global.userdir, file_yuzu_rom_name);
-        }
-        else
-        {
-            games_rom[games_total] = "";
-        }
-        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
-        ini_close();
-    }
-    
-    //NES (Mesen)
-    //Nintendo GameCube / Wii (Dolphin)
-    //Citra (Nintendo 3DS)
-    //KEGA Fusion (SEGA Genesis / CD / Master System / Game Gear)
-    //PCSX-R (PlayStation)
-    //PPSSPP (PlayStation Portable)
-    //PCSX2 (PlayStation 2)
-    //RPCS3 (PlayStation 3)
     
     //Adicionar jogo
     games_title[games_total] = string_copy(filename_name(file),0,48);
@@ -2081,6 +2113,7 @@ if(file != "")
     ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
     ini_write_string("NX_TITLE","title",string_copy(filename_name(file),0,48));
     real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total])));
+    ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
     ini_write_string("NX_TITLE","path",string(file));
     ini_close();
             
