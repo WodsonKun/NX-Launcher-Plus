@@ -333,8 +333,6 @@
       <script>scripts\add_customtheme.gml</script>
       <script>scripts\add_profilepicture.gml</script>
       <script>scripts\add_wallpaper.gml</script>
-      <script>scripts\dialog_question.gml</script>
-      <script>scripts\dialog_input.gml</script>
     </scripts>
     <scripts name="(Extension) Clean Memory">
       <script>scripts\cleanmem_init.gml</script>
