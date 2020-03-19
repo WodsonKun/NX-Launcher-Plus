@@ -16,6 +16,8 @@ switch (os_get_language())
     home_change_lighttheme = "Mudar para tema claro"
     home_change_darktheme = "Mudar para tema escuro"
     home_change_music = "Trocar a música do launcher"
+    home_change_theme = "Mudar tema"
+    home_folder_opener = "Abrir pasta de dados"
     
     //[Command Strings]
     command_start = "Iniciar"
@@ -34,10 +36,12 @@ switch (os_get_language())
     file_main_title = "Selecione um jogo, aplicativo ou emulador"
     file_thumbnail_filter = "Imagens de Thumbnail (256x256)|*.png"
     file_thumbnail_title = "Selecione uma imagem de thumbnail"
-    file_wallpaper_filter = "Wallpapers (1280x720)|*.png"
+    file_wallpaper_filter = "Planos de fundo (1280x720)|*.png"
     file_wallpaper_title = "Selecione um plano de fundo"
     file_screenshot_filter = "Captura de tela do NX (.png)|*.png"
     file_screenshot_title = "Salve sua captura de tela"
+    file_theme_filter = "Tema Customizado (.thm)|*.thm"
+    file_theme_name = "Selecione um tema customizado"
     
     //[Emulator Filter Strings]
     //Super Nintendo Entertainment System
@@ -91,6 +95,8 @@ switch (os_get_language())
     file_wallpaper_title = "Choose a wallpaper"
     file_screenshot_filter = "Fenix's Screenshot (.png)|*.png"
     file_screenshot_title = "Save your screenshot"
+    file_theme_filter = "Custom Theme (.thm)|*.thm"
+    file_theme_name = "Select a custom theme"
     
     //[Emulator Filter Strings]
     //Super Nintendo Entertainment System

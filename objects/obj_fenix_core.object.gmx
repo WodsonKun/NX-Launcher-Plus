@@ -1163,22 +1163,28 @@ if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_righ
           <argument>
             <kind>1</kind>
             <string>///Draw NX Launcher+ UI
-/// ---------- All color variables (Hex, cursor, normal, alt, name, selector, merged, error and move) ----------
+/// ---------- Color Variables ----------
+//Black and White (for theme-switching)
 c_fx_black = make_colour_rgb(35, 35, 35);
 c_fx_white = $f0f0f0
+//Blue and Aqua (Cursor)
 c_fx_cursor_blue = make_colour_rgb(30, 96, 186);
 c_fx_cursor_aqua = make_colour_rgb(0,153,153);
-c_switchaqua = (make_colour_rgb(82,209,202));
-c_switchaqua_alt = (make_colour_rgb(0,153,153));
-c_switchaqua_name = (make_colour_rgb(0,204,204));
+//Blue and Aqua (Normal, Alt. and Names)
 c_switchblue = (make_colour_rgb(70,152,200));
 c_switchblue_alt = (make_colour_rgb(0,76,153));
 c_switchblue_name = (make_colour_rgb(102,178,255));
+c_switchaqua = (make_colour_rgb(82,209,202));
+c_switchaqua_alt = (make_colour_rgb(0,153,153));
+c_switchaqua_name = (make_colour_rgb(0,204,204));
+//Blue and Aqua (Merged, useful for effects and names)
 c_switchaqua_merge = merge_colour(c_switchaqua, c_switchaqua_alt,col_numb);
 c_switchblue_merge = merge_colour(c_switchblue, c_switchblue_alt,col_numb);
 c_switchaqua_nmerge = merge_colour(c_switchaqua, c_switchaqua_name,col_numb);
 c_switchblue_nmerge = merge_colour(c_switchblue, c_switchblue_name,col_numb);
+//Error
 c_switcherror = merge_colour(c_red, c_maroon, col_numb);
+//Edit Mode
 c_switchmove = merge_colour(c_yellow, c_orange, col_numb);
 
 /// ---------- Wallpaper ----------
@@ -1719,7 +1725,7 @@ if (point_in_rectangle(mouse_x, mouse_y, 276, 42, 276+50, 92))
         draw_set_colour(c_black)
         break;
     }
-    draw_text(170+35-3, 112, "Load a theme (.thm)");
+    draw_text(170+35-3, 112, home_change_theme);
 }
 
 
@@ -1737,7 +1743,7 @@ if (point_in_rectangle(mouse_x, mouse_y, 342, 42, 342+50, 92))
         draw_set_colour(c_black)
         break;
     }
-    draw_text(240+35-2, 112, "NX Launcher+ folder");
+    draw_text(240+35-2, 112, home_folder_opener);
 }
 
 /// ------------ Profile Page ----------

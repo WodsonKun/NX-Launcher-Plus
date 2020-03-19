@@ -1,5 +1,5 @@
 ///add_customtheme()
-thm = get_open_filename("Custom Theme (.thm)|*.thm","");
+thm = get_open_filename_ext(file_theme_filter,"",global.userdir,file_theme_name);
 if (thm != "")
 {
     //Delete main theme assets
