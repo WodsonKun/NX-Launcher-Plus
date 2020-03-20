@@ -32,7 +32,7 @@ switch (os_get_language())
     question_romshortcut = "Deseja tornar este título um atalho para uma ROM?#A ROM será executada diretamente do launcher."
     
     //[File Strings]
-    file_main_filter = "Jogo / Aplicativo do Windows (.exe)|*.exe"
+    file_main_filter = "Jogo / Aplicativo do Windows (.exe)|*.exe|Jogo / Aplicativo da Steam (.url)|*.url|Jogo / Aplicativo Java (.jar)|*.jar"
     file_main_title = "Selecione um jogo, aplicativo ou emulador"
     file_thumbnail_filter = "Imagens de Thumbnail (256x256)|*.png"
     file_thumbnail_title = "Selecione uma imagem de thumbnail"
@@ -44,15 +44,27 @@ switch (os_get_language())
     file_theme_name = "Selecione um tema customizado"
     
     //[Emulator Filter Strings]
+    //Nintendo Entertainment System
+    file_nes_rom_filter = "NES ROMs (.nes)|*.nes|Famicom Disk System ROMs (.fds)|*.fds"
+    file_nes_rom_name = "Select a Nintendo Entertainment System or a Famicom Disk System ROM"
     //Super Nintendo Entertainment System
     file_snes_rom_filter = "SNES ROMs (.smc, .sfc)|*.smc;*.sfc"
-    file_snes_rom_name = "Selecione uma ROM de Super Nintendo"
+    file_snes_rom_name = "Select an Super Nintendo Entertainment System ROM"
+    //Nintendo Game Boy (Original, Color, Advance and Super)
+    file_gameboy_rom_filter = "Nintendo Game Boy (.gb)|*.gb|Nintendo Game Boy Color (.gbc)|*.gbc|Nintendo Game Boy (.gba, .agb)|*.gba;.*agb|Nintendo Super Game Boy (.sgb)|*.sgb"
+    file_gameboy_rom_name = "Select a Nintendo Game Boy (Original, Color, Advance or Super) ROM"
+    //Nintendo 3DS
+    file_3ds_rom_filter = "Nintendo 3DS ROMs (.3ds, .3dsx, .cci, .cxi)|*.3ds;*.3dsx;*.cci;*.cxi"
+    file_3ds_rom_name = "Select a Nintendo 3DS ROM"
     //Nintendo Switch
     file_switch_rom_filter = "Nintendo Switch ROMs (.xci, .nro, .nso)|*.xci;*.nro;*.nso"
-    file_switch_rom_name = "Selecione uma ROM de Nintendo Switch"
+    file_switch_rom_name = "Select an Nintendo Switch ROM"
+    //SEGA Master System / Game Gear / Genesis / 32x / CD
+    file_sega_rom_filter = "SEGA Master System (.sms)|*.sms|SEGA Genesis / Mega Drive / CD /32x (.gen, .bin, .cue)|*.gen;*.bin;*.cue|SEGA Game Gear (.gg)|*.gg"
+    file_sega_rom_name = "Select a SEGA Master System / Game Gear / Genesis / 32x / CD ROM"
     //PlayStation Portable
     file_psp_rom_filter = "PSP ROMs (.iso, .cso, .PBP, .elf)|*.iso;*.cso;*.PBP;*.elf"
-    file_psp_rom_name = "Selecione uma ROM de PlayStation Portátil (PSP)"    
+    file_psp_rom_name = "Select an PlayStation Portable ROM"
     
     //Terminate case
     break;
@@ -85,7 +97,7 @@ switch (os_get_language())
     question_romshortcut = "Do you want turn this title into a ROM shortcut?#It will run the ROM directly from the launcher."
     
     //[File Strings]
-    file_main_filter = "Windows Game / Application (.exe)|*.exe"
+    file_main_filter = "Windows Game / Application (.exe)|*.exe|Steam Game / Application (.url)|*.url|Java Game / Application (.jar)|*.jar"
     file_main_title = "Select a game, app or ROM"
     file_emulator_filter = "Emulator (.exe)|*.exe"
     file_emulator_title = "Select your emulator's path"
@@ -99,12 +111,24 @@ switch (os_get_language())
     file_theme_name = "Select a custom theme"
     
     //[Emulator Filter Strings]
+    //Nintendo Entertainment System
+    file_nes_rom_filter = "NES ROMs (.nes)|*.nes|Famicom Disk System ROMs (.fds)|*.fds"
+    file_nes_rom_name = "Select a Nintendo Entertainment System or a Famicom Disk System ROM"
     //Super Nintendo Entertainment System
     file_snes_rom_filter = "SNES ROMs (.smc, .sfc)|*.smc;*.sfc"
     file_snes_rom_name = "Select an Super Nintendo Entertainment System ROM"
+    //Nintendo Game Boy (Original, Color, Advance and Super)
+    file_gameboy_rom_filter = "Nintendo Game Boy (.gb)|*.gb|Nintendo Game Boy Color (.gbc)|*.gbc|Nintendo Game Boy (.gba, .agb)|*.gba;.*agb|Nintendo Super Game Boy (.sgb)|*.sgb"
+    file_gameboy_rom_name = "Select a Nintendo Game Boy (Original, Color, Advance or Super) ROM"
+    //Nintendo 3DS
+    file_3ds_rom_filter = "Nintendo 3DS ROMs (.3ds, .3dsx, .cci, .cxi)|*.3ds;*.3dsx;*.cci;*.cxi"
+    file_3ds_rom_name = "Select a Nintendo 3DS ROM"
     //Nintendo Switch
     file_switch_rom_filter = "Nintendo Switch ROMs (.xci, .nro, .nso)|*.xci;*.nro;*.nso"
     file_switch_rom_name = "Select an Nintendo Switch ROM"
+    //SEGA Master System / Game Gear / Genesis / 32x / CD
+    file_sega_rom_filter = "SEGA Master System (.sms)|*.sms|SEGA Genesis / Mega Drive / CD /32x (.gen, .bin, .cue)|*.gen;*.bin;*.cue|SEGA Game Gear (.gg)|*.gg"
+    file_sega_rom_name = "Select a SEGA Master System / Game Gear / Genesis / 32x / CD ROM"
     //PlayStation Portable
     file_psp_rom_filter = "PSP ROMs (.iso, .cso, .PBP, .elf)|*.iso;*.cso;*.PBP;*.elf"
     file_psp_rom_name = "Select an PlayStation Portable ROM"
