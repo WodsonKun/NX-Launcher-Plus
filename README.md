@@ -16,12 +16,12 @@ Made in GML, NX Launcher+ is a game and application launcher for Windows!
     
 - **Nintendo Switch-based UI**: Easy to use, and includes a Light theme!
 <div align="center">
-    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/github_assets/nx_screenshot_light.png" alt="" /></p>
+    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/github_assets/nx_screenshot.png" alt="" /></p>
 </div>
     
 - **Custom Themes**: Now, you can customize backgrounds, profile images, fonts and even sound!
 <div align="center">
-    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/github_assets/nx-launcher-pokemon-theme.png" alt="" /></p>
+    <p><img src="https://raw.githubusercontent.com/WodsonKun/NX-Launcher-Plus/master/github_assets/nx_launcher_customtheme.png" alt="" /></p>
 </div>
 
 - **Gamepad Support**: Tired of using a keyboard? Try using a gamepad!
