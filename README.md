@@ -60,7 +60,7 @@ Not launched. Please, compile from source or download **1.9.5** from [__Releases
 ## <div align="center">Useful links</div>
 
 -   [__Source Code__](https://github.com/WodsonKun/NX-Launcher-PLus/tree/master/), for use with GameMaker: Studio | ![GitHub][badge-github]
--  [__NX Launcher Community__](https://discord.gg/DAGBtS7), for sharing custom themes and assets | ![Discord][badge-secdiscord]
+-  [__NX Launcher Community__](https://discord.gg/NbHsXQy), for sharing custom themes and assets | ![Discord][badge-secdiscord]
 -  [__Ninty FreeShop__](https://discord.gg/SgbZPpv), project by **Seph** | ![Discord][badge-secdiscord]
 
 ## <div align="center">Credits</div>
@@ -75,11 +75,11 @@ Not launched. Please, compile from source or download **1.9.5** from [__Releases
 
 **Extensions:**
 
-*Aouab: DiscordRPC
+*Aouab*: DiscordRPC
 
-Samuel Venable: ExecuteShell, FMNS
+*Samuel Venable*: ExecuteShell, FMNS
 
-Halo Shg (Clean Memory)*
+*Halo Shg*: Clean Memory
 
 **Original logo**:
 
