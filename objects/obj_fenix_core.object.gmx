@@ -344,6 +344,22 @@ if(file != "")
     }
     
     //Nintendo WiiU (CemU)
+    else if (name == "cemu.exe")
+    {
+         //Is it a ROM shortcut?
+         var rom_scut = show_question(question_romshortcut);
+         if (rom_scut == 1)
+         {
+            games_rom[games_total] = get_open_filename_ext(file_wiiu_rom_filter, "", global.userdir, file_wiiu_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom","-g" + string(games_rom[games_total]));
+        ini_close();
+    }
     
     //Nintendo Switch (Yuzu, RyujiNX)
     else if (name == "yuzu.exe") || (name == "yuzu-cmd.exe") || (name == "Ryujinx.exe")
@@ -418,7 +434,7 @@ if(file != "")
             games_rom[games_total] = "";
         }
         ini_open(game_save_id + "title_collection\game_" + string(games_total)+".ini");
-        ini_write_string("NX_TITLE", "rom", "-u "+string(games_rom[games_total])+" -r");
+        ini_write_string("NX_TITLE", "rom", "-u " + "string(games_rom[games_total])" + " -r");
         ini_close();
     }
     
