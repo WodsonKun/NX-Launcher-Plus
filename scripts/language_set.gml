@@ -46,25 +46,28 @@ switch (os_get_language())
     //[Emulator Filter Strings]
     //Nintendo Entertainment System
     file_nes_rom_filter = "NES ROMs (.nes)|*.nes|Famicom Disk System ROMs (.fds)|*.fds"
-    file_nes_rom_name = "Select a Nintendo Entertainment System or a Famicom Disk System ROM"
+    file_nes_rom_name = "Selecione uma ROM de Nintendo Entertainment System ou do Famicom Disk System"
     //Super Nintendo Entertainment System
     file_snes_rom_filter = "SNES ROMs (.smc, .sfc)|*.smc;*.sfc"
-    file_snes_rom_name = "Select an Super Nintendo Entertainment System ROM"
+    file_snes_rom_name = "Selecione uma ROM de Super Nintendo Entertainment System"
     //Nintendo Game Boy (Original, Color, Advance and Super)
     file_gameboy_rom_filter = "Nintendo Game Boy (.gb)|*.gb|Nintendo Game Boy Color (.gbc)|*.gbc|Nintendo Game Boy (.gba, .agb)|*.gba;.*agb|Nintendo Super Game Boy (.sgb)|*.sgb"
-    file_gameboy_rom_name = "Select a Nintendo Game Boy (Original, Color, Advance or Super) ROM"
+    file_gameboy_rom_name = "Selecione uma ROM de Nintendo Game Boy (Original, Color, Advance or Super)"
     //Nintendo 3DS
     file_3ds_rom_filter = "Nintendo 3DS ROMs (.3ds, .3dsx, .cci, .cxi)|*.3ds;*.3dsx;*.cci;*.cxi"
-    file_3ds_rom_name = "Select a Nintendo 3DS ROM"
+    file_3ds_rom_name = "Selecione uma ROM de Nintendo 3DS"
+    //Nintendo WiiU
+    file_wiiu_rom_filter = "Nintendo WiiU ROMs | (.rpx)|*.rpx"
+    file_wiiu_rom_name = "Selecione uma ROM de Nintendo WiiU"
     //Nintendo Switch
     file_switch_rom_filter = "Nintendo Switch ROMs (.xci, .nro, .nso)|*.xci;*.nro;*.nso"
-    file_switch_rom_name = "Select an Nintendo Switch ROM"
+    file_switch_rom_name = "Selecione uma ROM de Nintendo Switch"
     //SEGA Master System / Game Gear / Genesis / 32x / CD
     file_sega_rom_filter = "SEGA Master System (.sms)|*.sms|SEGA Genesis / Mega Drive / CD /32x (.gen, .bin, .cue)|*.gen;*.bin;*.cue|SEGA Game Gear (.gg)|*.gg"
-    file_sega_rom_name = "Select a SEGA Master System / Game Gear / Genesis / 32x / CD ROM"
+    file_sega_rom_name = "Selecione uma ROM de SEGA Master System / Game Gear / Genesis / 32x / CD"
     //PlayStation Portable
     file_psp_rom_filter = "PSP ROMs (.iso, .cso, .PBP, .elf)|*.iso;*.cso;*.PBP;*.elf"
-    file_psp_rom_name = "Select an PlayStation Portable ROM"
+    file_psp_rom_name = "Selecione uma ROM de PlayStation Portable"
     
     //Terminate case
     break;
@@ -125,6 +128,9 @@ switch (os_get_language())
     //Nintendo 3DS
     file_3ds_rom_filter = "Nintendo 3DS ROMs (.3ds, .3dsx, .cci, .cxi)|*.3ds;*.3dsx;*.cci;*.cxi"
     file_3ds_rom_name = "Select a Nintendo 3DS ROM"
+    //Nintendo WiiU
+    file_wiiu_rom_filter = "Nintendo WiiU ROMs | (.rpx)|*.rpx"
+    file_wiiu_rom_name = "Select a Nintendo WiiU ROM"
     //Nintendo Switch
     file_switch_rom_filter = "Nintendo Switch ROMs (.xci, .nro, .nso)|*.xci;*.nro;*.nso"
     file_switch_rom_name = "Select an Nintendo Switch ROM"
