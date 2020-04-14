@@ -326,7 +326,7 @@ if(file != "")
     //Nintendo GameCube / Wii (Dolphin)
     
     //Nintendo 3DS (Citra)
-    else if (name == "citra.exe") || (name == "citra-qt.exe")
+    else if (name == "citra.exe") || (name == "citra-qt.exe")  || (name == "citra-room.exe")
     {
         //É um atalho para ROMs?
         var rom_scut = show_question(question_romshortcut);
