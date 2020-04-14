@@ -70,7 +70,7 @@ global.launcherdir = global.userdir + "\NX_Launcher_Plus"
 global.local_appdatadir = global.userdir + "\AppData\Local"
 global.roaming_appdatadir = global.userdir + "\AppData\Roaming"
 global.appdata_launcherdir = global.local_appdatadir + "\NX_Launcher_"
-global.launcher_coredir = working_directory + "\core\"
+global.launcher_coredir = working_directory + "\core"
 
 ///Create a variable to access Fenix Launcher's Public GitHub Database server
 global.db_server = "https://raw.githubusercontent.com/WodsonKun/Fenix_Database/master"
