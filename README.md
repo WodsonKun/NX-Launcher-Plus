@@ -43,7 +43,9 @@ Obs.: An emulator still needed in order to boot the ROM!
 - Multi-language | Supported languages: English, Español, Português (Brasil), Français, Italiano.
 
 ### Supported emulators for Direct-Thumbnail:
+- Mesen (Nintendo Entertainment System)
 - Snes9x and ZSNES (Super Nintendo Entertainment System)
+- VisualBoyAdvance (Game Boy / Color / Advance / Super)
 - PPSSPP (PlayStation Portable)
 - Citra (Nintendo 3DS)
 - Yuzu (Nintendo Switch
