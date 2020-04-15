@@ -90,88 +90,6 @@
           <filename>memctrl.dll</filename>
         </datafile>
       </datafiles>
-      <datafiles number="11" name="fonts">
-        <datafile>
-          <name>font_clock.ttf</name>
-          <exists>-1</exists>
-          <size>55548</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-            <Config name="Debug">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_clock.ttf</filename>
-        </datafile>
-        <datafile>
-          <name>font_details.ttf</name>
-          <exists>-1</exists>
-          <size>55548</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-            <Config name="Debug">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_details.ttf</filename>
-        </datafile>
-        <datafile>
-          <name>font_popup.ttf</name>
-          <exists>-1</exists>
-          <size>55548</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-            <Config name="Debug">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_popup.ttf</filename>
-        </datafile>
-        <datafile>
-          <name>font_titles.ttf</name>
-          <exists>-1</exists>
-          <size>55548</size>
-          <exportAction>2</exportAction>
-          <exportDir></exportDir>
-          <overwrite>0</overwrite>
-          <freeData>-1</freeData>
-          <removeEnd>0</removeEnd>
-          <store>0</store>
-          <ConfigOptions>
-            <Config name="Default">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-            <Config name="Debug">
-              <CopyToMask>9223372036854775807</CopyToMask>
-            </Config>
-          </ConfigOptions>
-          <filename>font_titles.ttf</filename>
-        </datafile>
-      </datafiles>
     </datafiles>
     <datafile>
       <name>filemng.dll</name>
@@ -256,6 +174,7 @@
       <sprite>sprites\spr_default_network</sprite>
       <sprite>sprites\spr_default_profilepicture_border</sprite>
       <sprite>sprites\spr_default_selector</sprite>
+      <sprite>sprites\spr_profile_mask</sprite>
     </sprites>
     <sprites name="(Default) Backgrounds">
       <sprite>sprites\bgr_dark</sprite>
@@ -312,6 +231,9 @@
     <sprites name="(UI) Profile Page">
       <sprite>sprites\spr_profilepage_bg</sprite>
     </sprites>
+    <sprites name="(UI) Settings">
+      <sprite>sprites\spr_settings_icon</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_dark</background>
@@ -363,12 +285,26 @@
     </scripts>
     <script>scripts\execute_shell.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_default_titles</font>
+    <font>fonts\fnt_default_clock</font>
+    <font>fonts\fnt_default_details</font>
+    <font>fonts\fnt_default_popup</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_fenix_core</object>
-    <object>objects\obj_musicplayer</object>
+    <objects name="Sub-functions">
+      <object>objects\obj_musicplayer</object>
+      <object>objects\obj_profile_page</object>
+      <object>objects\obj_settings_page</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_fenix_launcher</room>
+    <rooms name="Sub-rooms">
+      <room>rooms\rm_profile_page</room>
+      <room>rooms\rm_settings_page</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -12,12 +12,16 @@ switch (os_get_language())
     home_thumbadd = "Adicionar thumbnails"
         
     //[HOME Menu Pop-Up Strings]
+    home_profilepage_open = "Pagina de " + profile_name
     home_change_background = "Mudar plano de fundo"
     home_change_lighttheme = "Mudar para tema claro"
     home_change_darktheme = "Mudar para tema escuro"
     home_change_music = "Trocar a música do launcher"
     home_change_theme = "Mudar tema"
     home_folder_opener = "Abrir pasta de dados"
+    
+    //[Settings Strings]
+    settings_main = "Configuraç˜oes"
     
     //[Command Strings]
     command_start = "Iniciar"
@@ -82,12 +86,16 @@ switch (os_get_language())
     home_thumbadd = "Add thumbnails"
         
     //[HOME Menu Pop-Up Strings]
+    home_profilepage_open = profile_name + "'s page"
     home_change_background = "Change background"
     home_change_lighttheme = "Change to Light Theme"
     home_change_darktheme = "Change to Dark Theme"
     home_change_music = "Change launcher's music"
     home_change_theme = "Change theme"
     home_folder_opener = "Open data folder"
+    
+    //[Settings Strings]
+    settings_main = "Settings"
     
     //[Command Strings]
     command_start = "Start"

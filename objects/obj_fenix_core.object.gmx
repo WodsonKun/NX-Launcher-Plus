@@ -37,6 +37,7 @@ boot_res = "/max";
 boot_wait = "/WAIT";
 boot_attach = "";
 profile_page = 0;
+settings_page = 0;
 
 ///Mover
 move = 0;
@@ -1186,8 +1187,13 @@ if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_righ
 {
     //Change profile picture
     if(point_in_rectangle(mouse_x,mouse_y,32,30,(32+64),(30+64)))
+    &amp;&amp;(profile_page == 0)
     {
         profile_page = 1;
+        if (profile_page == 1)
+        {
+            room_goto(rm_profile_page);
+        }
     }
     
     //Background adder
@@ -1220,6 +1226,17 @@ if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_righ
         window_set_fullscreen(0);
         alarm[7] = 2;
     }
+    
+    if(point_in_rectangle(mouse_x, mouse_y, 16, 528, 16+98, 528+98))
+    &amp;&amp;(settings_page == 0)
+    {
+        settings_page = 1;
+        if (settings_page == 1)
+        {
+            room_goto(rm_settings_page)
+        }
+    }
+        
     
     //Profile page actions
     if (profile_page != 0)
@@ -1510,6 +1527,7 @@ switch (theme)
 if (sprite_exists(profile_icon))
 {
     draw_sprite_stretched_ext(profile_icon, 0, 32, 30, 64, 64, c_white, 1);
+    
 }
 else
 {
@@ -1762,7 +1780,7 @@ if(point_in_rectangle(mouse_x,mouse_y,32,30,(32+64),(30+64)))
         draw_set_colour(c_black)
         break;
     }
-    draw_text(130, 48, string(profile_name));
+    draw_text(130, 48, home_profilepage_open);
 }
 
 //Background changer
@@ -1839,24 +1857,6 @@ if (point_in_rectangle(mouse_x, mouse_y, 342, 42, 342+50, 92))
         break;
     }
     draw_text(240+35-2, 112, home_folder_opener);
-}
-
-/// ------------ Profile Page ----------
-if (profile_page != 0)
-{
-    draw_sprite_ext(spr_profilepage_bg, theme, 320, 144, 1, 1, 0, c_white, 1);
-    draw_sprite_stretched_ext(profile_icon, 0, 336, 160, 128, 128, c_white, 1);
-    draw_sprite_stretched_ext(spr_default_profilepicture_border, 0, 336, 160, 128, 128, c_white, 1);
-    
-    draw_set_font(font_details);
-    if (point_in_rectangle(mouse_x, mouse_y, 336, 160, 336+128, 160+128))
-    {
-        draw_text(360, (160+128+16), "Change profile picture");
-    }
-    else
-    {
-        draw_text(360, (160+128+16), profile_name);
-    }
 }
 
 /// ---------- Filter ----------
@@ -2034,14 +2034,6 @@ cleanmem();
           <argument>
             <kind>1</kind>
             <string>///Load assets (Titles, custom theme and song)
-// ---------- Default Assets ----------
-///Add necessary fonts in order to boot Fenix Launcher
-//Product Sans (Licensed by Google)
-font_popup = font_add("core\fonts\font_popup.ttf", 16, false, false, 32, 255)
-font_details = font_add("core\fonts\font_details.ttf", 18, false, false, 32, 255)
-font_titles = font_add("core\fonts\font_titles.ttf", 24, false, false, 32, 255)
-font_clock = font_add("core\fonts\font_clock.ttf", 24, false, false, 32, 255)
-
 // ---------- Custom Theme ----------
 ini_open(game_save_id + "custom_theme\_theme.ini");
 theme = real(ini_read_string("NX_THEME", "theme", "1"));
@@ -2083,7 +2075,7 @@ instance_create(0, 0, obj_musicplayer);
 //Titles
 if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_titles.ttf"))
 {
-    font_delete(font_titles);
+    font_delete(font_titles);    
     font_titles = font_add(custom_titles_font, 24, false, false, 32, 255)
 }
 
@@ -2327,9 +2319,12 @@ if (file_exists(game_save_id + '_data.ini'))
 }
 
 //Save on "_theme.ini"
-ini_open(game_save_id + "custom_theme\_theme.ini");
-theme = real(ini_write_string("NX_THEME", "theme", theme));
-ini_close();
+if file_exists(game_save_id + "custom_theme\_theme.ini")
+{
+    ini_open(game_save_id + "custom_theme\_theme.ini");
+    theme = real(ini_write_string("NX_THEME", "theme", theme));
+    ini_close();
+}
 
 ///Clean RAM
 event_user(14);
@@ -2376,9 +2371,6 @@ alarm[4] = 6;
 
 //Center window (if on "Window Mode")
 alarm[3] = 2;
-
-//Load launcher strings by language
-language_set();
 
 //Start Clean Memory
 cleanmem_init(0);
@@ -2491,6 +2483,9 @@ else if (global.first_run == 1) &amp;&amp; not file_exists(game_save_id + '_data
     ini_close();
 }
 
+//Load launcher strings by language
+language_set();
+
 ///Check network connection
 switch (os_is_network_connected())
 {
@@ -2503,16 +2498,14 @@ switch (os_is_network_connected())
     break;
 }
 
+//Set font variables
+font_titles = fnt_default_titles;
+font_details = fnt_default_details;
+font_popup = fnt_default_popup;
+font_clock = fnt_default_clock;
 
 ///Renderização do Display
 display_render();
-
-///Add necessary fonts in order to boot Fenix Launcher
-//Product Sans (Licensed by Google)
-font_popup = font_add("core\fonts\font_popup.ttf", 16, false, false, 32, 255)
-font_details = font_add("core\fonts\font_details.ttf", 18, false, false, 32, 255)
-font_titles = font_add("core\fonts\font_titles.ttf", 24, false, false, 32, 255)
-font_clock = font_add("core\fonts\font_clock.ttf", 24, false, false, 32, 255)
 
 ///Create variables for default sounds
 snd_sfx_gameselect = sfx_nx_system_gameselect
