@@ -173,6 +173,7 @@
       <sprite>sprites\spr_default_cursor</sprite>
       <sprite>sprites\spr_default_network</sprite>
       <sprite>sprites\spr_default_profilepicture_border</sprite>
+      <sprite>sprites\spr_default_profilepicture_border_alt</sprite>
       <sprite>sprites\spr_default_selector</sprite>
       <sprite>sprites\spr_profile_mask</sprite>
     </sprites>

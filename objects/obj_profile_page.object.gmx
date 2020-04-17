@@ -293,6 +293,23 @@ else
         }
     
 };
+
+
+//Draw profile picture
+if (sprite_exists(profile_icon))
+{
+    draw_sprite_stretched_ext(profile_icon, 0, 32, 30, 64, 64, c_white, 1);
+    
+}
+else
+{
+    draw_sprite_stretched_ext(spr_default_profilepicture, 0, 32, 30, 64, 64, c_white, 1);
+}
+draw_sprite_ext(spr_default_profilepicture_border_alt, theme, 32, 30, 1, 1, 0, c_white, 1);
+draw_set_font(font_titles)
+draw_text(112, 48, home_profilepage_open)
+
+
 /// ---------- Filter ----------
 //Fundo
 if(dialog != 0)
@@ -379,21 +396,6 @@ if!(window_has_focus())
     draw_set_colour(c_white);
 };
 
-//Draw profile picture
-if (sprite_exists(profile_icon))
-{
-    draw_sprite_stretched_ext(profile_icon, 0, 32, 30, 64, 64, c_white, 1);
-    
-}
-else
-{
-    draw_sprite_stretched_ext(spr_default_profilepicture, 0, 32, 30, 64, 64, c_white, 1);
-}
-draw_sprite_ext(spr_default_profilepicture_border, theme, 32, 30, 1, 1, 0, c_white, 1);
-draw_set_font(font_titles)
-draw_text(112, 47, home_profilepage_open)
-
-
 
 /// ---------- Cursor ----------
 
@@ -433,14 +435,6 @@ window_set_cursor(cr_none);
           <argument>
             <kind>1</kind>
             <string>///Load assets (Titles, custom theme and song)
-// ---------- Default Assets ----------
-///Add necessary fonts in order to boot Fenix Launcher
-//Product Sans (Licensed by Google)
-font_popup = font_add("core\fonts\font_popup.ttf", 16, false, false, 32, 255)
-font_details = font_add("core\fonts\font_details.ttf", 18, false, false, 32, 255)
-font_titles = font_add("core\fonts\font_titles.ttf", 24, false, false, 32, 255)
-font_clock = font_add("core\fonts\font_clock.ttf", 24, false, false, 32, 255)
-
 // ---------- Custom Theme ----------
 ini_open(game_save_id + "custom_theme\_theme.ini");
 theme = real(ini_read_string("NX_THEME", "theme", "1"));
@@ -555,6 +549,12 @@ if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
 
 //Load launcher strings by language
 language_set();
+
+//Set font variables
+font_titles = fnt_default_titles;
+font_details = fnt_default_details;
+font_popup = fnt_default_popup;
+font_clock = fnt_default_clock;
 
 ///Create variables for default sounds
 snd_sfx_gameselect = sfx_nx_system_gameselect
