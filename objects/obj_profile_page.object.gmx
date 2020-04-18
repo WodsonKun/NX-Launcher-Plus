@@ -435,15 +435,6 @@ window_set_cursor(cr_none);
           <argument>
             <kind>1</kind>
             <string>///Load assets (Titles, custom theme and song)
-// ---------- Custom Theme ----------
-ini_open(game_save_id + "custom_theme\_theme.ini");
-theme = real(ini_read_string("NX_THEME", "theme", "1"));
-custom_bg_path = ini_read_string("NX_THEME", "custom_bg_path", string(game_save_id + "custom_theme\_wallpaper.png"))
-custom_details_font = ini_read_string("NX_THEME", "custom_details_font", string(game_save_id + "custom_theme\fonts\thm_details.ttf"))
-custom_titles_font = ini_read_string("NX_THEME", "custom_titles_font", string(game_save_id + "custom_theme\fonts\thm_titles.ttf"))
-ini_close();
-
-
 //Profile Picture
 if !(file_exists(game_save_id + "_profile.png"))
 {
@@ -455,27 +446,6 @@ else
     profile_image = ini_read_string("User Data", "profile_icon", game_save_id + "_profile.png");
     profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
     ini_close();
-}
-
-///Fonts
-//Titles
-if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_titles.ttf"))
-{
-    font_delete(font_titles);
-    font_titles = font_add(custom_titles_font, 24, false, false, 32, 255)
-}
-
-//Details
-if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_details.ttf"))
-{
-    font_delete(font_details);
-    font_details = font_add(custom_details_font, 18, false, false, 32, 255)
-}
-
-///Sound effects
-if (file_exists_fmns(game_save_id + "custom_theme\sounds\thm_sfx_select.wav"))
-{
-    snd_sfx_gameselect = audio_create_stream(game_save_id + "custom_theme\sounds\thm_sfx_select.wav")
 }
 
 //Clean

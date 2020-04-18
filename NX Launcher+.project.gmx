@@ -4,9 +4,9 @@
     <Config>Configs\Default</Config>
     <Config>Configs\Debug</Config>
   </Configs>
-  <datafiles number="11" name="datafiles">
-    <datafiles number="11" name="core">
-      <datafiles number="11" name="assets">
+  <datafiles number="7" name="datafiles">
+    <datafiles number="7" name="core">
+      <datafiles number="7" name="assets">
         <datafile>
           <name>default.tbn</name>
           <exists>-1</exists>
@@ -48,7 +48,7 @@
           <filename>dummy.aud</filename>
         </datafile>
       </datafiles>
-      <datafiles number="11" name="libs">
+      <datafiles number="7" name="libs">
         <datafile>
           <name>exec_shell.dll</name>
           <exists>-1</exists>
@@ -92,26 +92,6 @@
       </datafiles>
     </datafiles>
     <datafile>
-      <name>filemng.dll</name>
-      <exists>-1</exists>
-      <size>1959424</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-        <Config name="Debug">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>filemng.dll</filename>
-    </datafile>
-    <datafile>
       <name>discord-rpc.dll</name>
       <exists>-1</exists>
       <size>307720</size>
@@ -151,88 +131,105 @@
       </ConfigOptions>
       <filename>discord-rpc-main.dll</filename>
     </datafile>
+    <datafile>
+      <name>filemng.dll</name>
+      <exists>-1</exists>
+      <size>1959424</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+        <Config name="Debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>filemng.dll</filename>
+    </datafile>
   </datafiles>
-  <NewExtensions>
-    <extension index="0">extensions\window_command_hook</extension>
-    <extension index="1">extensions\GMFileSystem</extension>
-  </NewExtensions>
+  <NewExtensions/>
   <sounds name="sound">
     <sound>sound\sfx_nx_notification_general</sound>
     <sound>sound\sfx_nx_system_error</sound>
     <sound>sound\sfx_nx_system_gameborder</sound>
     <sound>sound\sfx_nx_system_gameselect</sound>
     <sound>sound\sfx_nx_system_gamestart</sound>
+    <sound>sound\sfx_nx_system_home</sound>
     <sound>sound\sfx_nx_system_init</sound>
     <sound>sound\sfx_nx_system_loading</sound>
     <sound>sound\sfx_nx_system_tick</sound>
-    <sound>sound\sfx_nx_system_home</sound>
   </sounds>
   <sprites name="sprites">
-    <sprites name="(Default) Assets">
-      <sprite>sprites\spr_default_profilepicture</sprite>
+    <sprites name="(HOME Menu) General UI">
+      <sprites name="(Sidebar) Buttons">
+        <sprite>sprites\spr_btn_thumbadd</sprite>
+        <sprite>sprites\spr_btn_freeshop</sprite>
+        <sprite>sprites\spr_btn_news</sprite>
+        <sprite>sprites\spr_btn_nofunctionyet</sprite>
+        <sprite>sprites\spr_btn_settings</sprite>
+      </sprites>
+      <sprites name="(Sidebar) Overlay">
+        <sprite>sprites\spr_default_profilepicture_border</sprite>
+      </sprites>
+      <sprites name="(Game List) Thumbnails">
+        <sprite>sprites\spr_gamelist_selector</sprite>
+        <sprite>sprites\spr_gamelist_shadow</sprite>
+        <sprite>sprites\spr_gamelist_thumbnail</sprite>
+      </sprites>
+      <sprites name="(Game List) Overlay">
+        <sprite>sprites\spr_gamelist_shortcut_icon</sprite>
+      </sprites>
+    </sprites>
+    <sprites name="(HOME Menu) Overlay">
+      <sprites name="(Overlay) Buttons">
+        <sprite>sprites\spr_btn_bgchanger</sprite>
+        <sprite>sprites\spr_btn_folderopener</sprite>
+        <sprite>sprites\spr_btn_themechanger</sprite>
+        <sprite>sprites\spr_btn_themeloader</sprite>
+      </sprites>
+      <sprites name="(Overlay) General UI">
+        <sprite>sprites\spr_default_network</sprite>
+      </sprites>
+      <sprites name="(Overlay) Pop-up">
+        <sprite>sprites\spr_popup_profilename</sprite>
+        <sprite>sprites\spr_popup_themefunctions</sprite>
+      </sprites>
+    </sprites>
+    <sprites name="(General) Overlay">
+      <sprites name="(Input) Keyboard">
+        <sprite>sprites\spr_kbd</sprite>
+        <sprite>sprites\spr_kbd_delete</sprite>
+        <sprite>sprites\spr_kbd_enter</sprite>
+        <sprite>sprites\spr_kbd_leftright</sprite>
+        <sprite>sprites\spr_kbd_shift</sprite>
+      </sprites>
+      <sprites name="(Input) DInput Controller">
+        <sprite>sprites\spr_ctr_dinput</sprite>
+        <sprite>sprites\spr_ctr_dinput_delete</sprite>
+        <sprite>sprites\spr_ctr_dinput_enter</sprite>
+        <sprite>sprites\spr_ctr_dinput_leftright</sprite>
+        <sprite>sprites\spr_ctr_dinput_shift</sprite>
+      </sprites>
+      <sprites name="(Input) XInput Controller">
+        <sprite>sprites\spr_ctr_xinput</sprite>
+        <sprite>sprites\spr_ctr_xinput_delete</sprite>
+        <sprite>sprites\spr_ctr_xinput_enter</sprite>
+        <sprite>sprites\spr_ctr_xinput_leftright</sprite>
+        <sprite>sprites\spr_ctr_xinput_shift</sprite>
+      </sprites>
       <sprite>sprites\spr_default_cursor</sprite>
-      <sprite>sprites\spr_default_network</sprite>
-      <sprite>sprites\spr_default_profilepicture_border</sprite>
-      <sprite>sprites\spr_default_profilepicture_border_alt</sprite>
       <sprite>sprites\spr_default_selector</sprite>
-      <sprite>sprites\spr_profile_mask</sprite>
     </sprites>
-    <sprites name="(Default) Backgrounds">
-      <sprite>sprites\bgr_dark</sprite>
-      <sprite>sprites\bgr_light</sprite>
-      <sprite>sprites\bgr_semi_dark</sprite>
-      <sprite>sprites\bgr_semi_light</sprite>
+    <sprites name="(Profile Page) General UI">
+      <sprite>sprites\spr_default_profilepicture_border_alt</sprite>
+      <sprite>sprites\spr_default_profilepicture</sprite>
     </sprites>
-    <sprites name="(Input) Keyboard">
-      <sprite>sprites\spr_kbd</sprite>
-      <sprite>sprites\spr_kbd_delete</sprite>
-      <sprite>sprites\spr_kbd_enter</sprite>
-      <sprite>sprites\spr_kbd_leftright</sprite>
-      <sprite>sprites\spr_kbd_shift</sprite>
-    </sprites>
-    <sprites name="(Input) XInput Controller">
-      <sprite>sprites\spr_ctr_xinput</sprite>
-      <sprite>sprites\spr_ctr_xinput_delete</sprite>
-      <sprite>sprites\spr_ctr_xinput_enter</sprite>
-      <sprite>sprites\spr_ctr_xinput_leftright</sprite>
-      <sprite>sprites\spr_ctr_xinput_shift</sprite>
-    </sprites>
-    <sprites name="(Input) DInput Controller">
-      <sprite>sprites\spr_ctr_dinput</sprite>
-      <sprite>sprites\spr_ctr_dinput_delete</sprite>
-      <sprite>sprites\spr_ctr_dinput_enter</sprite>
-      <sprite>sprites\spr_ctr_dinput_leftright</sprite>
-      <sprite>sprites\spr_ctr_dinput_shift</sprite>
-    </sprites>
-    <sprites name="(UI) Buttons">
-      <sprite>sprites\spr_btn_bgchanger</sprite>
-      <sprite>sprites\spr_btn_folderopener</sprite>
-      <sprite>sprites\spr_btn_freeshop</sprite>
-      <sprite>sprites\spr_btn_news</sprite>
-      <sprite>sprites\spr_btn_nofunctionyet</sprite>
-      <sprite>sprites\spr_btn_settings</sprite>
-      <sprite>sprites\spr_btn_themechanger</sprite>
-      <sprite>sprites\spr_btn_thumbadd</sprite>
-      <sprite>sprites\spr_btn_themeloader</sprite>
-    </sprites>
-    <sprites name="(UI) Game List">
-      <sprite>sprites\spr_gamelist_selector</sprite>
-      <sprite>sprites\spr_gamelist_shadow</sprite>
-      <sprite>sprites\spr_gamelist_shortcut_icon</sprite>
-      <sprite>sprites\spr_gamelist_thumbnail</sprite>
-    </sprites>
-    <sprites name="(UI) Pop-up">
-      <sprite>sprites\spr_popup_profilename</sprite>
-      <sprite>sprites\spr_popup_themefunctions</sprite>
-    </sprites>
-    <sprites name="(UI) Dialogs">
-      <sprite>sprites\bgfx_dialog</sprite>
-      <sprite>sprites\spr_dialog_textbox</sprite>
-    </sprites>
-    <sprites name="(UI) Profile Page">
-      <sprite>sprites\spr_profilepage_bg</sprite>
-    </sprites>
-    <sprites name="(UI) Settings">
+    <sprites name="(Settings) General UI">
       <sprite>sprites\spr_settings_icon</sprite>
     </sprites>
   </sprites>
@@ -244,30 +241,18 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="(Originals) NX Launcher+">
+      <script>scripts\add_customtheme.gml</script>
+      <script>scripts\add_profilepicture.gml</script>
+      <script>scripts\add_wallpaper.gml</script>
+      <script>scripts\language_set.gml</script>
+    </scripts>
     <scripts name="(Imported) Ninty Launcher">
       <script>scripts\audio_play_sfx.gml</script>
       <script>scripts\display_render.gml</script>
       <script>scripts\gamepad_input.gml</script>
       <script>scripts\get_anim_frames.gml</script>
       <script>scripts\get_anim_speed.gml</script>
-    </scripts>
-    <scripts name="(Originals) NX Launcher+">
-      <script>scripts\language_set.gml</script>
-      <script>scripts\add_customtheme.gml</script>
-      <script>scripts\add_profilepicture.gml</script>
-      <script>scripts\add_wallpaper.gml</script>
-    </scripts>
-    <scripts name="(Extension) Clean Memory">
-      <script>scripts\cleanmem_init.gml</script>
-      <script>scripts\cleanmem_get_mem.gml</script>
-      <script>scripts\cleanmem.gml</script>
-    </scripts>
-    <scripts name="(Extension) Rich Presence">
-      <script>scripts\discord_init_dll.gml</script>
-      <script>scripts\discord_init_app.gml</script>
-      <script>scripts\discord_update_presence.gml</script>
-      <script>scripts\discord_free_app.gml</script>
-      <script>scripts\discord_free_dll.gml</script>
     </scripts>
     <scripts name="(Extension) File Management">
       <script>scripts\directory_copy_fmns.gml</script>
@@ -284,29 +269,47 @@
       <script>scripts\temp_directory_fmns.gml</script>
       <script>scripts\working_directory_fmns.gml</script>
     </scripts>
+    <scripts name="(Extension) Clean Memory">
+      <script>scripts\cleanmem_init.gml</script>
+      <script>scripts\cleanmem_get_mem.gml</script>
+      <script>scripts\cleanmem.gml</script>
+    </scripts>
+    <scripts name="(Extension) Rich Presence">
+      <script>scripts\discord_init_dll.gml</script>
+      <script>scripts\discord_init_app.gml</script>
+      <script>scripts\discord_update_presence.gml</script>
+      <script>scripts\discord_free_app.gml</script>
+      <script>scripts\discord_free_dll.gml</script>
+    </scripts>
     <script>scripts\execute_shell.gml</script>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\fnt_default_titles</font>
     <font>fonts\fnt_default_clock</font>
     <font>fonts\fnt_default_details</font>
     <font>fonts\fnt_default_popup</font>
+    <font>fonts\fnt_default_titles</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_fenix_core</object>
-    <objects name="Sub-functions">
+    <objects name="(Functions) Extras">
       <object>objects\obj_musicplayer</object>
+    </objects>
+    <objects name="(Sections) Extras">
       <object>objects\obj_profile_page</object>
       <object>objects\obj_settings_page</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_fenix_launcher</room>
-    <rooms name="Sub-rooms">
+    <rooms name="(Sections) Extras">
       <room>rooms\rm_profile_page</room>
       <room>rooms\rm_settings_page</room>
     </rooms>
   </rooms>
+  <constants number="2">
+    <constant name="WINDOW_CAPTION">"NX Launcher+"</constant>
+    <constant name="RELEASE_MODE">1</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

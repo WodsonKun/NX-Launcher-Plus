@@ -2076,14 +2076,12 @@ instance_create(0, 0, obj_musicplayer);
 //Titles
 if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_titles.ttf"))
 {
-    font_delete(font_titles);    
     font_titles = font_add(custom_titles_font, 24, false, false, 32, 255)
 }
 
 //Details
 if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_details.ttf"))
 {
-    font_delete(font_details);
     font_details = font_add(custom_details_font, 18, false, false, 32, 255)
 }
 
