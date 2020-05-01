@@ -1,4 +1,4 @@
-///display_render_alt();
+///display_render();
 //Metodo de renderização
 if(uirender == 1)
     display_set_windows_vertex_buffer_method(vbm_fast);

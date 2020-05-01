@@ -25,7 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Mover
+            <string>///Variáveis
+category = "profile";
+menupos = 145;
+menuoffset = 80;
+
+///Mover
 move = 0;
 
 ///In-launcher dialog
@@ -69,7 +74,21 @@ global.launcher_coredir = working_directory + "\core"
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check_released(ord("A")))
+            <string>///Controlar as configurações
+if(mouse_check_button_released(mb_left))||(mouse_check_button_released(mb_right))
+{
+    //Wallpaper
+    if(point_in_rectangle(mouse_x, mouse_y, 0, 145, 320, 209))
+    {
+        category = "profile"
+        if (category == "profile")
+        {
+            
+        }
+    }
+}
+
+if (keyboard_check_released(ord("A")))
 {
     obj_fenix_core.profile_page = 0
     room_goto(rm_fenix_launcher)
@@ -309,6 +328,35 @@ draw_sprite_ext(spr_default_profilepicture_border_alt, theme, 32, 30, 1, 1, 0, c
 draw_set_font(font_titles)
 draw_text(112, 48, home_profilepage_open)
 
+// ----------- Profile Page UI ----------
+//Categories
+draw_set_font(font_details);
+if (category == "profile")
+{
+    if (theme == 1)
+    {
+        draw_sprite_ext(spr_default_selector, 0, 32, (menupos + (menuoffset * 0)), 1, 1, 0, c_switchaqua_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0) - 7), "Profile Details",c_black,c_black,c_black,c_black,1);
+        
+    }
+    else
+    {
+        draw_sprite_ext(spr_default_selector, 0, 32, (menupos + (menuoffset * 0)), 1, 1, 0, c_switchblue_merge, 1);
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0) - 7), "Profile Details",c_white,c_white,c_white,c_white,1);
+    }
+}
+else
+{
+    if (theme == 1)
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0) - 7), "Profile Details",c_black,c_black,c_black,c_black,1);
+    }
+    else
+    {
+        draw_text_colour(85, ((menupos + 25) + (menuoffset * 0) - 7), "Profile Details",c_white,c_white,c_white,c_white,1);
+    }
+}
+
 
 /// ---------- Filter ----------
 //Fundo
@@ -449,6 +497,56 @@ else
 }
 
 //Clean
+cleanmem();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///NX Launcher+'s room change save
+///Save settings on a .ini file
+if (file_exists(game_save_id + '_data.ini'))
+{
+    ini_open(game_save_id + '_data.ini');
+    theme = ini_write_real("Settings", "theme", theme);
+    fullscreen = ini_write_real("Settings", "fullscreen", fullscreen);
+    language = ini_write_string("Settings", "lang", language);
+    uirender = ini_write_real("Settings", "uirender", uirender);
+    discord_enable = ini_write_real("Settings", "discord", discord_enable);
+    database_thumbnail = ini_write_real("Settings", "thumb_db", database_thumbnail);
+    database_profilepic = ini_write_real("Settings", "profilepic_db", database_profilepic);
+    database_wallpaper = ini_write_real("Settings", "wallpaper_db", database_wallpaper);
+    update_check = ini_write_real("Launcher Data", "update_check", update_check);
+    select_index = ini_write_real("Launcher Data", "position", "0");
+    ini_close();
+}
+
+//Save on "_theme.ini"
+if file_exists(game_save_id + "custom_theme\_theme.ini")
+{
+    ini_open(game_save_id + "custom_theme\_theme.ini");
+    theme = real(ini_write_string("NX_THEME", "theme", theme));
+    ini_close();
+}
+
+//Clean Memory
 cleanmem();
 </string>
           </argument>

@@ -751,6 +751,13 @@ if(fullscreen == 0){
 window_set_position(-4000,-4000);
 window_set_size(16,16);
 
+//Discord RPC
+if (os_is_network_connected())
+{
+    discord_update_presence("💻 | Currently in-game","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
+}
+
+
 //Criar .BAT direcionado ao local do jogo (evita falhas)
 var test = file_text_open_write(game_save_id+"gameboot.bat")
 file_text_write_string(test,filename_drive(games_path[select_index]));
@@ -901,7 +908,181 @@ keyboard_set_map(ord("S"),vk_down);
 keyboard_set_map(ord("D"),vk_right);
 
 //Gamepad
-gamepad_input();
+///gamepad_input()
+var gp_count;
+for(gp_count = 0; gp_count &lt; 5; gp_count += 1)
+{    
+    if(gamepad_is_connected(gp_count))
+    &amp;&amp;(dialog == 0)
+    {     
+        //Up (Stick)
+        if(gp_stick[gp_count,0] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &lt;= -0.5){
+        
+            gp_stick[gp_count,0] = 1;
+            keyboard_key_press(vk_up);
+        };
+        else if(gp_stick[gp_count,0] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &gt; -0.5){
+        
+            gp_stick[gp_count,0] = 0;
+            keyboard_key_release(vk_up);
+        };
+    
+        //Down (Stick)
+        if(gp_stick[gp_count,1] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &gt;= 0.5){
+        
+            gp_stick[gp_count,1] = 1;
+            keyboard_key_press(vk_down);
+        };
+        else if(gp_stick[gp_count,1] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &lt; 0.5){
+        
+            gp_stick[gp_count,1] = 0;
+            keyboard_key_release(vk_down);
+        };
+        
+        //Left (Stick)
+        if(gp_stick[gp_count,2] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &lt;= -0.5){
+        
+            gp_stick[gp_count,2] = 1;
+            keyboard_key_press(vk_left);
+        };
+        else if(gp_stick[gp_count,2] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &gt; -0.5){
+        
+            gp_stick[gp_count,2] = 0;
+            keyboard_key_release(vk_left);
+        };
+    
+        //Right (Stick)
+        if(gp_stick[gp_count,3] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &gt;= 0.5){
+        
+            gp_stick[gp_count,3] = 1;
+            keyboard_key_press(vk_right);
+        };
+        else if(gp_stick[gp_count,3] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &lt; 0.5){
+        
+            gp_stick[gp_count,3] = 0;
+            keyboard_key_release(vk_right);
+        };
+    
+        //Up - Começo da lista
+        if(gamepad_button_check(gp_count,gp_padu))
+            keyboard_key_press(vk_up);
+        else if(gamepad_button_check_released(gp_count,gp_padu))
+            keyboard_key_release(vk_up);
+            
+        //Down - Fim da lista
+        if(gamepad_button_check(gp_count,gp_padd))
+            keyboard_key_press(vk_down);
+        else if(gamepad_button_check_released(gp_count,gp_padd))
+            keyboard_key_release(vk_down);
+    
+        //Left / L
+        if(gamepad_button_check(gp_count,gp_padl))
+            keyboard_key_press(vk_left);
+        else if(gamepad_button_check_released(gp_count,gp_padl))
+            keyboard_key_release(vk_left);
+            
+        if(gamepad_button_check(gp_count,gp_shoulderl))
+            keyboard_key_press(vk_left);
+        else if(gamepad_button_check_released(gp_count,gp_shoulderl))
+            keyboard_key_release(vk_left);
+        
+        //Right / R
+        if(gamepad_button_check(gp_count,gp_padr))
+            keyboard_key_press(vk_right);
+        else if(gamepad_button_check_released(gp_count,gp_padr))
+           keyboard_key_release(vk_right);
+           
+        if(gamepad_button_check(gp_count,gp_shoulderr))
+            keyboard_key_press(vk_right);
+        else if(gamepad_button_check_released(gp_count,gp_shoulderr))
+           keyboard_key_release(vk_right);
+
+        //Generico (DirecInput)
+        if(gp_count == 4)
+        {
+            //1, 4 e Select - Mover
+            if(gamepad_button_check_pressed(gp_count,gp_face1))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face1))
+                keyboard_key_release(vk_shift);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_face4))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face4))
+                keyboard_key_release(vk_shift);
+    
+            if(gamepad_button_check_pressed(gp_count,gp_select))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_select))
+                keyboard_key_release(vk_shift);
+                                
+            //2 e Start - Iniciar
+            if(gamepad_button_check_pressed(gp_count,gp_face2))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_face2))
+                keyboard_key_release(vk_enter);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_start))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_start))
+                keyboard_key_release(vk_enter);
+            
+            //3 - Cancelar
+            if(gamepad_button_check_pressed(gp_count,gp_face3))
+                keyboard_key_press(vk_escape);
+            else if(gamepad_button_check_released(gp_count,gp_face3))
+                keyboard_key_release(vk_escape);
+        };    
+        //Joy-Cons / Nintendo Switch Pro Controller (XInput) [também XBOX]
+        else
+        {
+            //X, Y e Select - Mover
+            if(gamepad_button_check_pressed(gp_count,gp_face3))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face3))
+                keyboard_key_release(vk_shift);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_face4))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face4))
+                keyboard_key_release(vk_shift);
+    
+            if(gamepad_button_check_pressed(gp_count,gp_select))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_select))
+                keyboard_key_release(vk_shift);
+                                
+            //A e Start - Iniciar
+            if(gamepad_button_check_pressed(gp_count,gp_face2))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_face2))
+                keyboard_key_release(vk_enter);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_start))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_start))
+                keyboard_key_release(vk_enter);
+            
+            //B - Cancelar
+            if(gamepad_button_check_pressed(gp_count,gp_face1))
+                keyboard_key_press(vk_escape);
+            else if(gamepad_button_check_released(gp_count,gp_face1))
+                keyboard_key_release(vk_escape);
+        };
+    };
+    if(gp_count &gt; 4)
+    {
+        gp_count = 0;
+    }
+};
 
 //Cor do seletor de jogos
 if(col_mod == 0){
@@ -1185,7 +1366,7 @@ if (keyboard_check_released(vk_escape))
 ///Mouse-featured actions
 if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_right))
 {
-    //Change profile picture
+    //Open profile page
     if(point_in_rectangle(mouse_x,mouse_y,32,30,(32+64),(30+64)))
     &amp;&amp;(profile_page == 0)
     {
@@ -1237,22 +1418,7 @@ if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_righ
             room_goto(rm_settings_page)
         }
     }
-        
-    
-    //Profile page actions
-    if (profile_page != 0)
-    {
-        if (point_in_rectangle(mouse_x, mouse_y, 336, 160, 336+128, 160+128))
-        {
-            add_profilepicture();
-        }
-    }
 }
-
-    if (keyboard_check_released(vk_f8))
-    {
-        event_user(5)
-    }
 </string>
           </argument>
         </arguments>
@@ -2277,6 +2443,292 @@ if (discord_enable == 1)
         discord_update_presence("📕 | Choosing between " + string(games_total) + " applications and games","🏠 | HOME Menu","icn_nx_launcher","icn_nx_launcher_home");
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///NX Launcher+'s room change save
+///Save settings on a .ini file
+if (file_exists(game_save_id + '_data.ini'))
+{
+    ini_open(game_save_id + '_data.ini');
+    theme = ini_write_real("Settings", "theme", theme);
+    fullscreen = ini_write_real("Settings", "fullscreen", fullscreen);
+    language = ini_write_string("Settings", "lang", language);
+    uirender = ini_write_real("Settings", "uirender", uirender);
+    discord_enable = ini_write_real("Settings", "discord", discord_enable);
+    database_thumbnail = ini_write_real("Settings", "thumb_db", database_thumbnail);
+    database_profilepic = ini_write_real("Settings", "profilepic_db", database_profilepic);
+    database_wallpaper = ini_write_real("Settings", "wallpaper_db", database_wallpaper);
+    update_check = ini_write_real("Launcher Data", "update_check", update_check);
+    select_index = ini_write_real("Launcher Data", "position", "0");
+    ini_close();
+}
+
+//Save on "_theme.ini"
+if file_exists(game_save_id + "custom_theme\_theme.ini")
+{
+    ini_open(game_save_id + "custom_theme\_theme.ini");
+    theme = real(ini_write_string("NX_THEME", "theme", theme));
+    ini_close();
+}
+
+//Clean Memory
+cleanmem();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///NX Launcher+'s main room back loader
+//Set release mode (only seen in code, varies from Macros)
+gml_release_mode(RELEASE_MODE);
+
+//Set fullscreen
+alarm[4] = 6;
+
+//Center window (if on "Window Mode")
+alarm[3] = 2;
+
+//Start Clean Memory
+cleanmem_init(0);
+
+//Clean Memory
+cleanmem();
+
+//Clean inputs
+io_clear();
+
+///Check if it's a First Run
+ini_open(game_save_id + '_data.ini');
+global.first_run = ini_read_real("Launcher Data", "first_run", 1);
+ini_close();
+
+///If isn't a first run, load settings and profile from .ini file
+if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
+{
+    ini_open(game_save_id + '_data.ini');
+    theme = ini_read_real("Settings", "theme", "0");
+    fullscreen = ini_read_real("Settings", "fullscreen", "0");
+    language = ini_read_string("Settings", "lang", "en");
+    uirender = ini_read_real("Settings", "uirender", "0");
+    discord_enable = ini_read_real("Settings", "discord", "1");
+    database_thumbnail = ini_read_real("Settings", "thumb_db", "0");
+    database_profilepic = ini_read_real("Settings", "profilepic_db", "0");
+    database_wallpaper = ini_read_real("Settings", "wallpaper_db", "0");
+    update_check = ini_read_real("Launcher Data", "update_check", "0");
+    select_index = ini_read_real("Launcher Data", "position", "0");
+    profile_name = ini_read_string("User Data", "profile_name", "User");
+    custom_bg = ini_read_string("User Data", "custom_bg", game_save_id + "custom_theme\_wallpaper.png");
+    profile_image = ini_read_string("User Data", "profile_icon", game_save_id + "_profile.png");
+    profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
+    ini_close();
+}
+else if (global.first_run == 1) &amp;&amp; not file_exists(game_save_id + '_data.ini')
+{
+    ini_open(game_save_id + '_data.ini');
+    var temp_name = get_string("Please, input your username here: #Obs.: If you don't wanna input nothing, the default username is going to be used.", "User");
+    ini_write_string("User Data", "profile_name", temp_name)
+    var temp_question_profile = show_question("Do you wanna select a profile picture?#If not, the default one will be used.")
+    if (temp_question_profile == 1)
+    {
+        event_user(2);
+    }
+    else
+    {
+        profile_icon = spr_default_profilepicture
+    }
+    var temp_question_update = show_question("Fenix Launcher has a online update system#Do you want to enable it?")
+    if (temp_question_update == 1)
+    {
+        ini_open(game_save_id + '_data.ini');
+        ini_write_real("Launcher Data", "update_check", "1");
+    }
+    else
+    {
+        ini_open(game_save_id + '_data.ini');
+        ini_write_real("Launcher Data", "update_check", "0");
+    }
+    var temp_question_update_2 = get_string('Do you prefer Stable, Beta or Custom updates?#If "Custom" is preffered, type your custom update server in the next window#Type: "stable", "beta" or "custom"', "official");
+    if (temp_question_update_2 == "stable" || "beta")
+    {
+    }
+    else if (temp_question_update_2 == "custom")
+    {
+        var temp_question_update_3 = get_string("Set your custom server here:", "https://raw.githubusercontent.com/WodsonKun/Fenix_Database/master");
+        if (temp_question_update_3 != "")
+        {
+            ini_open(game_save_id + '_data.ini');
+            ini_write_string("Launcher Data", "db_server", temp_question_update_3);
+        }
+    }
+
+    //If you have Discord installed, ask about Rich Presence
+    if (file_exists_fmns(global.local_appdatadir + "\Discord\Update.exe"))
+    {
+        var temp_question_discord = show_question("Do you wanna enable Discord Rich Presence support?#Rich Presence shows your actual activity on your Discord Desktop Client.")
+        if (temp_question_discord == 1)
+        {
+            discord_enable = 1;
+        }
+        else
+        {
+            discord_enable = 0;
+        }
+        ini_open(game_save_id + '_data.ini');
+        discord_enable = ini_write_real("Settings", "discord", discord_enable);
+    }
+    else
+    {
+        discord_enable = 0;
+        ini_open(game_save_id + '_data.ini');
+        discord_enable = ini_write_real("Settings", "discord", discord_enable);
+    }
+    
+    //Set "First Run" equal to "0"
+    global.first_run = 0;
+    
+    //Write default values
+    ini_open(game_save_id + '_data.ini');
+    theme = ini_write_real("Settings", "theme", "0");
+    fullscreen = ini_write_real("Settings", "fullscreen", "0");
+    uirender = ini_write_real("Settings", "uirender", "0");
+    database_thumbnail = ini_write_real("Settings", "thumb_db", "0");
+    database_profilepic = ini_write_real("Settings", "profilepic_db", "0");
+    database_wallpaper = ini_write_real("Settings", "wallpaper_db", "0");
+    select_index = ini_write_real("Launcher Data", "position", "0");
+    global.first_run = ini_write_real("Launcher Data", "first_run", global.first_run);
+    ini_close();
+    
+    //Then, re-read data.ini
+    if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
+    {
+        ini_open(game_save_id + '_data.ini');
+        theme = ini_read_real("Settings", "theme", "0");
+        fullscreen = ini_read_real("Settings", "fullscreen", "0");
+        language = ini_read_string("Settings", "lang", "en");
+        uirender = ini_read_real("Settings", "uirender", "0");
+        discord_enable = ini_read_real("Settings", "discord", "1");
+        database_thumbnail = ini_read_real("Settings", "thumb_db", "0");
+        database_profilepic = ini_read_real("Settings", "profilepic_db", "0");
+        database_wallpaper = ini_read_real("Settings", "wallpaper_db", "0");
+        update_check = ini_read_real("Launcher Data", "update_check", "0");
+        select_index = ini_read_real("Launcher Data", "position", "0");
+        profile_name = ini_read_string("User Data", "profile_name", "User");
+        custom_bg = ini_read_string("User Data", "custom_bg", game_save_id + "custom_theme\_wallpaper.png");
+        profile_image = ini_read_string("User Data", "profile_icon", game_save_id + "_profile.png");
+        profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
+        ini_close();
+    }
+}
+
+//Load launcher strings by language
+language_set();
+
+///Check network connection
+switch (os_is_network_connected())
+{
+    case false:
+    global.network_status = 0;
+    break;
+    
+    case true:
+    global.network_status = 1;
+    break;
+}
+
+//Set font variables
+font_titles = fnt_default_titles;
+font_details = fnt_default_details;
+font_popup = fnt_default_popup;
+font_clock = fnt_default_clock;
+
+///Renderização do Display
+display_render();
+
+///Create variables for default sounds
+snd_sfx_gameselect = sfx_nx_system_gameselect
+snd_sfx_gamestart = sfx_nx_system_gamestart
+snd_sfx_gamedelete = sfx_nx_system_error
+
+//Carregar assets
+event_user(13);
+
+//Impedir seletor de começar fora da lista
+if(select_index &gt; games_total-1){
+
+    if(games_total == 0)
+        select_index = 0
+    else
+        select_index = games_total-1;
+};
+
+///If internet is connected and Rich Presence was enabled on Settings
+discord_rpc = 0;
+if (global.network_status == 1) &amp;&amp; (discord_enable == 1)
+{
+    //In case of having Discord installed, enable Rich Presence
+    if (file_exists_fmns(global.local_appdatadir + "\Discord\Update.exe"))
+    {
+        discord_init_dll();
+        discord_rpc = 1;
+    }
+    else
+    {
+        discord_rpc = 0;
+    }
+    
+    //Check if Rich Presence was enabled and then, start transmission to Discord
+    if (file_exists_fmns(global.local_appdatadir + "\Discord\Update.exe")) &amp;&amp; (discord_rpc == 1)
+    {
+        //Connect into app's ClientID
+        discord_init_app("518968328744861704");
+        
+        //Update status into a null value
+        discord_update_presence("","","","");
+        
+        //Update status into real strings
+        event_user(0);
+    }
+};
+
+//Clean inputs
+io_clear();
 </string>
           </argument>
         </arguments>

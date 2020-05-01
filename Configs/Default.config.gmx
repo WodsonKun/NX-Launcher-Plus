@@ -2,7 +2,7 @@
 <Config>
   <Options>
     <option_aborterrors>False</option_aborterrors>
-    <option_android_GPU_device>0</option_android_GPU_device>
+    <option_android_GPU_device>1</option_android_GPU_device>
     <option_android_adcolony_ads>0</option_android_adcolony_ads>
     <option_android_advertising_enable>false</option_android_advertising_enable>
     <option_android_advertising_key></option_android_advertising_key>
@@ -44,7 +44,7 @@
     <option_android_licensing_enable>0</option_android_licensing_enable>
     <option_android_licensing_key></option_android_licensing_key>
     <option_android_lint>-1</option_android_lint>
-    <option_android_major_version>1</option_android_major_version>
+    <option_android_major_version>2</option_android_major_version>
     <option_android_min_sdk_version>9</option_android_min_sdk_version>
     <option_android_minor_version>0</option_android_minor_version>
     <option_android_mmedia_ads>false</option_android_mmedia_ads>
@@ -52,13 +52,13 @@
     <option_android_mopub_ads>0</option_android_mopub_ads>
     <option_android_orient_landscape>True</option_android_orient_landscape>
     <option_android_orient_landscape_flipped>True</option_android_orient_landscape_flipped>
-    <option_android_orient_portrait>True</option_android_orient_portrait>
-    <option_android_orient_portrait_flipped>True</option_android_orient_portrait_flipped>
+    <option_android_orient_portrait>False</option_android_orient_portrait>
+    <option_android_orient_portrait_flipped>False</option_android_orient_portrait_flipped>
     <option_android_orientation>2</option_android_orientation>
     <option_android_ouya_icon>Configs\Default\android\icons\ouyaIcon.png</option_android_ouya_icon>
-    <option_android_package_company>companyname</option_android_package_company>
+    <option_android_package_company>nxlauncher</option_android_package_company>
     <option_android_package_domain>com</option_android_package_domain>
-    <option_android_package_product>NX_Launcher+</option_android_package_product>
+    <option_android_package_product>plus</option_android_package_product>
     <option_android_permission_flags>8</option_android_permission_flags>
     <option_android_portrait_splash_png>Configs\Default\android\portrait_splash.png</option_android_portrait_splash_png>
     <option_android_push_enable>0</option_android_push_enable>
@@ -572,7 +572,7 @@
     <option_windows_build_version>0</option_windows_build_version>
     <option_windows_company_info>WodsonKun</option_windows_company_info>
     <option_windows_copyright_info>(c) 2020 WodsonKun</option_windows_copyright_info>
-    <option_windows_create_textures_on_demand>False</option_windows_create_textures_on_demand>
+    <option_windows_create_textures_on_demand>True</option_windows_create_textures_on_demand>
     <option_windows_description_info></option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
@@ -590,8 +590,8 @@
     <option_windows_splash_screen>Configs\Default\windows\splash.png</option_windows_splash_screen>
     <option_windows_steam_app_id>0</option_windows_steam_app_id>
     <option_windows_texture_page>2048</option_windows_texture_page>
-    <option_windows_use_splash>-1</option_windows_use_splash>
-    <option_windows_vertex_buffer_method2>1</option_windows_vertex_buffer_method2>
+    <option_windows_use_splash>0</option_windows_use_splash>
+    <option_windows_vertex_buffer_method2>0</option_windows_vertex_buffer_method2>
     <option_winphone_480_splash_image>Configs\Default\WinPhone\SplashScreenImage480.jpg</option_winphone_480_splash_image>
     <option_winphone_720_splash_image>Configs\Default\WinPhone\SplashScreenImage720.jpg</option_winphone_720_splash_image>
     <option_winphone_768_splash_image>Configs\Default\WinPhone\SplashScreenImage.jpg</option_winphone_768_splash_image>

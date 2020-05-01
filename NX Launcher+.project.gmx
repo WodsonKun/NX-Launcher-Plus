@@ -232,6 +232,9 @@
     <sprites name="(Settings) General UI">
       <sprite>sprites\spr_settings_icon</sprite>
     </sprites>
+    <sprites name="(Extra) General UI">
+      <sprite>sprites\spr_nx_logo</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_dark</background>
@@ -246,6 +249,7 @@
       <script>scripts\add_profilepicture.gml</script>
       <script>scripts\add_wallpaper.gml</script>
       <script>scripts\language_set.gml</script>
+      <script>scripts\discord_game_presence.gml</script>
     </scripts>
     <scripts name="(Imported) Ninty Launcher">
       <script>scripts\audio_play_sfx.gml</script>
@@ -253,6 +257,7 @@
       <script>scripts\gamepad_input.gml</script>
       <script>scripts\get_anim_frames.gml</script>
       <script>scripts\get_anim_speed.gml</script>
+      <script>scripts\display_render_alt.gml</script>
     </scripts>
     <scripts name="(Extension) File Management">
       <script>scripts\directory_copy_fmns.gml</script>
