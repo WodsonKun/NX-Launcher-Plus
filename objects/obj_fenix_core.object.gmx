@@ -2559,103 +2559,6 @@ if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
     profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
     ini_close();
 }
-else if (global.first_run == 1) &amp;&amp; not file_exists(game_save_id + '_data.ini')
-{
-    ini_open(game_save_id + '_data.ini');
-    var temp_name = get_string("Please, input your username here: #Obs.: If you don't wanna input nothing, the default username is going to be used.", "User");
-    ini_write_string("User Data", "profile_name", temp_name)
-    var temp_question_profile = show_question("Do you wanna select a profile picture?#If not, the default one will be used.")
-    if (temp_question_profile == 1)
-    {
-        event_user(2);
-    }
-    else
-    {
-        profile_icon = spr_default_profilepicture
-    }
-    var temp_question_update = show_question("Fenix Launcher has a online update system#Do you want to enable it?")
-    if (temp_question_update == 1)
-    {
-        ini_open(game_save_id + '_data.ini');
-        ini_write_real("Launcher Data", "update_check", "1");
-    }
-    else
-    {
-        ini_open(game_save_id + '_data.ini');
-        ini_write_real("Launcher Data", "update_check", "0");
-    }
-    var temp_question_update_2 = get_string('Do you prefer Stable, Beta or Custom updates?#If "Custom" is preffered, type your custom update server in the next window#Type: "stable", "beta" or "custom"', "official");
-    if (temp_question_update_2 == "stable" || "beta")
-    {
-    }
-    else if (temp_question_update_2 == "custom")
-    {
-        var temp_question_update_3 = get_string("Set your custom server here:", "https://raw.githubusercontent.com/WodsonKun/Fenix_Database/master");
-        if (temp_question_update_3 != "")
-        {
-            ini_open(game_save_id + '_data.ini');
-            ini_write_string("Launcher Data", "db_server", temp_question_update_3);
-        }
-    }
-
-    //If you have Discord installed, ask about Rich Presence
-    if (file_exists_fmns(global.local_appdatadir + "\Discord\Update.exe"))
-    {
-        var temp_question_discord = show_question("Do you wanna enable Discord Rich Presence support?#Rich Presence shows your actual activity on your Discord Desktop Client.")
-        if (temp_question_discord == 1)
-        {
-            discord_enable = 1;
-        }
-        else
-        {
-            discord_enable = 0;
-        }
-        ini_open(game_save_id + '_data.ini');
-        discord_enable = ini_write_real("Settings", "discord", discord_enable);
-    }
-    else
-    {
-        discord_enable = 0;
-        ini_open(game_save_id + '_data.ini');
-        discord_enable = ini_write_real("Settings", "discord", discord_enable);
-    }
-    
-    //Set "First Run" equal to "0"
-    global.first_run = 0;
-    
-    //Write default values
-    ini_open(game_save_id + '_data.ini');
-    theme = ini_write_real("Settings", "theme", "0");
-    fullscreen = ini_write_real("Settings", "fullscreen", "0");
-    uirender = ini_write_real("Settings", "uirender", "0");
-    database_thumbnail = ini_write_real("Settings", "thumb_db", "0");
-    database_profilepic = ini_write_real("Settings", "profilepic_db", "0");
-    database_wallpaper = ini_write_real("Settings", "wallpaper_db", "0");
-    select_index = ini_write_real("Launcher Data", "position", "0");
-    global.first_run = ini_write_real("Launcher Data", "first_run", global.first_run);
-    ini_close();
-    
-    //Then, re-read data.ini
-    if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
-    {
-        ini_open(game_save_id + '_data.ini');
-        theme = ini_read_real("Settings", "theme", "0");
-        fullscreen = ini_read_real("Settings", "fullscreen", "0");
-        language = ini_read_string("Settings", "lang", "en");
-        uirender = ini_read_real("Settings", "uirender", "0");
-        discord_enable = ini_read_real("Settings", "discord", "1");
-        database_thumbnail = ini_read_real("Settings", "thumb_db", "0");
-        database_profilepic = ini_read_real("Settings", "profilepic_db", "0");
-        database_wallpaper = ini_read_real("Settings", "wallpaper_db", "0");
-        update_check = ini_read_real("Launcher Data", "update_check", "0");
-        select_index = ini_read_real("Launcher Data", "position", "0");
-        profile_name = ini_read_string("User Data", "profile_name", "User");
-        custom_bg = ini_read_string("User Data", "custom_bg", game_save_id + "custom_theme\_wallpaper.png");
-        profile_image = ini_read_string("User Data", "profile_icon", game_save_id + "_profile.png");
-        profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
-        ini_close();
-    }
-}
 
 //Load launcher strings by language
 language_set();
@@ -2817,6 +2720,9 @@ cleanmem_init(1);
 //Set release mode (only seen in code, varies from Macros)
 gml_release_mode(RELEASE_MODE);
 
+///Renderização do Display
+display_render();
+
 //Set fullscreen
 alarm[4] = 6;
 
@@ -2857,103 +2763,6 @@ if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
     profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
     ini_close();
 }
-else if (global.first_run == 1) &amp;&amp; not file_exists(game_save_id + '_data.ini')
-{
-    ini_open(game_save_id + '_data.ini');
-    var temp_name = get_string("Please, input your username here: #Obs.: If you don't wanna input nothing, the default username is going to be used.", "User");
-    ini_write_string("User Data", "profile_name", temp_name)
-    var temp_question_profile = show_question("Do you wanna select a profile picture?#If not, the default one will be used.")
-    if (temp_question_profile == 1)
-    {
-        event_user(2);
-    }
-    else
-    {
-        profile_icon = spr_default_profilepicture
-    }
-    var temp_question_update = show_question("Fenix Launcher has a online update system#Do you want to enable it?")
-    if (temp_question_update == 1)
-    {
-        ini_open(game_save_id + '_data.ini');
-        ini_write_real("Launcher Data", "update_check", "1");
-    }
-    else
-    {
-        ini_open(game_save_id + '_data.ini');
-        ini_write_real("Launcher Data", "update_check", "0");
-    }
-    var temp_question_update_2 = get_string('Do you prefer Stable, Beta or Custom updates?#If "Custom" is preffered, type your custom update server in the next window#Type: "stable", "beta" or "custom"', "official");
-    if (temp_question_update_2 == "stable" || "beta")
-    {
-    }
-    else if (temp_question_update_2 == "custom")
-    {
-        var temp_question_update_3 = get_string("Set your custom server here:", "https://raw.githubusercontent.com/WodsonKun/Fenix_Database/master");
-        if (temp_question_update_3 != "")
-        {
-            ini_open(game_save_id + '_data.ini');
-            ini_write_string("Launcher Data", "db_server", temp_question_update_3);
-        }
-    }
-
-    //If you have Discord installed, ask about Rich Presence
-    if (file_exists_fmns(global.local_appdatadir + "\Discord\Update.exe"))
-    {
-        var temp_question_discord = show_question("Do you wanna enable Discord Rich Presence support?#Rich Presence shows your actual activity on your Discord Desktop Client.")
-        if (temp_question_discord == 1)
-        {
-            discord_enable = 1;
-        }
-        else
-        {
-            discord_enable = 0;
-        }
-        ini_open(game_save_id + '_data.ini');
-        discord_enable = ini_write_real("Settings", "discord", discord_enable);
-    }
-    else
-    {
-        discord_enable = 0;
-        ini_open(game_save_id + '_data.ini');
-        discord_enable = ini_write_real("Settings", "discord", discord_enable);
-    }
-    
-    //Set "First Run" equal to "0"
-    global.first_run = 0;
-    
-    //Write default values
-    ini_open(game_save_id + '_data.ini');
-    theme = ini_write_real("Settings", "theme", "0");
-    fullscreen = ini_write_real("Settings", "fullscreen", "0");
-    uirender = ini_write_real("Settings", "uirender", "0");
-    database_thumbnail = ini_write_real("Settings", "thumb_db", "0");
-    database_profilepic = ini_write_real("Settings", "profilepic_db", "0");
-    database_wallpaper = ini_write_real("Settings", "wallpaper_db", "0");
-    select_index = ini_write_real("Launcher Data", "position", "0");
-    global.first_run = ini_write_real("Launcher Data", "first_run", global.first_run);
-    ini_close();
-    
-    //Then, re-read data.ini
-    if (global.first_run == 0) &amp;&amp; (file_exists(game_save_id + '_data.ini'))
-    {
-        ini_open(game_save_id + '_data.ini');
-        theme = ini_read_real("Settings", "theme", "0");
-        fullscreen = ini_read_real("Settings", "fullscreen", "0");
-        language = ini_read_string("Settings", "lang", "en");
-        uirender = ini_read_real("Settings", "uirender", "0");
-        discord_enable = ini_read_real("Settings", "discord", "1");
-        database_thumbnail = ini_read_real("Settings", "thumb_db", "0");
-        database_profilepic = ini_read_real("Settings", "profilepic_db", "0");
-        database_wallpaper = ini_read_real("Settings", "wallpaper_db", "0");
-        update_check = ini_read_real("Launcher Data", "update_check", "0");
-        select_index = ini_read_real("Launcher Data", "position", "0");
-        profile_name = ini_read_string("User Data", "profile_name", "User");
-        custom_bg = ini_read_string("User Data", "custom_bg", game_save_id + "custom_theme\_wallpaper.png");
-        profile_image = ini_read_string("User Data", "profile_icon", game_save_id + "_profile.png");
-        profile_icon = sprite_add(profile_image, 0, false, false, 0, 0);
-        ini_close();
-    }
-}
 
 //Load launcher strings by language
 language_set();
@@ -2975,9 +2784,6 @@ font_titles = fnt_default_titles;
 font_details = fnt_default_details;
 font_popup = fnt_default_popup;
 font_clock = fnt_default_clock;
-
-///Renderização do Display
-display_render();
 
 ///Create variables for default sounds
 snd_sfx_gameselect = sfx_nx_system_gameselect

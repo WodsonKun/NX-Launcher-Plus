@@ -235,6 +235,10 @@
     <sprites name="(Extra) General UI">
       <sprite>sprites\spr_nx_logo</sprite>
     </sprites>
+    <sprites name="(Setup Wizard) General UI">
+      <sprite>sprites\spr_textbox</sprite>
+      <sprite>sprites\spr_nextquestion</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_dark</background>
@@ -298,6 +302,7 @@
     <object>objects\obj_fenix_core</object>
     <objects name="(Functions) Extras">
       <object>objects\obj_musicplayer</object>
+      <object>objects\obj_setupwizard</object>
     </objects>
     <objects name="(Sections) Extras">
       <object>objects\obj_profile_page</object>
@@ -305,6 +310,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_setupwizard</room>
     <room>rooms\rm_fenix_launcher</room>
     <rooms name="(Sections) Extras">
       <room>rooms\rm_profile_page</room>
