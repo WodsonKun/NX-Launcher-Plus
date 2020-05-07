@@ -752,7 +752,7 @@ window_set_position(-4000,-4000);
 window_set_size(16,16);
 
 //Discord RPC
-if (os_is_network_connected())
+if (discord_rpc == 1)
 {
     discord_update_presence("💻 | Currently in-game","🎮 | "+string(games_title[select_index]),"icn_nx_launcher","icn_nx_launcher_game");
 }
@@ -2158,8 +2158,15 @@ if (sprite_exists(custom_bg))
 }
 
 //Delete fonts
-font_delete(font_titles);
-font_delete(font_details);
+if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_titles.ttf"))
+{
+    font_delete(font_titles);
+}
+
+if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_details.ttf"))
+{
+    font_delete(font_details);
+}
 
 //Un-draw list
 var i;
@@ -2239,6 +2246,12 @@ else
 instance_create(0, 0, obj_musicplayer);
 
 ///Fonts
+//Set font variables
+font_titles = fnt_default_titles;
+font_details = fnt_default_details;
+font_popup = fnt_default_popup;
+font_clock = fnt_default_clock;
+
 //Titles
 if (file_exists_fmns(game_save_id + "custom_theme\fonts\thm_titles.ttf"))
 {
