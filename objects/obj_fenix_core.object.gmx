@@ -111,8 +111,8 @@ if(file_exists(game_save_id+"title_collection\game_"+string(select_index)+".ini"
     sprite_delete(games_thumb[select_index]);
     
     //Renomear
-    file_rename_fmns(game_save_id+"title_collection\game_"+string(select_index)+".png",game_save_id+"collection\game_"+string(move_origin)+".png");
-    file_rename_fmns(game_save_id+"title_collection\game_"+string(select_index)+".ini",game_save_id+"collection\game_"+string(move_origin)+".ini");
+    file_rename_fmns(game_save_id+"title_collection\game_"+string(select_index)+".png",game_save_id+"title_collection\game_"+string(move_origin)+".png");
+    file_rename_fmns(game_save_id+"title_collection\game_"+string(select_index)+".ini",game_save_id+"title_collection\game_"+string(move_origin)+".ini");
 
     //Ir para próximo arquivo...
     alarm[11] = 5;
@@ -135,8 +135,8 @@ else{
     sprite_delete(move_temp_thumbnail);
     
     //Renomear
-    file_rename_fmns(game_save_id+"title_collection\game_TMP.png",game_save_id+"collection\game_"+string(select_index)+".png");
-    file_rename_fmns(game_save_id+"title_collection\game_TMP.ini",game_save_id+"collection\game_"+string(select_index)+".ini");
+    file_rename_fmns(game_save_id+"title_collection\game_TMP.png",game_save_id+"title_collection\game_"+string(select_index)+".png");
+    file_rename_fmns(game_save_id+"title_collection\game_TMP.ini",game_save_id+"title_collection\game_"+string(select_index)+".ini");
 
     //SFX
     audio_play_sfx(sfx_nx_notification_general);
@@ -240,13 +240,13 @@ if(file != "")
     var thumb = get_open_filename_ext(file_thumbnail_filter, "", global.userdir, file_thumbnail_title);
     if(thumb != "")
     {
-        games_thumb[games_total] = sprite_add(thumb,0,0,1,0,0);
+        games_thumb[games_total] = sprite_add(thumb,0,0,0,0,0);
         file_copy(thumb,game_save_id+"title_collection\game_"+string(games_total)+".png");
         audio_play_sfx(sfx_nx_notification_general);
     };
     else
     {
-        games_thumb[games_total] = "core\assets\default.tbn"
+        games_thumb[games_total] = sprite_add("core\assets\default.tbn", 0, 0, 0, 0, 0);
         audio_play_sfx(sfx_nx_system_error);
     }
     
