@@ -36,6 +36,12 @@ boot_res = "/max";
 boot_wait = "/WAIT";
 boot_attach = "";
 profile_surf = -1;
+count_up = true;
+global.lang = "EN"
+//First we set the following to 0.
+seconds = 0;
+minutes = 0;
+hours = 0;
 
 ///Mover
 move = 0;
@@ -78,6 +84,439 @@ global.db_server = "https://raw.githubusercontent.com/WodsonKun/Fenix_Database/m
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Add thumbnails into NX Launcher+
+//Buscar caminho...
+var file = get_open_filename_ext(file_main_filter, "", global.userdir, file_main_title);
+if(file != "")
+{
+    //SFX
+    audio_play_sfx(sfx_nx_notification_general);
+    
+    //Buscar miniatura...
+    var thumb = get_open_filename_ext(file_thumbnail_filter, "", global.userdir, file_thumbnail_title);
+    if(thumb != "")
+    {
+        games_thumb[games_total] = sprite_add(thumb,0,0,0,0,0);
+        file_copy(thumb,game_save_id+"title_collection\game_"+string(games_total)+".png");
+        audio_play_sfx(sfx_nx_notification_general);
+    };
+    else
+    {
+        games_thumb[games_total] = sprite_add("core\assets\default.tbn", 0, 0, 0, 0, 0);
+        audio_play_sfx(sfx_nx_system_error);
+    }
+    
+    //É um ATALHO?
+    var scut = show_question(question_shortcut);
+    if(scut == 1)
+    {
+        games_shortcut[games_total] = 1;
+    }
+    else
+    {
+        games_shortcut[games_total] = 0;
+    }
+    
+    ///---------- ROM Filter ----------
+    var name = filename_name(file);
+    if (name == "")
+    {
+        games_rom[games_total] = '';
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    //NES (Mesen)
+    else if (name == "Mesen.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_nes_rom_filter, "", global.userdir, file_nes_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //Super Nintendo Entertainment System (Snes9x, ZSNES)
+    else if (name == "snes9x.exe") || (name == "snes9x-x64.exe") || (name == "zsnes.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_snes_rom_filter, "", global.userdir, file_snes_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE", "rom_file", string_copy(filename_name(games_rom[games_total]), 0, 999));
+        ini_close();
+    }
+    
+    //Nintendo Game Boy (Original, Color, Advance and Super)
+    else if (name == "VisualBoyAdvance.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_gameboy_rom_filter, "", global.userdir, file_gameboy_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //Nintendo GameCube / Wii (Dolphin)
+    
+    //Nintendo 3DS (Citra)
+    else if (name == "citra.exe") || (name == "citra-qt.exe")  || (name == "citra-room.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_3ds_rom_filter, "", global.userdir, file_3ds_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //Nintendo WiiU (CemU)
+    else if (name == "cemu.exe")
+    {
+         //Is it a ROM shortcut?
+         var rom_scut = show_question(question_romshortcut);
+         if (rom_scut == 1)
+         {
+            games_rom[games_total] = get_open_filename_ext(file_wiiu_rom_filter, "", global.userdir, file_wiiu_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom","-g" + string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //Nintendo Switch (Yuzu, RyujiNX)
+    else if (name == "yuzu.exe") || (name == "yuzu-cmd.exe") || (name == "Ryujinx.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_switch_rom_filter, "", global.userdir, file_switch_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //SEGA Master System / Game Gear / Genesis / 32x / CD (KEGA Fusion)
+    else if (name == "Fusion.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_sega_rom_filter, "", global.userdir, file_sega_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_close();
+    }
+    
+    //SEGA Saturn
+    //SEGA Dreamcast
+    //Xbox
+    //Xbox 360
+    //PlayStation (PCSX-R)
+    //PlayStation 2 (PCSX2)
+    
+    //PlayStation Portable (PPSSPP, JCPSP)
+    else if (name == "PPSSPPWindows.exe") || (name == "PPSSPPWindows64.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_psp_rom_filter, "", global.userdir, file_psp_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id + "title_collection\game_" + string(games_total)+".ini");
+        ini_write_string("NX_TITLE", "rom", string(games_rom[games_total]));
+        ini_close();
+    }
+    else if (name == "jcpsp.jar")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_psp_rom_filter, "", global.userdir, file_psp_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id + "title_collection\game_" + string(games_total)+".ini");
+        ini_write_string("NX_TITLE", "rom", "-u " + string(games_rom[games_total]) + " -r");
+        ini_close();
+    }
+    
+    //PlayStation 3 (RPCS3)
+    //PlayStation 4 (GPCS4)
+    
+    //Adicionar jogo
+    games_title[games_total] = string_copy(filename_name(file),0,48);
+    games_path[games_total] = file;
+                    
+    //Salvar no diretório
+    ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+    ini_write_string("NX_TITLE","title",string_copy(filename_name(file),0,48));
+    ini_write_string("NX_TITLE","title_file",string_copy(filename_name(file),0,48));
+    real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[games_total])));
+    ini_write_string("NX_TITLE","path",string(file));
+    ini_close();
+            
+    //Incrementar total
+    ini_open(game_save_id+"title_collection\_total.ini");
+    ini_write_string("NX_TITLE","total",string(games_total+1));
+    ini_close();
+    games_total++;
+    select_index = games_total-1;
+  
+    //Limpar
+    cleanmem();
+    
+    //Atualizar RPC
+    event_user(0);
+    
+    //Voltar fullscreen... (Se tiver sido definido antes)    
+    window_set_fullscreen(fullscreen);
+    
+    //Alterar nome
+    dialog_description = "Set the title's name:"
+    keyboard_string = string_copy(filename_name(file),0,48);
+    dialog_return = string_copy(filename_name(file),0,48);
+    dialog = 1;
+    alarm[6] = 1;
+};
+//Voltar fullscreen... (Se tiver sido definido antes)    
+else
+{
+    audio_play_sfx(sfx_nx_system_error);
+    cleanmem();
+    window_set_fullscreen(fullscreen);
+};
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Retomar launcher
+cleanmem();
+io_clear();
+is_playing = 0;
+display_set_ui_visibility(1);
+
+//Recarregar assets
+event_user(13);
+
+//Limpar
+cleanmem();
+
+//Dar foco ao launcher
+window_has_focus();
+
+//SFX
+audio_play_sfx(sfx_nx_system_home);
+
+//Recuperar posição/tamanho
+alarm[4] = 2;
+
+//Deletar .BAT
+file_delete_fmns(game_save_id+"gameboot.bat");
+
+//Reconnect into Default RPC application
+discord_free_app();
+discord_init_app("518968328744861704");
+
+//Atualizar RPC
+event_user(0);
+
+//Limpar
+cleanmem();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Iniciar jogo
+//Limpar
+cleanmem();
+io_clear();
+
+//Executar .BAT (E aguardar execução ser finalizada...)
+execute_shell('"'+game_save_id+'gameboot.bat"',1,1);
+
+//Limpar
+cleanmem();
+
+//Após jogo finalizado...
+alarm[2] = 30;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Preparar para iniciar jogo
+cleanmem();
+is_playing = 1;
+display_set_ui_visibility(0);
+
+//Lembrar posição/tamanho
+if(fullscreen == 0){
+
+    temp_x = window_get_x();
+    temp_y = window_get_y();
+    temp_w = window_get_width();
+    temp_h = window_get_height();
+};
+
+//Definir posição/tamanho
+window_set_position(-4000,-4000);
+window_set_size(16,16);
+
+discord_rpc_status();
+
+//Criar .BAT direcionado ao local do jogo (evita falhas)
+var test = file_text_open_write(game_save_id+"gameboot.bat")
+file_text_write_string(test,filename_drive(games_path[select_index]));
+file_text_writeln(test);
+file_text_write_string(test,"cd "+filename_path(games_path[select_index])+"");
+file_text_writeln(test);
+if (boot_attach != "")
+{
+    file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'" '+'"'+boot_attach+'"');
+}
+else
+{
+    file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'"');
+}
+file_text_writeln(test);
+file_text_close(test);
+
+//Limpar
+cleanmem();
+
+//Prosseguir para inicialização
+alarm[1] = 4;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -95,10 +534,654 @@ global.db_server = "https://raw.githubusercontent.com/WodsonKun/Fenix_Database/m
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check_released(vk_f10))
+            <string>//If it's allowed to start.
+seconds += 1/room_speed; //increment seconds by 1 ever real-time second.
+
+//If seconds hits around 60.
+if (seconds &lt; 60) &amp;&amp; (seconds &gt; 59.9)
+{
+    seconds = 0;
+    minutes += 1;//increment minutes by 1.
+}
+
+//If minutes hits 60.
+if (minutes == 60)
+{
+    minutes = 0;
+    hours += 1;//increment hours by 1.
+}
+
+///Manage and handle HOME Menu movement and actions
+if(delay &gt; 0)
+    delay--;
+
+//Ignorar quando suspenso
+if(is_playing == 1)
+||(delay &gt; 0)
+||(alarm[7] != -1)
+||(alarm[8] != -1)
+||(alarm[9] != -1)
+||(alarm[10] != -1)
+||(alarm[11] != -1)
+    exit;
+
+//Clean Memory
+cleanmem();
+
+//Inserir texto
+if(dialog != 0){
+
+    //Animação de transição (Começo)
+    if(dialog_filterright &lt; 1280)
+        dialog_filterright += 128;
+    dialog_filterleft = -1;
+    
+    if(window_has_focus()){
+    
+        //Confirmar
+        if((keyboard_check_pressed(vk_enter))
+        ||(mouse_check_button_released(mb_left)))
+        &amp;&amp;(dialog_filterright &gt; 1279)
+        &amp;&amp;!(point_in_rectangle(mouse_x,mouse_y,1063,41,1170+34,41+34)){
+        
+            delay = 5;
+            audio_play_sfx(sfx_nx_system_tick);
+            dialog = 0;
+            exit;
+        };
+        
+        //Clipboard
+        if(keyboard_check(vk_control)){
+        
+            //Colar
+            if(keyboard_check_pressed(ord("V"))){
+            
+                audio_play_sfx(sfx_nx_system_tick);
+                keyboard_string = string_copy(clipboard_get_text(),0,48);
+                dialog_return = string_copy(clipboard_get_text(),0,48);
+            };
+            //Copiar
+            else if(keyboard_check_pressed(ord("C"))){
+            
+                audio_play_sfx(sfx_nx_system_tick);
+                clipboard_set_text(dialog_return);
+            };
+        };
+        else{
+        
+            //SFX de tecla
+            if(keyboard_check_pressed(vk_anykey))
+                audio_play_sfx(sfx_nx_system_tick);
+            
+            //Trocar caracteres inválidos
+            if(keyboard_check(vk_anykey)){
+            
+                var stg_a,stg_b,stg_c;
+                stg_a = string_copy(keyboard_string,0,48);
+                stg_b = string_replace(stg_a,'#',"");
+                stg_c = string_replace(stg_b,"'","");
+                keyboard_string = stg_c;
+                dialog_return = stg_c;
+            };
+        };
+    }
+        
+    //Efeito
+    if(alarm[5] == -1)
+    {
+        alarm[5] = 15;
+        exit;
+    }
+};
+else
+{
+    //Animação de transição (Fim)
+    if(dialog_filterright &gt;= 1280)
+    {
+        if(dialog_filterleft &lt; 1280)
+        {
+            dialog_filterleft += 128;
+        }
+        else
+        {
+            dialog_filterright = -1;
+            dialog_filterleft = -1;
+        };
+    };
+};
+    
+//WASD
+keyboard_set_map(ord("W"),vk_up);
+keyboard_set_map(ord("A"),vk_left);
+keyboard_set_map(ord("S"),vk_down);
+keyboard_set_map(ord("D"),vk_right);
+
+//Gamepad
+///gamepad_input()
+var gp_count;
+for(gp_count = 0; gp_count &lt; 5; gp_count += 1)
+{    
+    if(gamepad_is_connected(gp_count))
+    &amp;&amp;(dialog == 0)
+    {     
+        //Up (Stick)
+        if(gp_stick[gp_count,0] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &lt;= -0.5){
+        
+            gp_stick[gp_count,0] = 1;
+            keyboard_key_press(vk_up);
+        };
+        else if(gp_stick[gp_count,0] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &gt; -0.5){
+        
+            gp_stick[gp_count,0] = 0;
+            keyboard_key_release(vk_up);
+        };
+    
+        //Down (Stick)
+        if(gp_stick[gp_count,1] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &gt;= 0.5){
+        
+            gp_stick[gp_count,1] = 1;
+            keyboard_key_press(vk_down);
+        };
+        else if(gp_stick[gp_count,1] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislv) &lt; 0.5){
+        
+            gp_stick[gp_count,1] = 0;
+            keyboard_key_release(vk_down);
+        };
+        
+        //Left (Stick)
+        if(gp_stick[gp_count,2] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &lt;= -0.5){
+        
+            gp_stick[gp_count,2] = 1;
+            keyboard_key_press(vk_left);
+        };
+        else if(gp_stick[gp_count,2] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &gt; -0.5){
+        
+            gp_stick[gp_count,2] = 0;
+            keyboard_key_release(vk_left);
+        };
+    
+        //Right (Stick)
+        if(gp_stick[gp_count,3] == 0)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &gt;= 0.5){
+        
+            gp_stick[gp_count,3] = 1;
+            keyboard_key_press(vk_right);
+        };
+        else if(gp_stick[gp_count,3] == 1)
+        &amp;&amp;(gamepad_axis_value(gp_count,gp_axislh) &lt; 0.5){
+        
+            gp_stick[gp_count,3] = 0;
+            keyboard_key_release(vk_right);
+        };
+    
+        //Up - Começo da lista
+        if(gamepad_button_check(gp_count,gp_padu))
+            keyboard_key_press(vk_up);
+        else if(gamepad_button_check_released(gp_count,gp_padu))
+            keyboard_key_release(vk_up);
+            
+        //Down - Fim da lista
+        if(gamepad_button_check(gp_count,gp_padd))
+            keyboard_key_press(vk_down);
+        else if(gamepad_button_check_released(gp_count,gp_padd))
+            keyboard_key_release(vk_down);
+    
+        //Left / L
+        if(gamepad_button_check(gp_count,gp_padl))
+            keyboard_key_press(vk_left);
+        else if(gamepad_button_check_released(gp_count,gp_padl))
+            keyboard_key_release(vk_left);
+            
+        if(gamepad_button_check(gp_count,gp_shoulderl))
+            keyboard_key_press(vk_left);
+        else if(gamepad_button_check_released(gp_count,gp_shoulderl))
+            keyboard_key_release(vk_left);
+        
+        //Right / R
+        if(gamepad_button_check(gp_count,gp_padr))
+            keyboard_key_press(vk_right);
+        else if(gamepad_button_check_released(gp_count,gp_padr))
+           keyboard_key_release(vk_right);
+           
+        if(gamepad_button_check(gp_count,gp_shoulderr))
+            keyboard_key_press(vk_right);
+        else if(gamepad_button_check_released(gp_count,gp_shoulderr))
+           keyboard_key_release(vk_right);
+
+        //Generico (DirecInput)
+        if(gp_count == 4)
+        {
+            //1, 4 e Select - Mover
+            if(gamepad_button_check_pressed(gp_count,gp_face1))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face1))
+                keyboard_key_release(vk_shift);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_face4))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face4))
+                keyboard_key_release(vk_shift);
+    
+            if(gamepad_button_check_pressed(gp_count,gp_select))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_select))
+                keyboard_key_release(vk_shift);
+                                
+            //2 e Start - Iniciar
+            if(gamepad_button_check_pressed(gp_count,gp_face2))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_face2))
+                keyboard_key_release(vk_enter);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_start))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_start))
+                keyboard_key_release(vk_enter);
+            
+            //3 - Cancelar
+            if(gamepad_button_check_pressed(gp_count,gp_face3))
+                keyboard_key_press(vk_escape);
+            else if(gamepad_button_check_released(gp_count,gp_face3))
+                keyboard_key_release(vk_escape);
+        };    
+        //Joy-Cons / Nintendo Switch Pro Controller (XInput) [também XBOX]
+        else
+        {
+            //X, Y e Select - Mover
+            if(gamepad_button_check_pressed(gp_count,gp_face3))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face3))
+                keyboard_key_release(vk_shift);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_face4))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_face4))
+                keyboard_key_release(vk_shift);
+    
+            if(gamepad_button_check_pressed(gp_count,gp_select))
+                keyboard_key_press(vk_shift);
+            else if(gamepad_button_check_released(gp_count,gp_select))
+                keyboard_key_release(vk_shift);
+                                
+            //A e Start - Iniciar
+            if(gamepad_button_check_pressed(gp_count,gp_face2))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_face2))
+                keyboard_key_release(vk_enter);
+                
+            if(gamepad_button_check_pressed(gp_count,gp_start))
+                keyboard_key_press(vk_enter);
+            else if(gamepad_button_check_released(gp_count,gp_start))
+                keyboard_key_release(vk_enter);
+            
+            //B - Cancelar
+            if(gamepad_button_check_pressed(gp_count,gp_face1))
+                keyboard_key_press(vk_escape);
+            else if(gamepad_button_check_released(gp_count,gp_face1))
+                keyboard_key_release(vk_escape);
+        };
+    };
+    if(gp_count &gt; 4)
+    {
+        gp_count = 0;
+    }
+};
+
+//Cor do seletor de jogos
+if(col_mod == 0){
+
+    if(col_numb &lt; 1)
+        col_numb += 0.05;
+    else
+        col_mod =! col_mod;
+};
+else{
+
+    if(col_numb &gt; 0)
+        col_numb -= 0.05;
+    else
+        col_mod =! col_mod;
+};
+
+//Navegação da lista de jogos
+if(alarm[0] == -1)
+&amp;&amp;(games_total &gt; 0){
+
+    //Mover jogo
+    if(keyboard_check_pressed(vk_shift))
+    {
+        move =! move;
+        move_origin = select_index;
+    };
+    
+    //Navegação rápida (Loop)
+    if(keyboard_check(vk_right))
+    {
+        //Intervalo
+        if(nav_time &gt; 0)
+            nav_time--;
+        else
+        {
+            //Delay em frames
+            nav_time = 5;
+            
+            //Próximo
+            if(select_index &lt; games_total-1)
+            {
+                select_index++;
+                audio_play_sfx(sfx_nx_system_gameselect);
+            };
+        };
+    };
+    else if(keyboard_check(vk_left))
+    {
+        //Intervalo
+        if(nav_time &gt; 0)
+            nav_time--;
+        else
+        {    
+            //Delay em frames
+            nav_time = 5;
+                    
+            //Anterior
+            if(select_index &gt; 0)
+            {
+                select_index--;
+                audio_play_sfx(sfx_nx_system_gameselect);
+            };
+        };
+    };
+    else
+    {
+        nav_time = 30;
+    }
+
+    //Normal
+    if(keyboard_check_pressed(vk_right))
+    {
+        offset_v = 0;
+        
+        //Próximo
+        if(select_index &lt; games_total-1)
+        {
+            select_index++;
+            audio_play_sfx(sfx_nx_system_gameselect);
+        };
+        else
+        {
+            audio_play_sfx(sfx_nx_system_gameborder);
+        }
+    };
+    else if(keyboard_check_pressed(vk_left))
+    {
+        offset_v = 0;
+        
+        //Anterior
+        if(select_index &gt; 0)
+        {
+            select_index--;
+            audio_play_sfx(sfx_nx_system_gameselect);
+        };
+        else
+        {
+            audio_play_sfx(sfx_nx_system_gameborder);
+        }
+    };
+    else if(keyboard_check_pressed(vk_down))
+    {
+        offset_v = 0;
+        
+        //Fim
+        select_index = games_total-1;
+        audio_play_sfx(sfx_nx_system_gameborder);
+    };
+    else if(keyboard_check_pressed(vk_up))
+    {
+        offset_v = 0;
+        
+        //Começo
+        select_index = 0;
+        audio_play_sfx(sfx_nx_system_gameborder);
+    };
+    else if(keyboard_check_pressed(vk_enter))
+    {    
+        if(keyboard_check(vk_alt))
+        {
+            //Fullscreen
+            audio_play_sfx(sfx_nx_notification_general);
+            fullscreen =! fullscreen;
+            alarm[4] = 3;
+            cleanmem();
+        };
+        else
+        {
+            //Confirmar após mover
+            if(move == 1)
+            {
+                //Se for local diferente...
+                if(select_index != move_origin)
+                {
+                    //SFX
+                    audio_play_sfx(sfx_nx_system_tick);
+                    games_title[select_index] = "Moving...";
+                    
+                    //Copiar
+                    move_temp_title = games_title[move_origin];
+                    move_temp_path = games_path[move_origin];                  
+                    move_temp_shortcut = games_shortcut[move_origin];
+                    move_temp_thumbnail = sprite_duplicate(games_thumb[move_origin]);
+                    
+                    //Deletar de origem
+                    sprite_delete(games_thumb[move_origin]);
+                    
+                    //Renomear arquivo de origem temporariamente...
+                    file_rename_fmns(game_save_id+"title_collection\game_"+string(move_origin)+".ini",game_save_id+"title_collection\game_TMP.ini");
+                    file_rename_fmns(game_save_id+"title_collection\game_"+string(move_origin)+".png",game_save_id+"title_collection\game_TMP.png");
+                    
+                    //Mover arquivo destino para de origem...
+                    alarm[11] = 10;
+                };
+                else
+                {
+                    //SFX
+                    audio_play_sfx(sfx_nx_system_tick);
+                    
+                    //Finalizar
+                    move = 0;
+                    move_origin = -1;
+                    cleanmem();
+                };
+            };
+            else{
+            
+                //Iniciar jogo
+                if(games_total &gt; 0)
+                &amp;&amp;(file_exists_fmns(games_path[select_index])){
+                
+                    //Iniciar máximizado
+                    if(fullscreen == 1)
+                        boot_res = "/max ";
+                    else
+                        boot_res = "";
+                        
+                    //Iniciar e suspender
+                    if(games_shortcut[select_index] == 0)
+                        boot_wait = "/WAIT ";
+                    else
+                        boot_wait = "";
+                        
+                    //ROM
+                    if (games_rom[select_index] != "")
+                    {
+                        boot_attach = string(games_rom[select_index]);
+                    }
+                    else if (games_rom[select_index] == "")
+                    {
+                        boot_attach = "";
+                    }
+                
+                    window_set_fullscreen(0);
+                    audio_play_sfx(sfx_nx_system_gamestart);
+                    alarm[0] = 15;
+                };
+            };
+        };
+    };       
+};
+        
+//Deletar jogo
+if (move == 1)
+{
+    if(keyboard_check_released(vk_delete))
+    ||(gamepad_button_check_released(1, gp_face3))
+    &amp;&amp;(games_total &gt; 0)
+    &amp;&amp;(alarm[10] == -1)
+    {
+        //Deletar sprite
+        sprite_delete(games_thumb[select_index]);
+        
+        //Nulo
+        games_title[select_index] = "Deleting...";
+        
+        //Deletar arquivos
+        file_delete_fmns(game_save_id+"title_collection\game_"+string(select_index)+".png");
+        file_delete_fmns(game_save_id+"title_collection\game_"+string(select_index)+".ini");
+                          
+        //Deletar ultimo (sendo o ultimo selecionado)
+        if(select_index == games_total-1)
+        &amp;&amp;(select_index &gt; 0)
+        {
+            games_path[select_index] = "";
+                
+            //Decrementar
+            audio_play_sfx(sfx_nx_system_error);
+            games_total--;            
+            select_index--;
+                
+            //Salvar total de jogos
+            ini_open(game_save_id+"title_collection\_total.ini");
+            ini_write_string("NX_TITLE","total",string(games_total));
+            ini_close();
+            
+            //Atualizar RPC
+            event_user(0);
+            cleanmem();
+        };
+        //Mover tudo
+        else
+        {
+            audio_play_sound(sfx_nx_system_loading,0,0);
+            move_rest = select_index;
+            alarm[10] = 10;
+            cleanmem();
+        };
+    };
+};
+
+//Fullscreen
+if(keyboard_check_released(vk_f10))
+{
+    fullscreen =! fullscreen;
+    alarm[4] = 3;
+    cleanmem();
+};
+    
+//Screenshot
+var nx_screenshot;
+if(keyboard_check_released(vk_f12))
+{
+    nx_screenshot = get_save_filename_ext("Screenshot|*.png", "", working_directory, "Save a screenshot");
+    if nx_screenshot != ""
+    {
+        window_set_fullscreen(0);
+        screen_save(nx_screenshot);
+        alarm[4] = 2;
+        cleanmem();
+    }
+};
+
+//Terminate launcher
+if (keyboard_check_released(vk_escape))
+{
+    game_end();
+}
+
+///Mouse-featured actions
+if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_right))
+{
+    //Open profile page
+    if(point_in_rectangle(mouse_x,mouse_y,32,30,(32+64),(30+64)))
+    &amp;&amp;(profile_page == 0)
+    {
+        profile_page = 1;
+        if (profile_page == 1)
+        {
+            room_goto(rm_profile_page);
+        }
+    }
+    
+    //Background adder
+    if (point_in_rectangle(mouse_x, mouse_y, 144, 42, 194, 92))
+    {
+        add_wallpaper();
+    }
+    
+    //Theme changer
+    if (point_in_rectangle(mouse_x, mouse_y, 210, 42, 260, 92))
+    {
+        theme =! theme
+    }
+    
+    if (point_in_rectangle(mouse_x, mouse_y, 276, 42, 276+50, 92))
+    {
+        add_customtheme();
+    }
+    
+    //Data folder opener
+    if (point_in_rectangle(mouse_x, mouse_y, 342, 42, 342+50, 92))
+    {
+        execute_shell(global.appdata_launcherdir, false, false);
+    }
+    
+    //Add thumbnails
+    if(point_in_rectangle(mouse_x,mouse_y, 16, (136+98+98+98), 16+98, (136+98+98+98+98)))
+    &amp;&amp;(alarm[7] == -1)
+    {
+        window_set_fullscreen(0);
+        alarm[7] = 2;
+    }
+    
+    //Open Settings
+    if(point_in_rectangle(mouse_x, mouse_y, 16, 528, 16+98, 528+98))
+    &amp;&amp;(settings_page == 0)
+    {
+        settings_page = 1;
+        if (settings_page == 1)
+        {
+            room_goto(rm_settings_page)
+        }
+    }
+}
+
+/*//Add thumbnails
+    if(point_in_rectangle(mouse_x,mouse_y, 16, (136+98+98+98), 16+98, (136+98+98+98+98)))
+    &amp;&amp;(alarm[7] == -1)
+    {
+        window_set_fullscreen(0);
+        alarm[7] = 2;
+    }
+    
+
+if (keyboard_check_released(vk_f10))
 {
     theme = !theme;
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -192,8 +1275,10 @@ for(i = 0; i &lt; games_total; i += 1)
     //Load titles's details
     ini_open(game_save_id + "title_collection\game_" + string(i) + ".ini");
     games_title[i] = ini_read_string("NX_TITLE","title","???");
+    games_title_file[i] = ini_read_string("NX_TITLE","title_file","");
     games_path[i] = ini_read_string("NX_TITLE","path","");
     games_rom[i] = ini_read_string("NX_TITLE","rom","");
+    games_rom_file[i] = ini_read_string("NX_TITLE","rom_file","");
     games_subselect[i] = real(ini_read_string("NX_TITLE","subselect","1"));
     games_shortcut[i] = real(ini_read_string("NX_TITLE","shortcut","0"));
     games_animframes[i] = real(ini_read_string("NX_TITLE","animframes","1"));
@@ -328,13 +1413,12 @@ if(select_index &gt; games_total-1){
         select_index = games_total-1;
 };
 
-//Discord's RPC Initializer
-if (discord_rpc == 1)
-{
-    discord_init_dll();
-    discord_init_app("518968328744861704");
-    discord_update_presence("","","","");
-}
+language_set();
+cleanmem_init(0);
+
+discord_init_dll();
+discord_init_app("518968328744861704");
+discord_update_presence("","","","");
 
 //Set RPC status
 event_user(0);
