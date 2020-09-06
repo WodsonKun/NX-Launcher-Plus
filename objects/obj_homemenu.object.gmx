@@ -671,7 +671,43 @@ if(file != "")
         ini_close();
     }
     
+    //Nintendo 64 (Project64)
+    else if (name == "Project64.exe") || (name == "mupen64plus-ui-console.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_n64_rom_filter, "", global.userdir, file_n64_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE", "rom_file", string_copy(filename_name(games_rom[games_total]), 0, 999));
+        ini_close();
+    }
+    
     //Nintendo GameCube / Wii (Dolphin)
+    else if (name == "Dolphin.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_gcwii_rom_filter, "", global.userdir, file_gcwii_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE", "rom_file", string_copy(filename_name(games_rom[games_total]), 0, 999));
+        ini_close();
+    }
     
     //Nintendo 3DS (Citra)
     else if (name == "citra-qt.exe")
@@ -1929,6 +1965,12 @@ switch (global.lang)
     //Nintendo Game Boy (Original, Color, Advance and Super)
     file_gameboy_rom_filter = "Nintendo Game Boy (.gb)|*.gb|Nintendo Game Boy Color (.gbc)|*.gbc|Nintendo Game Boy (.gba, .agb)|*.gba;.*agb|Nintendo Super Game Boy (.sgb)|*.sgb"
     file_gameboy_rom_name = "Select a Nintendo Game Boy (Original, Color, Advance or Super) ROM"
+    //Nintendo 64
+    file_n64_rom_filter = "Nintendo 64 ROMs (.n64, .z64, .v64)|*.n64;*.z64;*.v64"
+    file_n64_rom_name = "Select a Nintendo 64 ROM"
+    //Nintendo GameCube / Wii
+    file_gcwii_rom_filter = "Nintendo GameCube / Wii ROMs (.iso, .nkit.iso, .wbfs, .gcz)|*.iso;*.nkit.iso;*.wbfs;*.gcz"
+    file_gcwii_rom_name = "Select a Nintendo GameCube / Wii ROM"
     //Nintendo 3DS
     file_3ds_rom_filter = "Nintendo 3DS ROMs (.3ds, .3dsx, .cci, .cxi)|*.3ds;*.3dsx;*.cci;*.cxi"
     file_3ds_rom_name = "Select a Nintendo 3DS ROM"
