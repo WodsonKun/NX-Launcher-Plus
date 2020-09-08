@@ -612,7 +612,8 @@ if(file != "")
     {
         games_rom[games_total] = '';
         ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE","rom","");
+        ini_write_string("NX_TITLE", "rom_file", "");
         ini_close();
     }
     //NES (Mesen)
@@ -1199,6 +1200,8 @@ file_text_write_string(test,filename_drive(games_path[select_index]));
 file_text_writeln(test);
 file_text_write_string(test,"cd "+filename_path(games_path[select_index])+"");
 file_text_writeln(test);
+ini_open(game_save_id + "title_collection\game_" + string(select_index) + ".ini");
+games_title_file[select_index] = ini_read_string("NX_TITLE","title_file","");
 if (boot_attach != "")
 {
     switch (games_title_file[select_index])
@@ -1214,6 +1217,7 @@ else
 {
     file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'"');
 }
+ini_close();
 file_text_writeln(test);
 file_text_close(test);
 
@@ -1222,6 +1226,18 @@ cleanmem();
 
 //Proceed into launching the title
 alarm[1] = 4;
+
+/*if (games_title_file[select_index] != "")
+    {
+        switch (games_title_file[select_index])
+        {
+            case ("Dolphin.exe"):   file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'" '+"-e "+'"'+boot_attach+'"');    break;
+            case ("Cemu.exe"):  file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'" '+"-g "+'"'+boot_attach+'"');    break;
+            case ("pcsxr.exe"):  file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'" '+"-nogui "+'" '+"-cdfile "+'"'+boot_attach+'"');    break;
+            case ("ePSXe.exe"):  file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'" '+'" '+"-loadbin "+'"'+boot_attach+'"');    break;
+            default:  file_text_write_string(test,'start "Fenix_Software" '+boot_res+''+boot_wait+'"'+filename_name(games_path[select_index])+'" '+'"'+boot_attach+'"');   break;
+        }
+    }*/
 </string>
           </argument>
         </arguments>
@@ -1710,14 +1726,17 @@ if(alarm[0] == -1)&amp;&amp;(dialog == 0)
                         boot_wait = "";
                         
                     //ROM
-                    if (games_rom[select_index] != "")
-                    {
-                        boot_attach = string(games_rom[select_index]);
-                    }
-                    else if (games_rom[select_index] == "")
+                    ini_open(game_save_id + "title_collection\game_" + string(select_index) + ".ini");
+                    games_rom[select_index] = ini_read_string("NX_TITLE","rom","");
+                    if (games_rom[select_index] == "")
                     {
                         boot_attach = "";
                     }
+                    else if (games_rom[select_index] != "")
+                    {
+                        boot_attach = string(games_rom[select_index]);
+                    }
+                    ini_close();
                 
                     window_set_fullscreen(0);
                     audio_play_sfx(sfx_nx_system_gamestart);
@@ -1834,7 +1853,9 @@ if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_righ
             {
                 //Alterar nome
                 audio_play_sfx(sfx_nx_notification_general);
+                draw_set_font(fnt_nsw_ntlg_24);
                 dialog_description = "Change the title's name:"
+                draw_set_font(fnt_nsw_udsg_18);
                 keyboard_string = games_title[select_index];
                 dialog_return = games_title[select_index];
                 dialog = 1;
@@ -2219,8 +2240,6 @@ for(i = 0; i &lt; games_total; i += 1)
     games_shortcut[i] = real(ini_read_string("NX_TITLE","shortcut","0"));
     games_animframes[i] = real(ini_read_string("NX_TITLE","animframes","1"));
     games_animspeed[i] = real(ini_read_string("NX_TITLE","animspeed","0"));
-    games_playtime[i, 0] = real(base64_decode(ini_read_string("NX_TITLE","0","0")));
-    games_playtime[i, 1] = real(base64_decode(ini_read_string("NX_TITLE","1","0")));
     
     //Load titles's thumbnails
     if(file_exists_fmns(game_save_id + "\title_collection\game_" + string(i) + ".png"))
@@ -2776,12 +2795,14 @@ draw_set_alpha(1);
 if(dialog == 1){
     
     //Descrição
+    draw_set_font(fnt_nsw_ntlg_24);
     draw_set_colour(c_aqua);
     draw_set_halign(fa_center);
     draw_text(1280/2,720/2-48,dialog_description);
     draw_set_colour(c_white);
     
     //Texto
+    draw_set_font(fnt_nsw_udsg_18);
     draw_text(1280/2,720/2,dialog_return+dialog_inputb);
     draw_set_halign(fa_left);
     draw_set_colour(c_white);
