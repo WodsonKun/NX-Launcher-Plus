@@ -253,12 +253,13 @@ if(mod_file != ""){
     games_shortcut[select_index] = 0;}
     
     ///---------- ROM Filter ----------
-    var name = filename_name(file);
+    var name = filename_name(mod_file);
     if (name == "")
     {
         games_rom[games_total] = '';
         ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
-        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE","rom","");
+        ini_write_string("NX_TITLE", "rom_file", "");
         ini_close();
     }
     //NES (Mesen)
@@ -317,7 +318,43 @@ if(mod_file != ""){
         ini_close();
     }
     
+    //Nintendo 64 (Project64)
+    else if (name == "Project64.exe") || (name == "mupen64plus-ui-console.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_n64_rom_filter, "", global.userdir, file_n64_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE", "rom_file", string_copy(filename_name(games_rom[games_total]), 0, 999));
+        ini_close();
+    }
+    
     //Nintendo GameCube / Wii (Dolphin)
+    else if (name == "Dolphin.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_gcwii_rom_filter, "", global.userdir, file_gcwii_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id+"title_collection\game_"+string(games_total)+".ini");
+        ini_write_string("NX_TITLE","rom",string(games_rom[games_total]));
+        ini_write_string("NX_TITLE", "rom_file", string_copy(filename_name(games_rom[games_total]), 0, 999));
+        ini_close();
+    }
     
     //Nintendo 3DS (Citra)
     else if (name == "citra-qt.exe")
@@ -476,6 +513,23 @@ if(mod_file != ""){
     }
     
     //PlayStation 3 (RPCS3)
+    else if (name == "rpcs3.exe")
+    {
+        //É um atalho para ROMs?
+        var rom_scut = show_question(question_romshortcut);
+        if (rom_scut == 1)
+        {
+            games_rom[games_total] = get_open_filename_ext(file_ps3_rom_filter, "", global.userdir, file_ps3_rom_name);
+        }
+        else
+        {
+            games_rom[games_total] = "";
+        }
+        ini_open(game_save_id + "title_collection\game_" + string(games_total)+".ini");
+        ini_write_string("NX_TITLE", "rom", string(games_rom[games_total]));
+        ini_write_string("NX_TITLE", "rom_file", string_copy(filename_name(games_rom[games_total]), 0, 999));
+        ini_close();
+    }
     
     //SFX
     audio_play_sfx(sfx_nx_notification_general);
