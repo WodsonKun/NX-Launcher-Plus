@@ -74,10 +74,16 @@ if (room == rm_setupwizard_0)
             ///Change profile picture
             var get_profile_icon = get_open_filename_ext("Profile Picture (64x64 / 128x128 / 256x256)|*.png;*.jpg;*.jpeg", "", game_save_id + "profile_pics", "Choose a profile picture");
             if (get_profile_icon != "")
-            sprite_delete(profile_icon);
-            profile_icon = sprite_add(get_profile_icon,0,0,1,0,0);
-            file_delete_fmns(game_save_id + '_profile.png');
-            file_copy_fmns(get_profile_icon, game_save_id + '_profile.png');
+            {
+                sprite_delete(profile_icon);
+                profile_icon = sprite_add(get_profile_icon,0,0,1,0,0);
+                file_delete_fmns(game_save_id + '_profile.png');
+                file_copy_fmns(get_profile_icon, game_save_id + '_profile.png');
+            }
+            else
+            {
+                get_profile_picture = spr_def_profilepicture;
+            }
         }
         if (point_in_rectangle(mouse_x, mouse_y, 1184, 656, 1184+64, 656+64))
         {

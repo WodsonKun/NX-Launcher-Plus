@@ -1837,37 +1837,40 @@ if(mouse_check_button_released(mb_left)) || (mouse_check_button_released(mb_righ
             alarm[7] = 2;
         }
         
-        //Change a thumbnail's icon
-        if (point_in_rectangle(mouse_x, mouse_y, 210, 42, 260, 92))
+        if (games_total &gt; 0)
         {
-            window_set_fullscreen(0);
-            alarm[8] = 2;
-        }
-        
-        //Change a thumbnail's name
-        if (point_in_rectangle(mouse_x, mouse_y, 276, 42, 276+50, 92))
-        &amp;&amp;(games_total &gt; 0)
-        &amp;&amp;(alarm[6] == -1)
-        {
-            if(filename_ext(games_path[select_index]) == ".exe")
+            //Change a thumbnail's icon
+            if (point_in_rectangle(mouse_x, mouse_y, 210, 42, 260, 92))
             {
-                //Alterar nome
-                audio_play_sfx(sfx_nx_notification_general);
-                draw_set_font(fnt_nsw_ntlg_24);
-                dialog_description = "Change the title's name:"
-                draw_set_font(fnt_nsw_udsg_18);
-                keyboard_string = games_title[select_index];
-                dialog_return = games_title[select_index];
-                dialog = 1;
-                alarm[6] = 1;
-            };
-        }
-        
-        //Change a thumbnail's executable
-        if (point_in_rectangle(mouse_x, mouse_y, 342, 42, 342+50, 92))
-        {
-            window_set_fullscreen(0);
-            alarm[9] = 2;
+                window_set_fullscreen(0);
+                alarm[8] = 2;
+            }
+            
+            //Change a thumbnail's name
+            if (point_in_rectangle(mouse_x, mouse_y, 276, 42, 276+50, 92))
+            &amp;&amp;(games_total &gt; 0)
+            &amp;&amp;(alarm[6] == -1)
+            {
+                if(filename_ext(games_path[select_index]) == ".exe")
+                {
+                    //Alterar nome
+                    audio_play_sfx(sfx_nx_notification_general);
+                    draw_set_font(fnt_nsw_ntlg_24);
+                    dialog_description = "Change the title's name:"
+                    draw_set_font(fnt_nsw_udsg_18);
+                    keyboard_string = games_title[select_index];
+                    dialog_return = games_title[select_index];
+                    dialog = 1;
+                    alarm[6] = 1;
+                };
+            }
+            
+            //Change a thumbnail's executable
+            if (point_in_rectangle(mouse_x, mouse_y, 342, 42, 342+50, 92))
+            {
+                window_set_fullscreen(0);
+                alarm[9] = 2;
+            }
         }
     }
     

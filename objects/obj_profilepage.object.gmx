@@ -87,10 +87,12 @@ if(mouse_check_button_released(mb_left))||(mouse_check_button_released(mb_right)
     {
         category = "profile"
     }
-    //Draw highlight
-    if (point_in_rectangle(mouse_x, mouse_y, 464, 160, 464+256, 160+256))
+    if (category == "profile")
     {
-        add_profilepicture_next();
+        if (point_in_rectangle(mouse_x, mouse_y, 464, 160, 464+256, 160+256))
+        {
+            add_profilepicture_next();
+        }
     }
     
     //Discord
