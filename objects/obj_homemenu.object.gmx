@@ -246,7 +246,7 @@ if(mod_file != ""){
     audio_play_sfx(sfx_nx_notification_general);
     
     //É um ATALHO?
-    var mod_scut = show_question(text_addgame);
+    var mod_scut = show_question(question_shortcut);
     if(mod_scut == 1){
         games_shortcut[select_index] = 1;}
     else{
@@ -538,7 +538,7 @@ if(mod_file != ""){
     games_path[select_index] = mod_file;
                 
     //Salvar no diretório
-    ini_open(game_save_id+"collection\game_"+string(select_index)+".ini");
+    ini_open(game_save_id+"title_collection\game_"+string(select_index)+".ini");
     ini_write_string("NX_TITLE","path",string(mod_file));
     ini_write_string("NX_TITLE","title_file",string_copy(filename_name(mod_file),0,48));
     real(ini_write_string("NX_TITLE","shortcut",string(games_shortcut[select_index])));
@@ -587,9 +587,9 @@ else
     if(mod_thumb != ""){
         
         sprite_delete(games_thumb[select_index])
-        file_delete_fmns(game_save_id+"collection\game_"+string(select_index)+".png");
+        file_delete_fmns(game_save_id+"title_collection\game_"+string(select_index)+".png");
         games_thumb[select_index] = sprite_add(mod_thumb,0,0,1,0,0);
-        file_copy_fmns(mod_thumb,game_save_id+"collection\game_"+string(select_index)+".png");
+        file_copy_fmns(mod_thumb,game_save_id+"title_collection\game_"+string(select_index)+".png");
     };
     else
     {
